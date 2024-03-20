@@ -10,6 +10,8 @@ public abstract class PlayerBaseState
     protected PlayerBaseState _currentSubState;
     protected PlayerBaseState _currentSuperState;
 
+    protected PlayerBaseState _prevState;
+
     public PlayerBaseState(PlayerStateManager currentContext, PlayerStateFactory playerStateFactory) 
     {
         _ctx = currentContext;
@@ -55,6 +57,8 @@ public abstract class PlayerBaseState
     {
         ExitStates();
 
+        newState.SetPrevState(this);
+
         newState.EnterState();
 
         if (_isRootState)
@@ -77,6 +81,11 @@ public abstract class PlayerBaseState
     {
         _currentSubState = newSubState;
         newSubState.SetSuperState(this);
+    }
+
+    protected void SetPrevState(PlayerBaseState prevState)
+    {
+        _prevState = prevState;
     }
 
 }

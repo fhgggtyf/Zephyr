@@ -20,4 +20,14 @@ public class AIController : InputController
     {
         return false;
     }
+
+    public override bool RetrieveRunInput()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override bool RetrieveShiftInput()
+    {
+        throw new System.NotImplementedException();
+    }
 }

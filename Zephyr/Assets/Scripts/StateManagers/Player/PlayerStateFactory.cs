@@ -41,5 +41,25 @@ public class PlayerStateFactory
         return new PlayerDashState(_context, this);
     }
 
+    public PlayerBaseState Run()
+    {
+        return new PlayerRunState(_context, this);
+    }
+
+    public PlayerBaseState Shift()
+    {
+        return new PlayerShiftState(_context, this);
+    }
+
+    public PlayerBaseState RunShift()
+    {
+        return new PlayerRunShiftState(_context, this);
+    }
+
+    public PlayerBaseState Crouch()
+    {
+        return new PlayerCrouchState(_context, this);
+    }
+
 
 }

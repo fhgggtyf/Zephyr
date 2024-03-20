@@ -7,4 +7,6 @@ public abstract class InputController : ScriptableObject
     public abstract float RetrieveMoveInput();
     public abstract bool RetrieveJumpInput();
     public abstract bool RetrieveRollInput();
+    public abstract bool RetrieveRunInput();
+    public abstract bool RetrieveShiftInput();
 }

@@ -14,6 +14,7 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void EnterState()
     {
+
     }   
 
     public override void UpdateState()
@@ -26,8 +27,15 @@ public class PlayerJumpState : PlayerBaseState
             JumpAction();
         }
 
+        if (_ctx.VelocityY <= -11)
+        {
+            _ctx.Body.gravityScale = 0;
+        }
+        else
+        {
+            _ctx.Body.gravityScale = _ctx.DefaultGravityScale;
+        }
 
-        _ctx.Body.gravityScale = _ctx.DefaultGravityScale;
 
         _ctx.Body.velocity = _ctx.Velocity;
 
@@ -70,7 +78,7 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void ExitState()
     {
-
+        _ctx.CanDash = true;
     }
 
     public override void CheckSwitchStates()
@@ -78,7 +86,6 @@ public class PlayerJumpState : PlayerBaseState
         if (_ctx.OnGround)
         {
             _ctx.JumpPhase = 0;
-            Debug.Log("Switched");
             SwitchState(_factory.Grounded());
         }
 
@@ -92,7 +99,15 @@ public class PlayerJumpState : PlayerBaseState
         }
         else if (_ctx.input.RetrieveMoveInput() != 0)
         {
-            SetSubState(_factory.Walk());
+            if (_ctx.VelocityX >= 7 || _ctx.VelocityX <= -7)
+            {
+                SetSubState(_factory.Run());
+            }
+            else
+            {
+                SetSubState(_factory.Walk());
+            }
+
         }
         else if (_ctx.input.RetrieveRollInput())
         {

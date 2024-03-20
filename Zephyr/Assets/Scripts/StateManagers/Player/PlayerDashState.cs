@@ -13,6 +13,7 @@ public class PlayerDashState : PlayerBaseState
     public override void EnterState()
     {
         _ctx.DirectionX = _ctx.input.RetrieveMoveInput();
+        _ctx.CanDash = false;
         DashAction();
     }
     
@@ -39,7 +40,14 @@ public class PlayerDashState : PlayerBaseState
             }
             if (_ctx.input.RetrieveMoveInput() != 0)
             {
-                SwitchState(_factory.Walk());
+                if (_prevState is PlayerRunState)
+                {
+                    SwitchState(_factory.Run());
+                }
+                else if (_prevState is PlayerWalkState)
+                {
+                    SwitchState(_factory.Walk());
+                }
             }
         }
     }
@@ -68,7 +76,7 @@ public class PlayerDashState : PlayerBaseState
     {
         _ctx.Velocity = _ctx.Body.velocity;
         dashVelocity = _ctx.IsFacingRight * Mathf.Sqrt(2f * _ctx.DashDecceleration * _ctx.DashDesiredDistance);
-        _ctx.VelocityX = dashVelocity;
+        _ctx.VelocityX += dashVelocity;
         _ctx.Body.velocity = _ctx.Velocity;
     }
 }

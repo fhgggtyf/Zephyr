@@ -7,29 +7,27 @@ public class PlayerRunState : PlayerBaseState
     public PlayerRunState(PlayerStateManager currentContext, PlayerStateFactory playerStateFactory)
         : base(currentContext, playerStateFactory) { }
 
-    public override void CheckSwitchStates()
-    {
-        throw new System.NotImplementedException();
-    }
-
     public override void EnterState()
     {
-        throw new System.NotImplementedException();
-    }
 
-    public override void ExitState()
+
+    }
+    public override void UpdateState()
     {
-        throw new System.NotImplementedException();
+        _ctx.DirectionX = _ctx.input.RetrieveMoveInput();
+        _ctx.DesiredVelocity = new Vector2(_ctx.DirectionX, 0f) * Mathf.Max(_ctx.MaxRunSpeed - _ctx.Ground.GetFriction(), 0f);
+        _ctx.Velocity = _ctx.Body.velocity;
+        _ctx.MaxSpeedChange = _ctx.Acceleration * Time.deltaTime;
+        _ctx.VelocityX = Mathf.MoveTowards(_ctx.VelocityX, _ctx.DesiredVelocityX, _ctx.MaxSpeedChange);
+
+        _ctx.Body.velocity = _ctx.Velocity;
+
+        CheckSwitchStates();
     }
 
     public override void FixedUpdateState()
     {
-        throw new System.NotImplementedException();
-    }
-
-    public override void InitializeSubstate()
-    {
-        throw new System.NotImplementedException();
+        AdjustDirection();
     }
 
     public override void OnCollisionEnter()
@@ -37,8 +35,66 @@ public class PlayerRunState : PlayerBaseState
         throw new System.NotImplementedException();
     }
 
-    public override void UpdateState()
+    public override void ExitState()
+    {
+
+    }
+
+    public override void CheckSwitchStates()
+    {
+        if (_ctx.input.RetrieveMoveInput() == 0)
+        {
+            SwitchState(_factory.Idle());
+        }
+        else if (_ctx.input.RetrieveRollInput() && _currentSuperState is PlayerJumpState && _ctx.CanDash)
+        {
+            SwitchState(_factory.Dash());
+        }
+        if (_currentSuperState is PlayerGroundedState)
+        {
+            if (_ctx.input.RetrieveRollInput())
+            {
+                SwitchState(_factory.Roll());
+            }
+            if (_ctx.input.RetrieveShiftInput())
+            {
+                if (_ctx.input.RetrieveMoveInput() != 0)
+                {
+                    SwitchState(_factory.RunShift());
+                }
+                // crouch
+                else
+                {
+                    SwitchState(_factory.Crouch());
+                }
+
+            }
+        }
+    }
+
+    public override void InitializeSubstate()
     {
         throw new System.NotImplementedException();
     }
+
+    void AdjustDirection()
+    {
+        if (_ctx.input.RetrieveMoveInput() > 0 && _ctx.IsFacingRight != 1)
+        {
+            Turn();
+        }
+        else if (_ctx.input.RetrieveMoveInput() < 0 && _ctx.IsFacingRight != -1)
+        {
+            Turn();
+        }
+    }
+
+    void Turn()
+    {
+        Vector3 rotator = new Vector3(_ctx.Transform.rotation.x, _ctx.IsFacingRight == 1 ? 180f : 0f, _ctx.Transform.rotation.z);
+        _ctx.transform.rotation = Quaternion.Euler(rotator);
+        _ctx.IsFacingRight = (short)-_ctx.IsFacingRight;
+        _ctx.CamFollowed.CallTurn();
+    }
+
 }

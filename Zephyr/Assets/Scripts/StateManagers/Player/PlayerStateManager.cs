@@ -5,12 +5,16 @@ using UnityEngine;
 public class PlayerStateManager : MonoBehaviour
 {
 
-    [SerializeField] private float _maxSpeed = 4f;
+    [SerializeField] private float _maxSpeed = 6f;
+    [SerializeField] private float _maxRunSpeed = 10f;
+    [SerializeField] private float _maxShiftSpeed = 4f;
+    [SerializeField] private float _maxRunShiftSpeed = 7f;
 
     private Vector2 _direction;
     private Vector2 _desiredVelocity;
-    private Vector2 _velocity;
+    [SerializeField]private Vector2 _velocity;
     private Rigidbody2D _body;
+    private Transform _transform;
     private Ground _ground;
     private short _isFacingRight = 1;
 
@@ -32,10 +36,13 @@ public class PlayerStateManager : MonoBehaviour
 
     [SerializeField] private float _dashDesiredDistance = 1.5f;
     private float _dashDecceleration = 80f;
+    private bool _canDash;
 
     PlayerStateFactory _states;
 
-    [SerializeField] public InputController input = null;
+    public InputController input = null;
+
+    [SerializeField] private CameraFollowObject _camFollowed;
 
     PlayerBaseState _currentState;
 
@@ -65,17 +72,24 @@ public class PlayerStateManager : MonoBehaviour
     public float DashDesiredDistance { get => _dashDesiredDistance; set => _dashDesiredDistance = value; }
     public float DashDecceleration { get => _dashDecceleration; set => _dashDecceleration = value; }
     public short IsFacingRight { get => _isFacingRight; set => _isFacingRight = value; }
+    public Transform Transform { get => _transform; set => _transform = value; }
+    public CameraFollowObject CamFollowed { get => _camFollowed; set => _camFollowed = value; }
+    public bool CanDash { get => _canDash; set => _canDash = value; }
+    public float MaxRunSpeed { get => _maxRunSpeed; set => _maxRunSpeed = value; }
+    public float MaxShiftSpeed { get => _maxShiftSpeed; set => _maxShiftSpeed = value; }
+    public float MaxRunShiftSpeed { get => _maxRunShiftSpeed; set => _maxRunShiftSpeed = value; }
 
     private void Awake()
     {
         Body = GetComponent<Rigidbody2D>();
+        Transform = transform;
         Ground = GetComponent<Ground>();
         DesiredJump = false;
         DesiredRoll = false;
         JumpPhase = 0;
 
         States = new PlayerStateFactory(this);
-        CurrentState = States.Grounded();
+        CurrentState = States.Jump();
         CurrentState.EnterState();
     }
 

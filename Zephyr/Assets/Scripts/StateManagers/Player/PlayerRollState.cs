@@ -42,7 +42,15 @@ public class PlayerRollState : PlayerBaseState
             }
             if (_ctx.input.RetrieveMoveInput() != 0)
             {
-                SwitchState(_factory.Walk());
+                if (_prevState is PlayerRunState)
+                {
+                    SwitchState(_factory.Run());
+                }
+                else if (_prevState is PlayerWalkState)
+                {
+                    SwitchState(_factory.Walk());
+                }
+
             }
         }
 

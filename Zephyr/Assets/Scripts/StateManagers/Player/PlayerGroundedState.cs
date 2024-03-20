@@ -37,12 +37,24 @@ public class PlayerGroundedState : PlayerBaseState
         }
         else if (_ctx.input.RetrieveMoveInput() != 0)
         {
-            SetSubState(_factory.Walk());
+            if (_ctx.VelocityX >= 7 || _ctx.VelocityX <= -7)
+            {
+                SetSubState(_factory.Run());
+            }
+            else
+            {
+                SetSubState(_factory.Walk());
+            }
         }
         else if (_ctx.input.RetrieveRollInput())
         {
             SetSubState(_factory.Roll());
         }
+        else if (_ctx.input.RetrieveShiftInput())
+        {
+            SetSubState(_factory.Shift());
+        }
+
     }
 
     public override void OnCollisionEnter()
@@ -52,7 +64,7 @@ public class PlayerGroundedState : PlayerBaseState
 
     public override void CheckSwitchStates()
     {
-        if (_ctx.DesiredJump)
+        if (_ctx.DesiredJump || !_ctx.OnGround)
         {
             SwitchState(_factory.Jump());
         }
