@@ -7,7 +7,16 @@ public class CameraManager : MonoBehaviour
 {
 
     public static CameraManager instance;
-    [SerializeField] public PlayerStateManager player;
+    [SerializeField] public Player player;
+
+    private Movement movement;
+
+    protected Movement Movement
+    {
+        get => movement ?? player.Core.GetCoreComponent(ref movement);
+    }
+
+
 
     [SerializeField] private CinemachineVirtualCamera[] _allVirtualCameras;
 
@@ -54,12 +63,12 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.VelocityY < FallSpeedYDampingChangeThreshold && !IsLerpingYDamping && !LerpedFromPlayerFalling)
+        if (Movement.CurrentVelocity.y < FallSpeedYDampingChangeThreshold && !IsLerpingYDamping && !LerpedFromPlayerFalling)
         {
             LerpYDamping(true);
         }
 
-        if (player.VelocityY >= 0f && !IsLerpingYDamping && lerpedFromPlayerFalling)
+        if (Movement.CurrentVelocity.y >= 0f && !IsLerpingYDamping && lerpedFromPlayerFalling)
         {
             lerpedFromPlayerFalling = false;
             LerpYDamping(false);

@@ -6,20 +6,26 @@ public class CameraFollowObject : MonoBehaviour
 {
     [SerializeField] private Transform _playerTransform;
     [SerializeField] private float _flipRotationTime = 0.5f;
+    [SerializeField] private Player _ctx;
 
-    private PlayerStateManager _ctx;
-    private short _isFacingRight;
+    private Movement movement;
+
+    protected Movement Movement
+    {
+        get => movement ?? _ctx.Core.GetCoreComponent(ref movement);
+    }
+
+    private int _isFacingRight;
 
     // Start is called before the first frame update
     void Awake()
     {
-        _ctx = _playerTransform.gameObject.GetComponent<PlayerStateManager>();
-        _isFacingRight = _ctx.IsFacingRight;
     }
 
     // Update is called once per frame
     void Update()
     {
+        _isFacingRight = Movement.FacingDirection;
         transform.position = _playerTransform.position; 
     }
 
@@ -30,7 +36,7 @@ public class CameraFollowObject : MonoBehaviour
     
     private float DetermineEndRotation()
     {
-        _isFacingRight = (short)-_isFacingRight;
+        _isFacingRight = -_isFacingRight;
         if (_isFacingRight == 1)
         {
             return 0f;
