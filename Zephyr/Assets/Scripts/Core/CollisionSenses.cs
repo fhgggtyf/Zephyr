@@ -10,12 +10,6 @@ public class CollisionSenses : CoreComponent
 	private Movement movement;
 
 	#region Check Transforms
-
-	public Transform GroundCheck
-	{
-		get => GenericNotImplementedError<Transform>.TryGet(groundCheck, core.transform.parent.name);
-		private set => groundCheck = value;
-	}
 	public Transform WallCheck
 	{
 		get => GenericNotImplementedError<Transform>.TryGet(wallCheck, core.transform.parent.name);
@@ -41,7 +35,6 @@ public class CollisionSenses : CoreComponent
 	public LayerMask WhatIsGround { get => whatIsGround; set => whatIsGround = value; }
 
 
-	[SerializeField] private Transform groundCheck;
 	[SerializeField] private Transform wallCheck;
 	[SerializeField] private Transform ledgeCheckHorizontal;
 	[SerializeField] private Transform ledgeCheckVertical;
@@ -57,11 +50,6 @@ public class CollisionSenses : CoreComponent
 	public bool Ceiling
 	{
 		get => Physics2D.OverlapCircle(CeilingCheck.position, groundCheckRadius, whatIsGround);
-	}
-
-	public bool Ground
-	{
-		get => Physics2D.OverlapCircle(GroundCheck.position, groundCheckRadius, whatIsGround);
 	}
 
 	public bool WallFront

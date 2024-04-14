@@ -87,6 +87,7 @@ public class PlayerStateMachine
     {
         _currentSubState = newSubState;
         newSubState.StateMachine.SetSuperState(CurrentState);
+        newSubState.StateMachine.SetCurrentState(newSubState);
     }
 
     protected void SetPrevSubState(PlayerBaseState prevState)

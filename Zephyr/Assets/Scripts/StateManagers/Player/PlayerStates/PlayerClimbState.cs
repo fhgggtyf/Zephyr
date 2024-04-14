@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PlayerClimbState : PlayerBaseState
 {
-    protected Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
-    private CollisionSenses CollisionSenses { get => collisionSenses ?? core.GetCoreComponent(ref collisionSenses); }
-
     private Movement movement;
     private CollisionSenses collisionSenses;
 
@@ -19,10 +16,6 @@ public class PlayerClimbState : PlayerBaseState
     private bool isHanging;
     private bool isClimbing;
     private bool jumpInput;
-    private bool isTouchingCeiling;
-
-    private int xInput;
-    private int yInput;
 
     public PlayerClimbState(Player currentContext, string animBoolName) : base(currentContext, animBoolName)
     {
@@ -84,7 +77,7 @@ public class PlayerClimbState : PlayerBaseState
             }
             else if (yInput == -1 && isHanging && !isClimbing)
             {
-                StateMachine.SwitchState(player.stateFactory.InAir(false));
+                StateMachine.SwitchState(player.stateFactory.InAir());
             }
             else if (jumpInput && !isClimbing)
             {
@@ -101,7 +94,6 @@ public class PlayerClimbState : PlayerBaseState
 
     public override void InitializeSubstate()
     {
-        bool isGrounded = collisionSenses.Ground;
 
         if (!isHanging)
         {
@@ -111,7 +103,7 @@ public class PlayerClimbState : PlayerBaseState
             }
             else
             {
-                StateMachine.SwitchState(player.stateFactory.InAir(true));
+                StateMachine.SwitchState(player.stateFactory.InAir());
             }
         }
     }

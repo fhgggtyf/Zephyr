@@ -22,7 +22,7 @@ public class CameraManager : MonoBehaviour
 
     [SerializeField] private float _fallPanAmount = 0.25f;
     [SerializeField] private float _fallYPanTime = 0.35f;
-    private float _fallSpeedYDampingChangeThreshold = -9.5f;
+    private float _fallSpeedYDampingChangeThreshold = -7.5f;
 
     private bool isLerpingYDamping;
     private bool lerpedFromPlayerFalling;

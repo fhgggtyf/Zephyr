@@ -32,14 +32,12 @@ public class PlayerInputHandler : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
 
         cam = Camera.current;
-
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void OnInteractInput(InputAction.CallbackContext context)
@@ -76,6 +74,7 @@ public class PlayerInputHandler : MonoBehaviour
         NormInputX = Mathf.RoundToInt(RawMovementInput.x);
         NormInputY = Mathf.RoundToInt(RawMovementInput.y);
 
+        Debug.Log(NormInputX + " " + NormInputY);
     }
 
     public void OnJumpInput(InputAction.CallbackContext context)

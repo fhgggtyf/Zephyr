@@ -4,30 +4,7 @@ using UnityEngine;
 
 public class PlayerGroundedState : PlayerBaseState
 {
-    protected int xInput;
-    protected int yInput;
-
     private bool jumpInput;
-
-    protected bool isTouchingCeiling;
-    private bool isGrounded;
-    private bool isTouchingWall;
-    private bool isTouchingLedge;
-
-    protected Movement Movement
-    {
-        get => movement ?? core.GetCoreComponent(ref movement);
-    }
-
-    private Movement movement;
-
-    private CollisionSenses CollisionSenses
-    {
-        get => collisionSenses ?? core.GetCoreComponent(ref collisionSenses);
-    }
-
-    private CollisionSenses collisionSenses;
-
     public PlayerGroundedState(Player currentContext, string animBoolName) : base(currentContext, animBoolName)
     {
         IsRootState = true;
@@ -36,14 +13,6 @@ public class PlayerGroundedState : PlayerBaseState
     public override void DoChecks()
     {
         base.DoChecks();
-
-        if (CollisionSenses)
-        {
-            isGrounded = CollisionSenses.Ground;
-            isTouchingWall = CollisionSenses.WallFront;
-            isTouchingLedge = CollisionSenses.LedgeHorizontal;
-            isTouchingCeiling = CollisionSenses.Ceiling;
-        }
     }
 
     public override void EnterState()
@@ -63,12 +32,16 @@ public class PlayerGroundedState : PlayerBaseState
         jumpInput = player.InputHandler.JumpInput;
         if (!isGrounded)
         {
-            StateMachine.SwitchState(player.stateFactory.InAir(false));
+            StateMachine.SwitchState(player.stateFactory.InAir());
         }
         if (jumpInput)
         {
             player.capabilities[(int)Capability.jump].CapabilityAction();
-            StateMachine.SwitchState(player.stateFactory.InAir(true));
+            StateMachine.SwitchState(player.stateFactory.InAir());
+        }
+        if (xInput != 0 && StateMachine.CurrentSubState is not PlayerMoveState)
+        {
+            StateMachine.SetSubState(player.stateFactory.Walk());
         }
     }
 
@@ -79,16 +52,16 @@ public class PlayerGroundedState : PlayerBaseState
 
     public override void InitializeSubstate()
     {
-        xInput = player.InputHandler.NormInputX;
+        DoChecks();
 
-        //if (xInput != 0)
-        //{
-        //    StateMachine.SetSubState(player.stateFactory.Walk());
-        //}
-        //else if (xInput == 0)
-        //{
-        //    StateMachine.SetSubState(player.stateFactory.Idle());
-        //}
+        if (xInput != 0)
+        {
+            StateMachine.SetSubState(player.stateFactory.Walk());
+        }
+        else if (xInput == 0)
+        {
+            StateMachine.SetSubState(player.stateFactory.Idle());
+        }
     }
 
 

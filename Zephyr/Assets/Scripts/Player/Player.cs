@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private PlayerData _playerData;
 
+    private Ground _ground;
+
     #region Components
     public Core Core { get; private set; }
     public Animator Anim { get; private set; }
@@ -25,6 +27,7 @@ public class Player : MonoBehaviour
 
     public InteractableDetector InteractableDetector { get; private set; }
     public PlayerData PlayerData { get => _playerData; set => _playerData = value; }
+    public Ground Ground { get => _ground; set => _ground = value; }
     #endregion
 
     #region Other Variables         
@@ -45,6 +48,8 @@ public class Player : MonoBehaviour
 
         primaryWeapon.SetCore(Core);
         secondaryWeapon.SetCore(Core);
+
+        Ground = GetComponent<Ground>();
 
         Stats = Core.GetCoreComponent<Stats>();
         InteractableDetector = Core.GetCoreComponent<InteractableDetector>();

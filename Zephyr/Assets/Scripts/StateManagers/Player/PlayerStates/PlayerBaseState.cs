@@ -6,6 +6,29 @@ public abstract class PlayerBaseState
 {
     protected Core core;
 
+    protected int xInput;
+    protected int yInput;
+
+    protected bool isTouchingCeiling;
+    protected bool isGrounded;
+    protected bool isTouchingWall;
+    protected bool isTouchingLedge;
+
+
+    protected Movement Movement
+    {
+        get => movement ?? core.GetCoreComponent(ref movement);
+    }
+
+    private Movement movement;
+
+    protected CollisionSenses CollisionSenses
+    {
+        get => collisionSenses ?? core.GetCoreComponent(ref collisionSenses);
+    }
+
+    private CollisionSenses collisionSenses;
+
     private bool _isRootState = false;
 
     protected Player player;
@@ -26,6 +49,7 @@ public abstract class PlayerBaseState
 
     public PlayerBaseState(Player currentContext, string animBoolName) 
     {
+
         StateMachine = new PlayerStateMachine();
         this.player = currentContext;
         this.playerData = currentContext.PlayerData;
@@ -38,6 +62,7 @@ public abstract class PlayerBaseState
     public virtual void EnterState()
     {
         DoChecks();
+        InitializeSubstate();
         //player.Anim.SetBool(animBoolName, true);
         startTime = Time.time;
         //Debug.Log(animBoolName);
@@ -48,6 +73,7 @@ public abstract class PlayerBaseState
     public virtual void PhysicsUpdate()
     {
         DoChecks();
+        Debug.Log(animBoolName);
     }
     public virtual void ExitState()
     {
@@ -55,7 +81,19 @@ public abstract class PlayerBaseState
         isExitingState = true;
     }
     public abstract void InitializeSubstate();
-    public virtual void DoChecks() { }
+    public virtual void DoChecks()
+    {
+        xInput = player.InputHandler.NormInputX;
+        yInput = player.InputHandler.NormInputY;
+
+        if (CollisionSenses)
+        {
+            isGrounded = player.Ground.GetOnGround();
+            isTouchingWall = CollisionSenses.WallFront;
+            isTouchingLedge = CollisionSenses.LedgeHorizontal;
+            isTouchingCeiling = CollisionSenses.Ceiling;
+        }
+    }
 
     public virtual void AnimationTrigger() { }
 

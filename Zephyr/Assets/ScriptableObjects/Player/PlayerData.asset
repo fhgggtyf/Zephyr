@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   movementVelocity: 10
-  jumpVelocity: 15
-  amountOfJumps: 1
+  MaxSpeed: 10
+  acceleration: 70
+  JumpHeight: 3
+  MaxJumps: 2
   wallJumpVelocity: 20
   wallJumpTime: 0.4
   wallJumpAngle: {x: 1, y: 2}
@@ -36,12 +38,3 @@ MonoBehaviour:
   crouchColliderHeight: 0.8
   standColliderHeight: 1.6
   stunTime: 2
-  maxSpeed: 6
-  maxRunSpeed: 10
-  maxShiftSpeed: 4
-  maxRunShiftSpeed: 7
-  acceleration: 4
-  jumpHeight: 3
-  maxAirJumps: 2
-  rollDesiredDistance: 0.5
-  dashDesiredDistance: 1.5

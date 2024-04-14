@@ -7,10 +7,12 @@ public class PlayerData : ScriptableObject
 {
     [Header("Move State")]
     public float movementVelocity = 10f;
+    public float MaxSpeed = 10f;
+    public float acceleration = 10f;
 
     [Header("Jump State")]
-    public float jumpVelocity = 15f;
-    public int amountOfJumps = 1;
+    public float JumpHeight = 15f;
+    public int MaxJumps = 1;
 
     [Header("Wall Jump State")]
     public float wallJumpVelocity = 20;
@@ -48,16 +50,4 @@ public class PlayerData : ScriptableObject
 
     [Header("Stun State")]
     public float stunTime = 2f;
-
-    [Header("New")]
-    public float maxSpeed = 6f;
-    public float maxRunSpeed = 10f;
-    public float maxShiftSpeed = 4f;
-    public float maxRunShiftSpeed = 7f;
-    public float acceleration = 4f;
-    public float jumpHeight = 3f;
-    public int maxAirJumps = 2;
-    public float rollDesiredDistance = 0.5f;
-    public float dashDesiredDistance = 1.5f;
-
 }

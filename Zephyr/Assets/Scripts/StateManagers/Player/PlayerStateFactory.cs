@@ -11,9 +11,9 @@ public class PlayerStateFactory
         _context = currentContext;
     }
 
-    public PlayerBaseState InAir(bool hasJumped)
+    public PlayerBaseState InAir()
     {
-        return new PlayerInAirState(_context, "InAir", hasJumped);
+        return new PlayerInAirState(_context, "InAir");
     }
 
     public PlayerBaseState Grounded()
@@ -21,15 +21,15 @@ public class PlayerStateFactory
         return new PlayerGroundedState(_context, "Grounded");
     }
 
-    //public PlayerBaseState Idle()
-    //{
-    //    return new PlayerIdleState(_context);
-    //}
+    public PlayerBaseState Idle()
+    {
+        return new PlayerIdleState(_context, "Idle");
+    }
 
-    //public PlayerBaseState Walk()
-    //{
-    //    return new PlayerWalkState(_context);
-    //}
+    public PlayerBaseState Walk()
+    {
+        return new PlayerMoveState(_context, "Move");
+    }
 
     //public PlayerBaseState Run()
     //{

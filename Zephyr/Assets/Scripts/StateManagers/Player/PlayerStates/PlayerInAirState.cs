@@ -4,55 +4,23 @@ using UnityEngine;
 
 public class PlayerInAirState : PlayerBaseState
 {
-    private int xInput;
     private bool jumpInput; 
     private bool dashInput;
 
-    private int jumpCount = 0;
+    private int jumpCount = 1;
     private bool canDash = true;
 
-    protected Movement Movement
+    public PlayerInAirState(Player currentContext, string animBoolName) : base(currentContext, animBoolName)
     {
-        get => movement ?? core.GetCoreComponent(ref movement);
-    }
-
-    private Movement movement;
-
-    private CollisionSenses CollisionSenses
-    {
-        get => collisionSenses ?? core.GetCoreComponent(ref collisionSenses);
-    }
-
-    private CollisionSenses collisionSenses;
-
-    //Checks
-    private bool isGrounded;
-    private bool isTouchingWall;
-    private bool isTouchingLedge;
-    private bool isTouchingCeiling;
-
-
-    public PlayerInAirState(Player currentContext, string animBoolName, bool hasJumped) : base(currentContext, animBoolName)
-    {
-        InitializeSubstate();
         IsRootState = true;
-        if (hasJumped)
-        {
-            jumpCount++;
-        }
     }
 
     public override void DoChecks()
     {
         base.DoChecks();
 
-        if (CollisionSenses)
-        {
-            isGrounded = CollisionSenses.Ground;
-            isTouchingWall = CollisionSenses.WallFront;
-            isTouchingLedge = CollisionSenses.LedgeHorizontal;
-            isTouchingCeiling = CollisionSenses.Ceiling;
-        }
+        jumpInput = player.InputHandler.JumpInput;
+
     }
 
     public override void EnterState()
@@ -69,19 +37,21 @@ public class PlayerInAirState : PlayerBaseState
     {
         xInput = player.InputHandler.NormInputX;
 
-        //if (xInput != 0)
-        //{
-        //    StateMachine.SetSubState(player.stateFactory.Walk());
-        //}
-        //else if (xInput == 0)
-        //{
-        //    StateMachine.SetSubState(player.stateFactory.Idle());
-        //}
+        if (xInput != 0)
+        {
+            StateMachine.SetSubState(player.stateFactory.Walk());
+        }
+        else if (xInput == 0)
+        {
+            StateMachine.SetSubState(player.stateFactory.Idle());
+        }
     }
 
     public override void LogicUpdate()
     {
         DoChecks();
+
+        Debug.Log(jumpCount + jumpInput.ToString());
 
         if (isGrounded)
         {
@@ -90,7 +60,7 @@ public class PlayerInAirState : PlayerBaseState
             StateMachine.SwitchState(player.stateFactory.Grounded());
         }
 
-        if (jumpInput && jumpCount < player.PlayerData.maxAirJumps)
+        if (jumpInput && jumpCount < player.PlayerData.MaxJumps)
         {
             jumpCount++;
             player.capabilities[(int)Capability.jump].CapabilityAction();
@@ -102,10 +72,16 @@ public class PlayerInAirState : PlayerBaseState
             player.capabilities[(int)Capability.dash].CapabilityAction();
         }
 
+        if (xInput != 0 && StateMachine.CurrentSubState is not PlayerMoveState)
+        {
+            StateMachine.SetSubState(player.stateFactory.Walk());
+        }
+
     }
 
     public override void PhysicsUpdate()
     {
+        base.PhysicsUpdate();
     }
 
 
