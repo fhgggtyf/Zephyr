@@ -10,7 +10,7 @@ public class PlayerInAirState : PlayerBaseState
     private int jumpCount = 1;
     private bool canDash = true;
 
-    public PlayerInAirState(Player currentContext, string animBoolName) : base(currentContext, animBoolName)
+    public PlayerInAirState(PlayerStateMachine currentContext, string animBoolName) : base(currentContext, animBoolName)
     {
         IsRootState = true;
     }
@@ -19,7 +19,7 @@ public class PlayerInAirState : PlayerBaseState
     {
         base.DoChecks();
 
-        jumpInput = player.InputHandler.JumpInput;
+        jumpInput = Player.InputHandler.JumpInput;
 
     }
 
@@ -35,15 +35,15 @@ public class PlayerInAirState : PlayerBaseState
 
     public override void InitializeSubstate()
     {
-        xInput = player.InputHandler.NormInputX;
+        xInput = Player.InputHandler.NormInputX;
 
         if (xInput != 0)
         {
-            StateMachine.SetSubState(player.stateFactory.Walk());
+            SetSubState(_ctx.Factory.Walk());
         }
         else if (xInput == 0)
         {
-            StateMachine.SetSubState(player.stateFactory.Idle());
+            SetSubState(_ctx.Factory.Idle());
         }
     }
 
@@ -57,24 +57,24 @@ public class PlayerInAirState : PlayerBaseState
         {
             jumpCount = 0;
             canDash = true;
-            StateMachine.SwitchState(player.stateFactory.Grounded());
+            _ctx.SwitchState(this, _ctx.Factory.Grounded());
         }
 
-        if (jumpInput && jumpCount < player.PlayerData.MaxJumps)
+        if (jumpInput && jumpCount < Player.PlayerData.MaxJumps)
         {
             jumpCount++;
-            player.capabilities[(int)Capability.jump].CapabilityAction();
+            Player.capabilities[(int)Capability.jump].CapabilityAction();
         }
 
         if (dashInput && canDash)
         {
             canDash = false;
-            player.capabilities[(int)Capability.dash].CapabilityAction();
+            Player.capabilities[(int)Capability.dash].CapabilityAction();
         }
 
-        if (xInput != 0 && StateMachine.CurrentSubState is not PlayerMoveState)
+        if (xInput != 0 && CurrentSubState is not PlayerMoveState)
         {
-            StateMachine.SetSubState(player.stateFactory.Walk());
+            SetSubState(_ctx.Factory.Walk());
         }
 
     }

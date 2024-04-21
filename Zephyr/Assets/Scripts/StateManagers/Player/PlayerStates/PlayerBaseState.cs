@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PlayerBaseState
+public abstract class PlayerBaseState : IBaseState
 {
-    protected Core core;
+    private Core _core;
 
     protected int xInput;
     protected int yInput;
@@ -14,81 +14,80 @@ public abstract class PlayerBaseState
     protected bool isTouchingWall;
     protected bool isTouchingLedge;
 
+    PlayerBaseState _currentSubState;
+    PlayerBaseState _currentSuperState;
+    PlayerBaseState _prevState;
+
+    private Player _player;
 
     protected Movement Movement
     {
-        get => movement ?? core.GetCoreComponent(ref movement);
+        get => movement ?? _core.GetCoreComponent(ref movement);
     }
 
     private Movement movement;
 
     protected CollisionSenses CollisionSenses
     {
-        get => collisionSenses ?? core.GetCoreComponent(ref collisionSenses);
+        get => collisionSenses ?? _core.GetCoreComponent(ref collisionSenses);
     }
 
     private CollisionSenses collisionSenses;
 
     private bool _isRootState = false;
 
-    protected Player player;
-
-    protected PlayerData playerData;
-
-    private PlayerStateMachine _stateMachine;
+    protected PlayerStateMachine _ctx;
 
     protected bool isAnimationFinished;
     protected bool isExitingState;
 
     protected float startTime;
 
-    private string animBoolName;
+    private string _animBoolName;
 
     public bool IsRootState { get => _isRootState; set => _isRootState = value; }
-    public PlayerStateMachine StateMachine { get => _stateMachine; set => _stateMachine = value; }
+    public PlayerBaseState CurrentSubState { get => _currentSubState; set => _currentSubState = value; }
+    public PlayerBaseState CurrentSuperState { get => _currentSuperState; set => _currentSuperState = value; }
+    public PlayerBaseState PrevState { get => _prevState; set => _prevState = value; }
+    public Player Player { get => _player; set => _player = value; }
 
-    public PlayerBaseState(Player currentContext, string animBoolName) 
+    public PlayerBaseState(PlayerStateMachine currentContext, string animBoolName) 
     {
 
-        StateMachine = new PlayerStateMachine();
-        this.player = currentContext;
-        this.playerData = currentContext.PlayerData;
-        this.animBoolName = animBoolName;
-        core = currentContext.Core;
-        StateMachine.SetCurrentState(this);
-        StateMachine.Ctx = player;
+        _ctx = currentContext;
+        _animBoolName = animBoolName;
+        _core = currentContext.Core;
+        Player = currentContext.Player;
     }
 
     public virtual void EnterState()
     {
         DoChecks();
         InitializeSubstate();
-        //player.Anim.SetBool(animBoolName, true);
+        //player.Anim.SetBool(_animBoolName, true);
         startTime = Time.time;
-        //Debug.Log(animBoolName);
         isAnimationFinished = false;
         isExitingState = false;
     }
-    public abstract void LogicUpdate();
+    public virtual void LogicUpdate() { }
     public virtual void PhysicsUpdate()
     {
         DoChecks();
-        Debug.Log(animBoolName);
     }
     public virtual void ExitState()
     {
-        player.Anim.SetBool(animBoolName, false);
+        //player.Anim.SetBool(_animBoolName, false);
         isExitingState = true;
     }
     public abstract void InitializeSubstate();
     public virtual void DoChecks()
     {
-        xInput = player.InputHandler.NormInputX;
-        yInput = player.InputHandler.NormInputY;
+        xInput = Player.InputHandler.NormInputX;
+        yInput = Player.InputHandler.NormInputY;
 
         if (CollisionSenses)
         {
-            isGrounded = player.Ground.GetOnGround();
+            isGrounded = Player.Ground.GetOnGround();
             isTouchingWall = CollisionSenses.WallFront;
             isTouchingLedge = CollisionSenses.LedgeHorizontal;
             isTouchingCeiling = CollisionSenses.Ceiling;
@@ -99,4 +98,37 @@ public abstract class PlayerBaseState
 
     public virtual void AnimationFinishTrigger() => isAnimationFinished = true;
 
+    public void SetSuperState(PlayerBaseState newSuperState)
+    {
+        _currentSuperState = newSuperState;
+    }
+
+    public void SetSubState(PlayerBaseState newSubState)
+    {
+        CurrentSubState = newSubState;
+        newSubState.SetSuperState(this);
+    }
+
+    public void SetPrevState(PlayerBaseState prevState)
+    {
+        PrevState = prevState;
+    }
+
+    public void UpdateStates()
+    {
+        LogicUpdate();
+        if (_currentSubState != null)
+        {
+            CurrentSubState.UpdateStates();
+        }
+    }
+
+    public void FixedUpdateStates()
+    {
+        PhysicsUpdate();
+        if (_currentSubState != null)
+        {
+            _currentSubState.FixedUpdateStates();
+        }
+    }
 }

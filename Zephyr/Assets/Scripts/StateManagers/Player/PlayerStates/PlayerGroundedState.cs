@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerGroundedState : PlayerBaseState
 {
     private bool jumpInput;
-    public PlayerGroundedState(Player currentContext, string animBoolName) : base(currentContext, animBoolName)
+    public PlayerGroundedState(PlayerStateMachine currentContext, string animBoolName) : base(currentContext, animBoolName)
     {
         IsRootState = true;
     }
@@ -29,19 +29,19 @@ public class PlayerGroundedState : PlayerBaseState
     {
         DoChecks();
 
-        jumpInput = player.InputHandler.JumpInput;
+        jumpInput = Player.InputHandler.JumpInput;
         if (!isGrounded)
         {
-            StateMachine.SwitchState(player.stateFactory.InAir());
+            _ctx.SwitchState(this, _ctx.Factory.InAir());
         }
         if (jumpInput)
         {
-            player.capabilities[(int)Capability.jump].CapabilityAction();
-            StateMachine.SwitchState(player.stateFactory.InAir());
+            Player.capabilities[(int)Capability.jump].CapabilityAction();
+            _ctx.SwitchState(this, _ctx.Factory.InAir());
         }
-        if (xInput != 0 && StateMachine.CurrentSubState is not PlayerMoveState)
+        if (xInput != 0 && CurrentSubState is not PlayerMoveState)
         {
-            StateMachine.SetSubState(player.stateFactory.Walk());
+            SetSubState(_ctx.Factory.Walk());
         }
     }
 
@@ -56,11 +56,11 @@ public class PlayerGroundedState : PlayerBaseState
 
         if (xInput != 0)
         {
-            StateMachine.SetSubState(player.stateFactory.Walk());
+            SetSubState(_ctx.Factory.Walk());
         }
         else if (xInput == 0)
         {
-            StateMachine.SetSubState(player.stateFactory.Idle());
+            SetSubState(_ctx.Factory.Idle());
         }
     }
 

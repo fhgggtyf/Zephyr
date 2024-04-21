@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Core : MonoBehaviour
+public class Core : MonoBehaviour, ICore
 {
     /*
      * The GameObject representing the root of this entity. For most of my cases the Core sits on a child GO of the root GO so awake defaults to that. But

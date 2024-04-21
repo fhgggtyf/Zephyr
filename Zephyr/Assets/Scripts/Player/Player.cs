@@ -2,16 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, ICharacter
 {
-    public PlayerStateFactory stateFactory;
-
     public PlayerStateMachine StateMachine { get; private set; }
 
     public List<PlayerCapabilities> capabilities;
 
-    [SerializeField]
-    private PlayerData _playerData;
+    [SerializeField] private PlayerData _playerData;
+
+    [SerializeField] private PlayerStateMachineFactory _factory;
 
     private Ground _ground;
 
@@ -22,9 +21,7 @@ public class Player : MonoBehaviour
     public Rigidbody2D RB { get; private set; }
     public Transform DashDirectionIndicator { get; private set; }
     public BoxCollider2D MovementCollider { get; private set; }
-
     public Stats Stats { get; private set; }
-
     public InteractableDetector InteractableDetector { get; private set; }
     public PlayerData PlayerData { get => _playerData; set => _playerData = value; }
     public Ground Ground { get => _ground; set => _ground = value; }
@@ -54,8 +51,6 @@ public class Player : MonoBehaviour
         Stats = Core.GetCoreComponent<Stats>();
         InteractableDetector = Core.GetCoreComponent<InteractableDetector>();
 
-        StateMachine = new PlayerStateMachine();
-
         capabilities = new List<PlayerCapabilities>
         {
             new Jump(this, "JumpAction"),
@@ -67,8 +62,6 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        stateFactory = new PlayerStateFactory(this);
-
         Anim = GetComponentInChildren<Animator>();
         InputHandler = GetComponent<PlayerInputHandler>();
 
@@ -77,8 +70,7 @@ public class Player : MonoBehaviour
         RB = GetComponent<Rigidbody2D>();
         MovementCollider = GetComponent<BoxCollider2D>();
 
-        StateMachine.SetCurrentState();
-        StateMachine.SetSubState(stateFactory.Grounded());
+        StateMachine = _factory.CreateStateMachine(this, PlayerData, Core);
 
     }
 

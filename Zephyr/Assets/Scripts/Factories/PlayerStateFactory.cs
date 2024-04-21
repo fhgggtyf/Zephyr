@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStateFactory
+public class PlayerStateFactory 
 {
-    Player _context;
+    PlayerStateMachine _context;
     
-    public PlayerStateFactory(Player currentContext)
+    public PlayerStateFactory(PlayerStateMachine currentContext)
     {
         _context = currentContext;
     }

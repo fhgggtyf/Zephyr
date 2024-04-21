@@ -7,7 +7,7 @@ public class PlayerMoveState : PlayerBaseState
     Vector2 desiredVelocity;
     float currentVelocityX;
     float maxSpeedChange;
-    public PlayerMoveState(Player currentContext, string animBoolName) : base(currentContext, animBoolName)
+    public PlayerMoveState(PlayerStateMachine currentContext, string animBoolName) : base(currentContext, animBoolName)
     {
     }
 
@@ -34,7 +34,6 @@ public class PlayerMoveState : PlayerBaseState
 
     public override void LogicUpdate()
     {
-        Debug.Log("LOL");
 
         DoChecks();
 
@@ -46,7 +45,7 @@ public class PlayerMoveState : PlayerBaseState
         {
             if (xInput == 0)
             {
-                StateMachine.SwitchState(player.stateFactory.Idle());
+                _ctx.SwitchState(this, _ctx.Factory.Idle());
             }
         }
     }
@@ -54,9 +53,9 @@ public class PlayerMoveState : PlayerBaseState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        desiredVelocity = new Vector2(Movement.FacingDirection, 0f) * Mathf.Max(player.PlayerData.MaxSpeed - player.Ground.GetFriction(), 0f);
-        currentVelocityX = player.RB.velocity.x;
-        maxSpeedChange = player.PlayerData.acceleration * Time.deltaTime;
+        desiredVelocity = new Vector2(Movement.FacingDirection, 0f) * Mathf.Max(Player.PlayerData.MaxSpeed - Player.Ground.GetFriction(), 0f);
+        currentVelocityX = Player.RB.velocity.x;
+        maxSpeedChange = Player.PlayerData.acceleration * Time.deltaTime;
         currentVelocityX = Mathf.MoveTowards(currentVelocityX, desiredVelocity.x, maxSpeedChange);
 
         Movement.SetVelocityX(currentVelocityX);

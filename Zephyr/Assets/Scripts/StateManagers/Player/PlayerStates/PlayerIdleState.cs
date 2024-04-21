@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerIdleState : PlayerBaseState
 {
 
-    public PlayerIdleState(Player currentContext, string animBoolName) : base(currentContext, animBoolName)
+    public PlayerIdleState(PlayerStateMachine currentContext, string animBoolName) : base(currentContext, animBoolName)
     {
     }
 
@@ -38,16 +38,16 @@ public class PlayerIdleState : PlayerBaseState
         {
             if (xInput != 0)
             {
-                StateMachine.SwitchState(player.stateFactory.Walk());
+                _ctx.SwitchState(this, _ctx.Factory.Walk());
             }
         }
     }
 
     public override void PhysicsUpdate()
     {
-        if (StateMachine.CurrentSuperState is PlayerGroundedState)
+        if (CurrentSuperState is PlayerGroundedState)
         {
-            Movement.SetVelocityX(Movement.RB.velocity.x * (1 - Time.deltaTime * player.PlayerData.acceleration));
+            Movement.SetVelocityX(Movement.RB.velocity.x * (1 - Time.deltaTime * Player.PlayerData.acceleration));
         }
     }
 }

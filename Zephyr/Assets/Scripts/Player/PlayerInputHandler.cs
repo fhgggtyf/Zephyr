@@ -6,10 +6,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-    public event Action<bool> OnInteractInputChanged;
+    private PlayerInputActions _playerInputActions;
 
-    private PlayerInput playerInput;
-    private Camera cam;
+    private PlayerInput _playerInput;
+    //private InputAction 
+
+    public event Action<bool> OnInteractInputChanged;
 
     public Vector2 RawMovementInput { get; private set; }
     public int NormInputX { get; private set; }
@@ -26,164 +28,124 @@ public class PlayerInputHandler : MonoBehaviour
     public bool Ability4Input { get; private set; }
 
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        playerInput = GetComponent<PlayerInput>();
-
-        cam = Camera.current;
+        _playerInputActions = new PlayerInputActions();
+        _playerInput = GetComponent<PlayerInput>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
+        _playerInputActions.GamePlay.Interaction.performed += OnInteractInput;
+        _playerInputActions.GamePlay.Interaction.canceled += OnInteractInputCanceled;
+        _playerInputActions.GamePlay.Interaction.Enable();
+        _playerInputActions.GamePlay.Attack.performed += OnAttackInput;
+        _playerInputActions.GamePlay.Attack.canceled += OnAttackInputCanceled;
+        _playerInputActions.GamePlay.Attack.Enable();
+        _playerInputActions.GamePlay.Movement.performed += OnMoveInput;
+        _playerInputActions.GamePlay.Movement.canceled += OnMoveInputCanceled;
+        _playerInputActions.GamePlay.Movement.Enable();
+        _playerInputActions.GamePlay.Jump.performed += OnJumpInput;
+        _playerInputActions.GamePlay.Jump.canceled += OnJumpInputCanceled;
+        _playerInputActions.GamePlay.Jump.Enable();
+        //_playerInput.GamePlay.Grab.performed += OnGrabInput;
+        //_playerInput.GamePlay.Grab.canceled += OnGrabInputCanceled;
+        //_playerInput.GamePlay.Grab.Enable();
+        _playerInputActions.GamePlay.Crouch.performed += OnCrouchInput;
+        _playerInputActions.GamePlay.Crouch.canceled += OnCrouchInputCanceled;
+        _playerInputActions.GamePlay.Crouch.Enable();
+        _playerInputActions.GamePlay.Dash.performed += OnDashInput;
+        _playerInputActions.GamePlay.Dash.canceled += OnDashInputCanceled;
+        _playerInputActions.GamePlay.Dash.Enable();
+        _playerInputActions.GamePlay.Ability1.performed += OnAbilityOneInput;
+        _playerInputActions.GamePlay.Ability1.canceled += OnAbilityOneInputCanceled;
+        _playerInputActions.GamePlay.Ability1.Enable();
+        _playerInputActions.GamePlay.Ability2.performed += OnAbilityTwoInput;
+        _playerInputActions.GamePlay.Ability2.canceled += OnAbilityTwoInputCanceled;
+        _playerInputActions.GamePlay.Ability2.Enable();
+        _playerInputActions.GamePlay.Ability3.performed += OnAbilityThreeInput;
+        _playerInputActions.GamePlay.Ability3.canceled += OnAbilityThreeInputCanceled;
+        _playerInputActions.GamePlay.Ability3.Enable();
+        _playerInputActions.GamePlay.Ability4.performed += OnAbilityFourInput;
+        _playerInputActions.GamePlay.Ability4.canceled += OnAbilityFourInputCanceled;
+        _playerInputActions.GamePlay.Ability4.Enable();
+
+
+    }
+
+    private void OnDisable()
+    {
+
+        _playerInputActions.GamePlay.Interaction.Disable();
+
+        _playerInputActions.GamePlay.Attack.Disable();
+
+        _playerInputActions.GamePlay.Movement.Disable();
+
+        _playerInputActions.GamePlay.Jump.Disable();
+
+        //_playerInput.GamePlay.Grab.Disable();
+
+        _playerInputActions.GamePlay.Crouch.Disable();
+
+        _playerInputActions.GamePlay.Dash.Disable();
+
+        _playerInputActions.GamePlay.Ability1.Disable();
+
+        _playerInputActions.GamePlay.Ability2.Disable();
+
+        _playerInputActions.GamePlay.Ability3.Disable();
+
+        _playerInputActions.GamePlay.Ability4.Disable();
+
 
     }
 
     public void OnInteractInput(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            OnInteractInputChanged?.Invoke(true);
-            return;
-        }
-
-        if (context.canceled)
-        {
-            OnInteractInputChanged?.Invoke(false);
-        }
+        OnInteractInputChanged?.Invoke(true);
+        return;
     }
-
-    public void OnAttackInput(InputAction.CallbackContext context)
+    public void OnInteractInputCanceled(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            AttackInput = true;
-        }
-
-        if (context.canceled)
-        {
-            AttackInput = false;
-        }
+        OnInteractInputChanged?.Invoke(false);
     }
-
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         RawMovementInput = context.ReadValue<Vector2>();
 
         NormInputX = Mathf.RoundToInt(RawMovementInput.x);
         NormInputY = Mathf.RoundToInt(RawMovementInput.y);
-
-        Debug.Log(NormInputX + " " + NormInputY);
     }
-
-    public void OnJumpInput(InputAction.CallbackContext context)
+    public void OnMoveInputCanceled(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            JumpInput = true;
-        }
+        RawMovementInput = Vector2.zero;
 
-        if (context.canceled)
-        {
-            JumpInput = false;
-        }
-    }
-    public void OnGrabInput(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            GrabInput = true;
-        }
-
-        if (context.canceled)
-        {
-            GrabInput = false;
-        }
+        NormInputX = 0;
+        NormInputY = 0;
     }
 
-    public void OnCrouchInput(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            CrouchInput = true;
-        }
-
-        if (context.canceled)
-        {
-            CrouchInput = false;
-        }
-    }
-
-
-    public void OnDashInput(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            DashInput = true;
-        }
-        else if (context.canceled)
-        {
-            DashInput = false;
-        }
-    }
-
-    public void OnAbilityOneInput(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            Ability1Input = true;
-        }
-
-        if (context.canceled)
-        {
-            Ability1Input = false;
-        }
-    }
-
-    public void OnAbilityTwoInput(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            Ability2Input = true;
-        }
-
-        if (context.canceled)
-        {
-            Ability2Input = false;
-        }
-    }
-
-    public void OnAbilityThreeInput(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            Ability3Input = true;
-        }
-
-        if (context.canceled)
-        {
-            Ability3Input = false;
-        }
-    }
-
-    public void OnAbilityFourInput(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            Ability4Input = true;
-        }
-
-        if (context.canceled)
-        {
-            Ability4Input = false;
-        }
-    }
-
-
+    public void OnAttackInput(InputAction.CallbackContext context) => AttackInput = true;
+    public void OnAttackInputCanceled(InputAction.CallbackContext context) => AttackInput = false;
+    public void OnJumpInput(InputAction.CallbackContext context) => JumpInput = true;
+    public void OnJumpInputCanceled(InputAction.CallbackContext context) => JumpInput = false;
+    public void OnGrabInput(InputAction.CallbackContext context) => GrabInput = true;
+    public void OnGrabInputCanceled(InputAction.CallbackContext context) => GrabInput = false;
+    public void OnCrouchInput(InputAction.CallbackContext context) => CrouchInput = true;
+    public void OnCrouchInputCanceled(InputAction.CallbackContext context) => CrouchInput = false;
+    public void OnDashInput(InputAction.CallbackContext context) => DashInput = true;
+    public void OnDashInputCanceled(InputAction.CallbackContext context) => DashInput = false;
+    public void OnAbilityOneInput(InputAction.CallbackContext context) => Ability1Input = true;
+    public void OnAbilityOneInputCanceled(InputAction.CallbackContext context) => Ability1Input = false;
+    public void OnAbilityTwoInput(InputAction.CallbackContext context) => Ability2Input = true;
+    public void OnAbilityTwoInputCanceled(InputAction.CallbackContext context) => Ability2Input = false;
+    public void OnAbilityThreeInput(InputAction.CallbackContext context) => Ability3Input = true;
+    public void OnAbilityThreeInputCanceled(InputAction.CallbackContext context) => Ability3Input = false;
+    public void OnAbilityFourInput(InputAction.CallbackContext context) => Ability4Input = true;
+    public void OnAbilityFourInputCanceled(InputAction.CallbackContext context) => Ability4Input = false;
 
     public void UseJumpInput() => JumpInput = false;
-
     public void UseDashInput() => DashInput = false;
 
     /// <summary>
