@@ -15,8 +15,8 @@ MonoBehaviour:
   movementVelocity: 10
   MaxSpeed: 10
   acceleration: 70
-  JumpHeight: 3
-  MaxJumps: 2
+  JumpHeight: 4
+  MaxJumps: 3
   wallJumpVelocity: 20
   wallJumpTime: 0.4
   wallJumpAngle: {x: 1, y: 2}

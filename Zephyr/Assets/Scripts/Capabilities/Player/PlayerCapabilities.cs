@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCapabilities
+public class PlayerCapabilities : ICapabilities
 {
 
     protected Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }

@@ -64,7 +64,7 @@ public abstract class PlayerBaseState : IBaseState
     {
         DoChecks();
         InitializeSubstate();
-        //player.Anim.SetBool(_animBoolName, true);
+        Player.Anim.SetBool(_animBoolName, true);
         startTime = Time.time;
         isAnimationFinished = false;
         isExitingState = false;
@@ -76,7 +76,7 @@ public abstract class PlayerBaseState : IBaseState
     }
     public virtual void ExitState()
     {
-        //player.Anim.SetBool(_animBoolName, false);
+        Player.Anim.SetBool(_animBoolName, false);
         isExitingState = true;
     }
     public abstract void InitializeSubstate();
@@ -131,4 +131,5 @@ public abstract class PlayerBaseState : IBaseState
             _currentSubState.FixedUpdateStates();
         }
     }
+
 }

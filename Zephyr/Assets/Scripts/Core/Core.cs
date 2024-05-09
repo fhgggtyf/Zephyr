@@ -15,7 +15,7 @@ public class Core : MonoBehaviour, ICore
 
     private void Awake()
     {
-        Root = Root ? Root : transform.parent.gameObject;
+
     }
 
     public void LogicUpdate()

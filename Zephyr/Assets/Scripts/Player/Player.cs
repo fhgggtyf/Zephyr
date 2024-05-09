@@ -1,76 +1,61 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Player : MonoBehaviour, ICharacter
 {
     public PlayerStateMachine StateMachine { get; private set; }
 
-    public List<PlayerCapabilities> capabilities;
+    [Inject] private PlayerStateMachineFactory _stateMachineFactory;
+    [Inject] private PlayerCapabilityFactory _capabilityFactory;
+    [Inject] private PlayerData _playerData;
 
-    [SerializeField] private PlayerData _playerData;
+    [Inject] public List<PlayerCapabilities> capabilities;
 
-    [SerializeField] private PlayerStateMachineFactory _factory;
+    //[SerializeField] private PlayerData _playerData;
 
-    private Ground _ground;
+    //[SerializeField] private PlayerStateMachineFactory _factory;
+
+    [Inject] private Ground _ground;
 
     #region Components
-    public Core Core { get; private set; }
-    public Animator Anim { get; private set; }
-    public PlayerInputHandler InputHandler { get; private set; }
-    public Rigidbody2D RB { get; private set; }
-    public Transform DashDirectionIndicator { get; private set; }
-    public BoxCollider2D MovementCollider { get; private set; }
-    public Stats Stats { get; private set; }
-    public InteractableDetector InteractableDetector { get; private set; }
-    public PlayerData PlayerData { get => _playerData; set => _playerData = value; }
-    public Ground Ground { get => _ground; set => _ground = value; }
+    [Inject] public Core Core { get; private set; }
+    [Inject] public Animator Anim { get; private set; }
+    [Inject] public PlayerInputHandler InputHandler { get; private set; }
+    [Inject] public Rigidbody2D RB { get; private set; }
+    [Inject] public BoxCollider2D MovementCollider { get; private set; }
+    [Inject] public Stats Stats { get; private set; }
+    [Inject] public InteractableDetector InteractableDetector { get; private set; }
+    public PlayerData PlayerData { get => _playerData; }
+    public Ground Ground { get => _ground; }
     #endregion
 
     #region Other Variables         
 
-    private Vector2 workspace;
-
+    [Inject(Id = "Primary")]
     private Weapon primaryWeapon;
+    [Inject(Id = "Secondary")]
     private Weapon secondaryWeapon;
 
     #endregion
 
     private void Awake()
     {
-        Core = GetComponentInChildren<Core>();
-
-        primaryWeapon = transform.Find("PrimaryWeapon").GetComponent<Weapon>();
-        secondaryWeapon = transform.Find("SecondaryWeapon").GetComponent<Weapon>();
-
         primaryWeapon.SetCore(Core);
         secondaryWeapon.SetCore(Core);
 
-        Ground = GetComponent<Ground>();
+        capabilities.Add(_capabilityFactory.GetJump(this, "JumpAction"));
+        capabilities.Add(_capabilityFactory.GetRoll(this, "RollAction"));
+        capabilities.Add(_capabilityFactory.GetDash(this, "DashAction"));
 
-        Stats = Core.GetCoreComponent<Stats>();
-        InteractableDetector = Core.GetCoreComponent<InteractableDetector>();
-
-        capabilities = new List<PlayerCapabilities>
-        {
-            new Jump(this, "JumpAction"),
-            new Roll(this, "RollAction"),
-            new Dash(this, "DashAction")
-        };
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        Anim = GetComponentInChildren<Animator>();
-        InputHandler = GetComponent<PlayerInputHandler>();
 
         InputHandler.OnInteractInputChanged += InteractableDetector.TryInteract;
-
-        RB = GetComponent<Rigidbody2D>();
-        MovementCollider = GetComponent<BoxCollider2D>();
-
-        StateMachine = _factory.CreateStateMachine(this, PlayerData, Core);
+        StateMachine = _stateMachineFactory.CreateStateMachine(this, PlayerData, Core);
 
     }
 
@@ -87,17 +72,6 @@ public class Player : MonoBehaviour, ICharacter
 
     private void OnDestroy()
     {
-    }
-
-    public void SetColliderHeight(float height)
-    {
-        Vector2 center = MovementCollider.offset;
-        workspace.Set(MovementCollider.size.x, height);
-
-        center.y += (height - MovementCollider.size.y) / 2;
-
-        MovementCollider.size = workspace;
-        MovementCollider.offset = center;
     }
 
     private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();

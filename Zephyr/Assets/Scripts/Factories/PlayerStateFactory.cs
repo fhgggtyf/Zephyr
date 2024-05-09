@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStateFactory 
+public class PlayerStateFactory : StateFactory<PlayerStateMachine, PlayerBaseState>
 {
-    PlayerStateMachine _context;
-    
-    public PlayerStateFactory(PlayerStateMachine currentContext)
+    public PlayerStateFactory(PlayerStateMachine context) : base(context)
     {
-        _context = currentContext;
     }
 
     public PlayerBaseState InAir()
