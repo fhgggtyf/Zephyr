@@ -1907,6 +1907,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lineText: {fileID: 1372319900}
   _actorNameText: {fileID: 1187381278}
+  _recievantNameText: {fileID: 0}
   _actorNamePanel: {fileID: 63480026}
   _mainProtagonistNamePanel: {fileID: 1658239961}
   _choicesManager: {fileID: 1328175223}
@@ -1955,6 +1956,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1525567739}
+  - component: {fileID: 1525567740}
   m_Layer: 5
   m_Name: UIHealthBarDisplay
   m_TagString: Untagged
@@ -1983,6 +1985,22 @@ RectTransform:
   m_AnchoredPosition: {x: -347.2212, y: 440}
   m_SizeDelta: {x: 1125.5576, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1525567740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525567738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9a5ef1bcd0489248873f6e245cc4c53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _protagonistHealth: {fileID: 11400000, guid: 16ffc6ea4b3b0194cbd2e02d5feca888, type: 2}
+  _healthConfig: {fileID: 11400000, guid: 31d79cecdad87bd46ae10488ab9bd0ef, type: 2}
+  _healthText: {fileID: 1243930589}
+  _UIUpdateNeeded: {fileID: 11400000, guid: e5d1c3b6bf84fac4dabfba80412a3428, type: 2}
 --- !u!1 &1561737846
 GameObject:
   m_ObjectHideFlags: 0
