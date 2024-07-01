@@ -2,13 +2,20 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
-/Zephyr/[Ll]ibrary/
-/Zephyr/[Tt]emp/
-/Zephyr/[Oo]bj/
-/Zephyr/[Bb]uild/
-/Zephyr/[Bb]uilds/
-/Zephyr/[Ll]ogs/
-/Zephyr/[Uu]ser[Ss]ettings/
+/Zephyr/Zephyr/[Ll]ibrary/
+/Zephyr/Zephyr/[Tt]emp/
+/Zephyr/Zephyr/[Oo]bj/
+/Zephyr/Zephyr/[Bb]uild/
+/Zephyr/Zephyr/[Bb]uilds/
+/Zephyr/Zephyr/[Ll]ogs/
+/Zephyr/Zephyr/[Uu]ser[Ss]ettings/
+/Zephyr(old)/[Ll]ibrary/
+/Zephyr(old)/[Tt]emp/
+/Zephyr(old)/[Oo]bj/
+/Zephyr(old)/[Bb]uild/
+/Zephyr(old)/[Bb]uilds/
+/Zephyr(old)/[Ll]ogs/
+/Zephyr(old)/[Uu]ser[Ss]ettings/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
