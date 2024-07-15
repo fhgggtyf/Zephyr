@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Zephyr.StateMachine;
 using Zephyr.StateMachine.ScriptableObjects;
@@ -8,7 +9,9 @@ public class CalculateRunMovementVectorSO : StateActionSO<CalculateRunMovementVe
     [Tooltip("Horizontal X plane speed multiplier")]
     public float speed = 4f;
 
-    public float runMultiplier = 1.6f; 
+    public MoveState moveState;
+
+    [NonSerialized] public float runMultiplier; 
 }
 public class CalculateRunMovementVector : StateAction
 {
@@ -19,9 +22,31 @@ public class CalculateRunMovementVector : StateAction
     {
         _player = stateMachine.GetComponent<Player>();
     }
+
+    public override void OnStateEnter()
+    {
+        switch (_originSO.moveState)
+        {
+            case MoveState.Walk:
+                _originSO.runMultiplier = 1;
+                break;
+            case MoveState.Run:
+                _originSO.runMultiplier = 1.6f;
+                break;
+            case MoveState.Crouch:
+                _originSO.runMultiplier = 0.6f;
+                break;
+        }
+    }
     public override void OnUpdate()
     {
-        _player.isRunning = true;
         _player.movementVector.x = _player.InputVector.x * _originSO.speed * _originSO.runMultiplier;
     }
+}
+
+public enum MoveState
+{
+    Walk,
+    Run,
+    Crouch
 }

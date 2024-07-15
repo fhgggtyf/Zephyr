@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a00cce60e024aee48abfcc862946921e, type: 3}
+  m_Name: Alothai_Roll
+  m_EditorClassIdentifier: 
+  _actions:
+  - {fileID: 11400000, guid: 7091781b5219aae408d66caff76de70a, type: 2}
+  - {fileID: 11400000, guid: 34e959b9757659245a3973f2fc57d34c, type: 2}
+  - {fileID: 11400000, guid: fcc5faaeeac36a54086c9dbf3c772b3a, type: 2}
+  - {fileID: 11400000, guid: b7fa07aeccfc62a458d4da580bd83918, type: 2}
+  - {fileID: 11400000, guid: 78e16b23f0d9fee4fbaec9d899b8ee3a, type: 2}
+  - {fileID: 11400000, guid: 31bf4d97de7083e48a07fe717a711e85, type: 2}
+  stateTag: 2

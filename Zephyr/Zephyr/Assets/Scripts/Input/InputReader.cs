@@ -15,14 +15,19 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
     // Gameplay
     public event UnityAction JumpEvent = delegate { };
 	public event UnityAction JumpCanceledEvent = delegate { };
-	public event UnityAction AttackEvent = delegate { };
-	public event UnityAction AttackCanceledEvent = delegate { };
+	public event UnityAction PrimaryAttackEvent = delegate { };
+	public event UnityAction PrimaryAttackCanceledEvent = delegate { };
+	public event UnityAction SecondaryAttackEvent = delegate { };
+	public event UnityAction SecondaryAttackCanceledEvent = delegate { }; 
 	public event UnityAction InteractEvent = delegate { }; // Used to talk, pickup objects, interact with tools like the cooking cauldron
+	public event UnityAction RollEvent = delegate { };
 	public event UnityAction InventoryActionButtonEvent = delegate { };
 	public event UnityAction SaveActionButtonEvent = delegate { };
 	public event UnityAction ResetActionButtonEvent = delegate { };
 	public event UnityAction<Vector2> MoveEvent = delegate { };
 	public event UnityAction<Vector2> RunEvent = delegate { };
+	public event UnityAction CrouchEvent = delegate { };
+	public event UnityAction CrouchCanceledEvent = delegate { };
 	//public event UnityAction RunCanceledEvent = delegate { };
 
 	public event UnityAction<Vector2, bool> CameraMoveEvent = delegate { };
@@ -71,18 +76,13 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 
     public void OnMove(InputAction.CallbackContext context)
     {
-
         MoveEvent.Invoke(context.ReadValue<Vector2>());
-
 	}
 
     public void OnRun(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
             RunEvent.Invoke(context.ReadValue<Vector2>());
-		//if (context.phase == InputActionPhase.Canceled)
-		//	RunCanceledEvent.Invoke();
-
 	}
 
     public void OnJump(InputAction.CallbackContext context)
@@ -93,6 +93,51 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 		if (context.phase == InputActionPhase.Canceled)
 			JumpCanceledEvent.Invoke();
 	}
+   
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+		InteractEvent.Invoke();
+    }
+
+	public void OnPrimaryAttack(InputAction.CallbackContext context)
+	{
+		switch (context.phase)
+		{
+			case InputActionPhase.Performed:
+				PrimaryAttackEvent.Invoke();
+				break;
+			case InputActionPhase.Canceled:
+				PrimaryAttackCanceledEvent.Invoke();
+				break;
+		}
+	}
+
+	public void OnSecondaryAttack(InputAction.CallbackContext context)
+	{
+		switch (context.phase)
+		{
+			case InputActionPhase.Performed:
+				SecondaryAttackEvent.Invoke();
+				break;
+			case InputActionPhase.Canceled:
+				SecondaryAttackCanceledEvent.Invoke();
+				break;
+		}
+	}
+
+	public void OnCrouch(InputAction.CallbackContext context)
+    {
+
+		if (context.phase == InputActionPhase.Performed)
+			CrouchEvent.Invoke();
+
+		if (context.phase == InputActionPhase.Canceled)
+			CrouchCanceledEvent.Invoke();
+    }
+    public void OnRoll(InputAction.CallbackContext context)
+    {
+		RollEvent.Invoke();
+    }
 
 	public void DisableAllInput()
     {
@@ -227,4 +272,13 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 		if (context.phase == InputActionPhase.Performed)
 			AdvanceDialogueEvent.Invoke();
 	}
+
+
 }
+
+public enum CombatInputs
+{
+	primary,
+	secondary
+}
+

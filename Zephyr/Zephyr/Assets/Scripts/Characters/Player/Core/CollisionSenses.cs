@@ -3,7 +3,14 @@ using UnityEngine;
 
 public class CollisionSenses : CoreComponent
 {
-       
+
+    protected Movement Movement
+    {
+        get => movement ?? _player.Core.GetCoreComponent(ref movement);
+    }
+
+    private Movement movement;
+
     #region Check Transforms
 
     public Transform GroundCheck
@@ -50,12 +57,12 @@ public class CollisionSenses : CoreComponent
 
     public bool WallFront
     {
-        get => Physics2D.Raycast(WallCheck.position, Vector2.right * _player.facingDirection, wallCheckDistance, whatIsGround);
+        get => Physics2D.Raycast(WallCheck.position, Vector2.right * Movement.FacingDirection, wallCheckDistance, whatIsGround);
     }
 
     public bool WallBack
     {
-        get => Physics2D.Raycast(WallCheck.position, Vector2.right * -_player.facingDirection, wallCheckDistance, whatIsGround);
+        get => Physics2D.Raycast(WallCheck.position, Vector2.right * -Movement.FacingDirection, wallCheckDistance, whatIsGround);
     }
 }
 

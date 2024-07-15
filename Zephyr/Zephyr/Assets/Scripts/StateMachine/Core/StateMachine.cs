@@ -17,10 +17,18 @@ namespace Zephyr.StateMachine
 
 		private readonly Dictionary<Type, Component> _cachedComponents = new Dictionary<Type, Component>();
 		internal State _currentState;
+		internal State _previousState;
 
-		private void Awake()
+        public State GetPreviousState() {
+			Debug.Log(_previousState._originSO.name);
+			Debug.Log(_previousState.stateTag);
+			return _previousState;
+		}
+
+        private void Awake()
 		{
 			_currentState = _transitionTableSO.GetInitialState(this);
+			_previousState = _transitionTableSO.GetInitialState(this);
 #if UNITY_EDITOR
 			_debugger.Awake(this);
 #endif
@@ -92,6 +100,7 @@ namespace Zephyr.StateMachine
 		private void Transition(State transitionState)
 		{
 			_currentState.OnStateExit();
+			_previousState = _currentState;
 			_currentState = transitionState;
 			_currentState.OnStateEnter();
 		}

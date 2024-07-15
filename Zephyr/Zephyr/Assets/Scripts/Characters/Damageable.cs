@@ -4,8 +4,8 @@ using UnityEngine.Events;
 public class Damageable : MonoBehaviour
 {
 	[Header("Health")]
-	[SerializeField] private HealthConfigSO _healthConfigSO;
-	[SerializeField] private HealthSO _currentHealthSO;
+	[SerializeField] private StatsConfigSO _healthConfigSO;
+	[SerializeField] private IngameStatsSO _currentStatsSO;
 
 	//[Header("Combat")]
 	//[SerializeField] private GetHitEffectConfigSO _getHitEffectSO;
@@ -34,11 +34,11 @@ public class Damageable : MonoBehaviour
 	{
 		//If the HealthSO hasn't been provided in the Inspector (as it's the case for the player),
 		//we create a new SO unique to this instance of the component. This is typical for enemies.
-		if (_currentHealthSO == null)
+		if (_currentStatsSO == null)
 		{
-			_currentHealthSO = ScriptableObject.CreateInstance<HealthSO>();
-			_currentHealthSO.SetMaxHealth(_healthConfigSO.InitialHealth);
-			_currentHealthSO.SetCurrentHealth(_healthConfigSO.InitialHealth);
+			_currentStatsSO = ScriptableObject.CreateInstance<IngameStatsSO>();
+			_currentStatsSO.SetMaxHealth(_healthConfigSO.InitialHealth);
+			_currentStatsSO.SetCurrentHealth(_healthConfigSO.InitialHealth);
 		}
 
 		if (_updateHealthUI != null)
@@ -62,14 +62,14 @@ public class Damageable : MonoBehaviour
 		if (IsDead)
 			return;
 
-		_currentHealthSO.InflictDamage(damage);
+		_currentStatsSO.InflictDamage(damage);
 
 		if (_updateHealthUI != null)
 			_updateHealthUI.RaiseEvent();
 
 		GetHit = true;
 
-		if (_currentHealthSO.CurrentHealth <= 0)
+		if (_currentStatsSO.CurrentHealth <= 0)
 		{
 			IsDead = true;
 
@@ -79,13 +79,13 @@ public class Damageable : MonoBehaviour
 			if (_deathEvent != null)
 				_deathEvent.RaiseEvent();
 
-			_currentHealthSO.SetCurrentHealth(_healthConfigSO.InitialHealth);
+			_currentStatsSO.SetCurrentHealth(_healthConfigSO.InitialHealth);
 		}
 	}
 
 	public void Kill()
 	{
-		ReceiveAnAttack(_currentHealthSO.CurrentHealth);
+		ReceiveAnAttack(_currentStatsSO.CurrentHealth);
 	}
 
 	/// <summary>
@@ -93,7 +93,7 @@ public class Damageable : MonoBehaviour
 	/// </summary>
 	public void Revive()
 	{
-		_currentHealthSO.SetCurrentHealth(_healthConfigSO.InitialHealth);
+		_currentStatsSO.SetCurrentHealth(_healthConfigSO.InitialHealth);
 
 		if (_updateHealthUI != null)
 			_updateHealthUI.RaiseEvent();
@@ -109,7 +109,7 @@ public class Damageable : MonoBehaviour
 		if (IsDead)
 			return;
 
-		_currentHealthSO.RestoreHealth(healthToAdd);
+		_currentStatsSO.RestoreHealth(healthToAdd);
 
 		if (_updateHealthUI != null)
 			_updateHealthUI.RaiseEvent();

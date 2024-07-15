@@ -1,0 +1,114 @@
+using UnityEngine;
+
+/// <summary>
+/// An instance of the Stats of a character, be it the player or an NPC.
+/// The initial values are usually contained in another SO of type statsConfigSO.
+/// </summary>
+[CreateAssetMenu(fileName = "PlayersIngameStats", menuName = "EntityConfig/Player's stats")]
+public class IngameStatsSO : ScriptableObject
+{
+	[Tooltip("The initial health")]
+	[SerializeField] [ReadOnly] private int _maxHealth;
+	[SerializeField] [ReadOnly] private int _currentHealth;
+    [SerializeField] [ReadOnly] private int _currentArmor;
+    [SerializeField] [ReadOnly] private int _currentMR;
+    [SerializeField] [ReadOnly] private int _currentAttack;
+    [SerializeField] [ReadOnly] private int _currentAP;
+    [SerializeField] [ReadOnly] private int _currentCD;
+    [SerializeField] [ReadOnly] private int _currentMana;
+    [SerializeField] [ReadOnly] private int _currentTenacity;
+    [SerializeField] [ReadOnly] private int _currentStamina;
+    [SerializeField] [ReadOnly] private int _currentLuck;
+    [SerializeField] [ReadOnly] private float _currentCritChance;
+    [SerializeField] [ReadOnly] private float _currentCritDmg;
+
+    public int MaxHealth { get => _maxHealth; }
+    public int CurrentHealth { get => _currentHealth; }
+    public int CurrentArmor { get => _currentArmor; }
+    public int CurrentMR { get => _currentMR; }
+    public int CurrentAttack { get => _currentAttack; }
+    public int CurrentAP { get => _currentAP; }
+    public int CurrentCD { get => _currentCD; }
+    public int CurrentMana { get => _currentMana; }
+    public int CurrentTenacity { get => _currentTenacity; }
+    public int CurrentStamina { get => _currentStamina; }
+    public int CurrentLuck { get => _currentLuck; }
+    public float CurrentCritChance { get => _currentCritChance; }
+    public float CurrentCritDmg { get => _currentCritDmg; }
+
+    public void SetMaxHealth(int newValue)
+    {
+        _maxHealth = newValue;
+    }
+
+    public void SetCurrentHealth(int newValue)
+    {
+        _currentHealth = newValue;
+    }
+
+    public void InflictDamage(int DamageValue)
+    {
+        _currentHealth -= DamageValue;
+    }
+
+    public void RestoreHealth(int HealthValue)
+    {
+        _currentHealth += HealthValue;
+        if (_currentHealth > _maxHealth)
+            _currentHealth = _maxHealth;
+    }
+
+    public void SetCurrentArmor(int newValue)
+    {
+        _currentArmor = newValue;
+    }
+
+    public void SetCurrentMR(int newValue)
+    {
+        _currentMR = newValue;
+    }
+
+    public void SetCurrentAttack(int newValue)
+    {
+        _currentAttack = newValue;
+    }
+
+    public void SetCurrentAP(int newValue)
+    {
+        _currentAP = newValue;
+    }
+
+    public void SetCurrentCD(int newValue)
+    {
+        _currentCD = newValue;
+    }
+
+    public void SetCurrentMana(int newValue)
+    {
+        _currentMana = newValue;
+    }
+    public void SetCurrentTenacity(int newValue)
+    {
+        _currentTenacity = newValue;
+    }
+
+    public void SetCurrentStamina(int newValue)
+    {
+        _currentStamina = newValue;
+    }
+
+    public void SetCurrentLuck(int newValue)
+    {
+        _currentLuck = newValue;
+    }
+
+    public void SetCurrentCritChance(float newValue)
+    {
+        _currentCritChance = newValue;
+    }
+
+    public void SetCurrentCritDmg(float newValue)
+    {
+        _currentCritDmg = newValue;
+    }
+}

@@ -9,6 +9,8 @@ namespace Zephyr.StateMachine
         internal StateTransition[] _transitions;
         internal StateAction[] _actions;
 
+        public StateTag stateTag;
+
         internal State() { }
 
         public State(
@@ -21,6 +23,7 @@ namespace Zephyr.StateMachine
             _stateMachine = stateMachine;
             _transitions = transitions;
             _actions = actions;
+            stateTag = originSO.stateTag;
         }
 
         public void OnStateEnter()
@@ -65,4 +68,11 @@ namespace Zephyr.StateMachine
             return state != null;
         }
     }
+}
+
+public enum StateTag
+{
+    Run,
+    Walk,
+    Ability
 }

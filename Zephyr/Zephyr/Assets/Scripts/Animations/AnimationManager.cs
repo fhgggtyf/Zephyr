@@ -5,7 +5,7 @@ using UnityEngine;
 public class AnimationManager : MonoBehaviour
 {
     private Animator _animator;
-    private string _currentAnim;
+    private string _currentAnim;  
 
     // Start is called before the first frame update
     void Awake()
@@ -13,13 +13,20 @@ public class AnimationManager : MonoBehaviour
         _animator = gameObject.GetComponentInChildren<Animator>();
     }
 
-    public void ChangeAnimState(string newAnim)
+    public void ChangeAnimState(string newAnim, float speed)
     {
         if (_currentAnim == newAnim) return;
+
+        ChangePlaySpeed(speed);
 
         _animator.Play(newAnim);
 
         _currentAnim = newAnim;
+    }
+
+    public void ChangePlaySpeed(float speed)
+    {
+        _animator.speed = speed;
     }
 
 

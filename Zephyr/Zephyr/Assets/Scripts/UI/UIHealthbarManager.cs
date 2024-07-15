@@ -3,8 +3,8 @@ using TMPro;
 
 public class UIHealthBarManager : MonoBehaviour
 {
-	[SerializeField] private HealthSO _protagonistHealth = default; //the HealthBar is watching this object, which is the health of the player
-	[SerializeField] private HealthConfigSO _healthConfig = default;
+	[SerializeField] private IngameStatsSO _protagonistStats = default; //the HealthBar is watching this object, which is the health of the player
+	[SerializeField] private StatsConfigSO _StatsConfig = default;
 	[SerializeField] private TMP_Text _healthText = default;
 
 	[Header("Listening to")]
@@ -12,25 +12,22 @@ public class UIHealthBarManager : MonoBehaviour
 
 	private void OnEnable()
 	{
-		_UIUpdateNeeded.OnEventRaised += UpdateHeartImages;
+		_UIUpdateNeeded.OnEventRaised += UpdateHealth;
 
 		InitializeHealthBar();
 	}
 
 	private void OnDestroy()
 	{
-		_UIUpdateNeeded.OnEventRaised -= UpdateHeartImages;
+		_UIUpdateNeeded.OnEventRaised -= UpdateHealth;
 	}
 
 	private void InitializeHealthBar()
 	{
-		_protagonistHealth.SetMaxHealth(_healthConfig.InitialHealth);
-		_protagonistHealth.SetCurrentHealth(_healthConfig.InitialHealth);
-
-		UpdateHeartImages();
+		UpdateHealth();
 	}
 
-	private void UpdateHeartImages()
+	private void UpdateHealth()
 	{
 		//int heartValue = _protagonistHealth.MaxHealth / _heartImages.Length;
 		//int filledHeartCount = Mathf.FloorToInt((float)_protagonistHealth.CurrentHealth / heartValue);
@@ -54,6 +51,6 @@ public class UIHealthBarManager : MonoBehaviour
 		//	_heartImages[i].SetImage(heartPercent);
 		//}
 
-		_healthText.SetText(Mathf.FloorToInt((float)_protagonistHealth.CurrentHealth).ToString());
+		_healthText.SetText(Mathf.FloorToInt((float)_protagonistStats.CurrentHealth).ToString());
 	}
 }

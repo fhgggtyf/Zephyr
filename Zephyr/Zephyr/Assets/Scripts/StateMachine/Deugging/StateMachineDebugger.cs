@@ -27,6 +27,10 @@ namespace Zephyr.StateMachine.Debugging
 		[SerializeField]
 		[Tooltip("The current State name [Readonly]")]
 		internal string currentState;
+		
+		[SerializeField]
+		[Tooltip("The previous State name [Readonly]")]
+		internal string previousState;
 
 		private StateMachine _stateMachine;
 		private StringBuilder _logBuilder;
@@ -46,6 +50,7 @@ namespace Zephyr.StateMachine.Debugging
 			_logBuilder = new StringBuilder();
 
 			currentState = stateMachine._currentState._originSO.name;
+			previousState = stateMachine._previousState._originSO.name;
 		}
 
 		internal void TransitionEvaluationBegin(string targetState)
