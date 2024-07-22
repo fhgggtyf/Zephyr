@@ -93,13 +93,17 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 		if (context.phase == InputActionPhase.Canceled)
 			JumpCanceledEvent.Invoke();
 	}
-   
+
     public void OnInteract(InputAction.CallbackContext context)
     {
-		InteractEvent.Invoke();
+        if (context.phase == InputActionPhase.Performed)
+        {
+            InteractEvent.Invoke();
+        }
+
     }
 
-	public void OnPrimaryAttack(InputAction.CallbackContext context)
+    public void OnPrimaryAttack(InputAction.CallbackContext context)
 	{
 		switch (context.phase)
 		{

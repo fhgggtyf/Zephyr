@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Alothai_JumpDescending
   m_EditorClassIdentifier: 
   _actions:
+  - {fileID: 11400000, guid: 7091781b5219aae408d66caff76de70a, type: 2}
+  - {fileID: 11400000, guid: 5b2d0541914e40643aa28f53b9c89dfe, type: 2}
+  - {fileID: 11400000, guid: 473faf4b813866c438de29d0423f35c4, type: 2}
   - {fileID: 11400000, guid: baeb256b8b1ef3945b65b2f4472e9a72, type: 2}
-  - {fileID: 11400000, guid: cae867c498aaef240bd9916bb8c3c383, type: 2}
+  - {fileID: 11400000, guid: c0e52ea7df92233438a758f308a3a434, type: 2}
   - {fileID: 11400000, guid: 8f27b4840baecc04d902caa652b1a679, type: 2}
   - {fileID: 11400000, guid: 4289e8c6c1ed06f4684336e4439bda6f, type: 2}
   - {fileID: 11400000, guid: 31bf4d97de7083e48a07fe717a711e85, type: 2}
-  _stateTag: 1
+  stateTag: 3

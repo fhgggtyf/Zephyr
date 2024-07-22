@@ -17,10 +17,12 @@ public class IngameStatsSO : ScriptableObject
     [SerializeField] [ReadOnly] private int _currentCD;
     [SerializeField] [ReadOnly] private int _currentMana;
     [SerializeField] [ReadOnly] private int _currentTenacity;
-    [SerializeField] [ReadOnly] private int _currentStamina;
+    [SerializeField] [ReadOnly] private float _currentStamina;
+    [SerializeField] [ReadOnly] private int _maxStamina;
     [SerializeField] [ReadOnly] private int _currentLuck;
     [SerializeField] [ReadOnly] private float _currentCritChance;
     [SerializeField] [ReadOnly] private float _currentCritDmg;
+    [SerializeField] [ReadOnly] private int _currentMaxJumps;
 
     public int MaxHealth { get => _maxHealth; }
     public int CurrentHealth { get => _currentHealth; }
@@ -31,10 +33,12 @@ public class IngameStatsSO : ScriptableObject
     public int CurrentCD { get => _currentCD; }
     public int CurrentMana { get => _currentMana; }
     public int CurrentTenacity { get => _currentTenacity; }
-    public int CurrentStamina { get => _currentStamina; }
+    public float CurrentStamina { get => _currentStamina; }
+    public int MaxStamina { get => _maxStamina; }
     public int CurrentLuck { get => _currentLuck; }
     public float CurrentCritChance { get => _currentCritChance; }
     public float CurrentCritDmg { get => _currentCritDmg; }
+    public int CurrentMaxJumps { get => _currentMaxJumps; }
 
     public void SetMaxHealth(int newValue)
     {
@@ -97,6 +101,29 @@ public class IngameStatsSO : ScriptableObject
         _currentStamina = newValue;
     }
 
+    public void SetMaxStamina(int newValue)
+    {
+        _maxStamina = newValue;
+    }
+
+    public void SpendStamina(float spentValue)
+    {
+        _currentStamina -= spentValue;
+        if (_currentStamina <= 0)
+        {
+            _currentStamina = 0;
+        }
+    }
+
+    public void RestoreStamina(float addValue)
+    {
+        _currentStamina += addValue;
+        if (_currentStamina >= _maxStamina)
+        {
+            _currentStamina = _maxStamina;
+        }
+    }
+
     public void SetCurrentLuck(int newValue)
     {
         _currentLuck = newValue;
@@ -110,5 +137,10 @@ public class IngameStatsSO : ScriptableObject
     public void SetCurrentCritDmg(float newValue)
     {
         _currentCritDmg = newValue;
+    }
+
+    public void SetCurrentMaxJumps(int newValue)
+    {
+        _currentMaxJumps = newValue;
     }
 }

@@ -17,6 +17,8 @@ MonoBehaviour:
   <Description>k__BackingField: 
   <AnimatorController>k__BackingField: {fileID: 9100000, guid: 3250caa2c12d8c7488b5730aa7a24885, type: 2}
   <NumberOfAttacks>k__BackingField: 3
+  <CanBeInterrupted>k__BackingField: 1
+  <CanFlip>k__BackingField: 1
   <ComponentData>k__BackingField:
   - rid: 1006279872137134082
   - rid: 1006279668881162242

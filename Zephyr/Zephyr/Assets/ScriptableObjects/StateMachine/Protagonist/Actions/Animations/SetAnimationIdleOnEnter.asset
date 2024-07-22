@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: SetAnimationIdleOnEnter
   m_EditorClassIdentifier: 
   description: Set Animation to Idle on enter
-  animName: idle
+  animName: Idle
   whenToRun: 0
+  playSpeed: 1

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: SetAnimationRunOnEnter
   m_EditorClassIdentifier: 
   description: 
-  animName: run
+  animName: Run
   whenToRun: 0
+  playSpeed: 1

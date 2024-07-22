@@ -16,6 +16,7 @@ namespace Zephyr.StateMachine.Editor
 		{
 			Undo.undoRedoPerformed += DoUndo;
 			_actions = serializedObject.FindProperty("_actions");
+
 			_list = new ReorderableList(serializedObject, _actions, true, true, true, true); 
 			_types = serializedObject.FindProperty("stateTag");
 			SetupActionsList(_list);

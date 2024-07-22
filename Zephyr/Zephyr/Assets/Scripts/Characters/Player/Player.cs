@@ -7,21 +7,24 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader = default;
     [SerializeField] public Core Core;
-    [SerializeField] private Weapon primaryWeapon;
-    [SerializeField] private Weapon secondaryWeapon;
+    [SerializeField] public AnimationEventHandler animationEventHandler;
+
+    [SerializeField] public Weapon[] weapons;
 
     //These fields are read and manipulated by the StateMachine actions
     [NonSerialized] public Vector2 InputVector;
     [NonSerialized] public bool jumpInput;
     [NonSerialized] public bool extraActionInput;
-    [NonSerialized] public bool primaryAttackInput;
-    [NonSerialized] public bool secondaryAttackInput;
+    [NonSerialized] public bool[] attackInput;
     [NonSerialized] public Vector2 movementVector; //Final movement vector, manipulated by the StateMachine actions
     [NonSerialized] public ControllerColliderHit lastHit;
     //[NonSerialized] public int facingDirection;
     [NonSerialized] public bool isRunning; // Used when using the keyboard to run, brings the normalised speed to 1
     [NonSerialized] public bool isCrouching;
     [NonSerialized] public bool isRolling;
+    [NonSerialized] public bool isAbilityFinished;
+    [NonSerialized] public int jumpCount;
+    [NonSerialized] public bool jumpIncremented;
 
     public const float GRAVITY_MULTIPLIER = 3f;
 
@@ -30,8 +33,12 @@ public class Player : MonoBehaviour
         lastHit = hit;
     }
     private void Awake() {
-        primaryWeapon.SetCore(Core);
-        secondaryWeapon.SetCore(Core);
+        foreach(Weapon i in weapons)
+        {
+            i.SetCore(Core);
+        }
+
+        attackInput = new bool[2];
     }
 
     private void OnEnable()
@@ -44,6 +51,10 @@ public class Player : MonoBehaviour
         _inputReader.CrouchEvent += OnCrouch;
         _inputReader.CrouchCanceledEvent += OnCrouchCanceled;
         _inputReader.RollEvent += OnRoll;
+        _inputReader.PrimaryAttackEvent += OnPrimaryAttack;
+        _inputReader.PrimaryAttackCanceledEvent += OnPrimaryAttackCanceled;
+        _inputReader.SecondaryAttackEvent += OnSecondaryAttack;
+        _inputReader.SecondaryAttackCanceledEvent += OnSecondaryAttackCanceled;
     }
 
     private void OnDisable()
@@ -56,10 +67,15 @@ public class Player : MonoBehaviour
         _inputReader.CrouchEvent -= OnCrouch;
         _inputReader.CrouchCanceledEvent -= OnCrouchCanceled;
         _inputReader.RollEvent -= OnRoll;
+        _inputReader.PrimaryAttackEvent -= OnPrimaryAttack;
+        _inputReader.PrimaryAttackCanceledEvent -= OnPrimaryAttackCanceled;
+        _inputReader.SecondaryAttackEvent -= OnSecondaryAttack;
+        _inputReader.SecondaryAttackCanceledEvent -= OnSecondaryAttackCanceled;
     }
 
     // Update is called once per frame
-    void Update() { }
+    void Update() {
+    }
 
     private void OnMove(Vector2 inputMovement)
     {
@@ -92,6 +108,7 @@ public class Player : MonoBehaviour
 
     private void OnRoll()
     {
+        Debug.Log("Rolling");
         isRolling = true;
     }
 
@@ -99,4 +116,26 @@ public class Player : MonoBehaviour
     {
         Core.GetCoreComponent<InteractableDetector>().TryInteract();
     }
+
+    private void OnPrimaryAttack()
+    {
+        attackInput[(int)CombatInputs.primary] = true;
+    }
+
+    private void OnSecondaryAttack()
+    {
+        attackInput[(int)CombatInputs.secondary] = true;
+    }
+
+    private void OnPrimaryAttackCanceled()
+    {
+        attackInput[(int)CombatInputs.primary] = false;
+    }
+
+    private void OnSecondaryAttackCanceled()
+    {
+        attackInput[(int)CombatInputs.secondary] = false;
+    }
+
+    public void UseAttackInput(int i) => attackInput[i] = false;
 }

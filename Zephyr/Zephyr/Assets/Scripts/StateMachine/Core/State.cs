@@ -74,5 +74,6 @@ public enum StateTag
 {
     Run,
     Walk,
-    Ability
+    Ability,
+    Flex
 }

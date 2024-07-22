@@ -3,25 +3,15 @@ using Zephyr.StateMachine;
 using Zephyr.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "SetIsRunningIfWasRunningAction", menuName = "State Machines/Actions/check if prev running")]
-public class SetIsRunningIfWasRunningSO : StateActionSO
-{
-    public bool isRunningParam = default;
-    protected override StateAction CreateAction() => new SetIsRunningIfWasRunning(isRunningParam);
-
-}
+public class SetIsRunningIfWasRunningSO : StateActionSO<SetIsRunningIfWasRunning>
+{}
 public class SetIsRunningIfWasRunning : StateAction
 {
     private Player _playerScript;
+
     private StateMachine _stateMachine;
-    private SetIsRunningIfWasRunningSO _originSO => (SetIsRunningIfWasRunningSO)base.OriginSO; // The SO this StateAction spawned from
 
-    private bool isRunningParam;
     private StateTag stateBefore;
-
-    public SetIsRunningIfWasRunning(bool isRunningParam)
-    {
-        this.isRunningParam = isRunningParam;
-    }
 
     public override void Awake(StateMachine stateMachine)
     {
@@ -33,7 +23,7 @@ public class SetIsRunningIfWasRunning : StateAction
     {
 
         stateBefore = _stateMachine.GetPreviousState().stateTag;
-        if (stateBefore == StateTag.Run)
+        if (stateBefore == StateTag.Run || _playerScript.isRunning)
         {
             SetParameter();
         }
@@ -41,7 +31,7 @@ public class SetIsRunningIfWasRunning : StateAction
 
     private void SetParameter()
     {
-        _playerScript.isRunning = isRunningParam;
+        _playerScript.isRunning = true;
     }
 
     public override void OnUpdate() { }

@@ -4,7 +4,8 @@ using Zephyr.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(menuName = "State Machines/Conditions/Is Grounded")]
 public class IsGroundedConditionSO : StateConditionSO<IsGroundedCondition>
-{ }
+{
+}
 
 public class IsGroundedCondition : Condition
 {

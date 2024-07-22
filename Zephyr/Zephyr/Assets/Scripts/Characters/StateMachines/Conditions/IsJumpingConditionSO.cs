@@ -4,7 +4,8 @@ using Zephyr.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(menuName = "State Machines/Conditions/Is Jumping")]
 public class IsJumpingConditionSO : StateConditionSO<IsJumpingCondition>
-{ }
+{
+}
 
 public class IsJumpingCondition : Condition
 {

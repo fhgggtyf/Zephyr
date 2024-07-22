@@ -5,11 +5,9 @@ using UnityEngine.Localization;
 
 public enum InventoryTabType
 {
-	Common,
-	Rare,
-	Epic,
-	Mythic,
-	Legendary
+	Stats,
+	Inventory,
+	Preservable
 }
 
 [CreateAssetMenu(fileName = "InventoryTabType", menuName = "Inventory/Inventory Tab Type")]

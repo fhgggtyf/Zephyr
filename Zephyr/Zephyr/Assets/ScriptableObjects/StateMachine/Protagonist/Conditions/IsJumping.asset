@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66bb93b3e5ffa11488b60f2b04016f4a, type: 3}
   m_Name: IsJumping
   m_EditorClassIdentifier: 
-  treshold: 0.02
+  isCritical: 1

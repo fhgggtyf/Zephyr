@@ -20,8 +20,6 @@ namespace Zephyr.StateMachine
 		internal State _previousState;
 
         public State GetPreviousState() {
-			Debug.Log(_previousState._originSO.name);
-			Debug.Log(_previousState.stateTag);
 			return _previousState;
 		}
 

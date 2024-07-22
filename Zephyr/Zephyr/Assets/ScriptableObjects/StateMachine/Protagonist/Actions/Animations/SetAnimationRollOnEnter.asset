@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SetAnimationRollOnEnter
   m_EditorClassIdentifier: 
   description: 
-  animName: roll
+  animName: Roll
   whenToRun: 0
   playSpeed: 1

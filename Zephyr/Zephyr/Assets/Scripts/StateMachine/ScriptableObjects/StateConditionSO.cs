@@ -5,10 +5,11 @@ namespace Zephyr.StateMachine.ScriptableObjects
 {
 	public abstract class StateConditionSO : ScriptableObject
 	{
-		/// <summary>
-		/// Will create a new custom <see cref="Condition"/> or use an existing one inside <paramref name="createdInstances"/>.
-		/// </summary>
-		internal StateCondition GetCondition(StateMachine stateMachine, bool expectedResult, Dictionary<ScriptableObject, object> createdInstances)
+        public bool isCritical;
+        /// <summary>
+        /// Will create a new custom <see cref="Condition"/> or use an existing one inside <paramref name="createdInstances"/>.
+        /// </summary>
+        internal StateCondition GetCondition(StateMachine stateMachine, bool expectedResult, Dictionary<ScriptableObject, object> createdInstances)
 		{
 			if (!createdInstances.TryGetValue(this, out var obj))
 			{

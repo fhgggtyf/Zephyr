@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SetAnimationDashOnStateEnter
   m_EditorClassIdentifier: 
   description: 
-  animName: dash
+  animName: Dash
   whenToRun: 0
   playSpeed: 1

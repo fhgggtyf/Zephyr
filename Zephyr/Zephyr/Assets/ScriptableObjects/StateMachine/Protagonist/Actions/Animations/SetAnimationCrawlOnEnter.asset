@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: SetAnimationCrawlOnEnter
   m_EditorClassIdentifier: 
   description: 
-  animName: crawl
+  animName: Crawl
   whenToRun: 0
+  playSpeed: 1

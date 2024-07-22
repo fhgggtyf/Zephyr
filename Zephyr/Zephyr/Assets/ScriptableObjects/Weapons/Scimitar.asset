@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02c1b53238371f94da7a531bcb7ab436, type: 3}
+  m_Name: Scimitar
+  m_EditorClassIdentifier: 
+  <Icon>k__BackingField: {fileID: -1197878244, guid: 61c19151c1358a741aadfd7358b51125, type: 3}
+  <Name>k__BackingField: 
+  <Description>k__BackingField: 
+  <AnimatorController>k__BackingField: {fileID: 9100000, guid: 3250caa2c12d8c7488b5730aa7a24885, type: 2}
+  <NumberOfAttacks>k__BackingField: 2
+  <CanBeInterrupted>k__BackingField: 1
+  <CanFlip>k__BackingField: 1
+  <ComponentData>k__BackingField:
+  - rid: 1006279872137134082
+  - rid: 1006279668881162242
+  references:
+    version: 2
+    RefIds:
+    - rid: 1006279668881162242
+      type: {class: ActionHitBoxData, ns: , asm: Assembly-CSharp}
+      data:
+        name: ActionHitBoxData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          Debug: 0
+          <HitBox>k__BackingField:
+            serializedVersion: 2
+            x: 0
+            y: 0
+            width: 0
+            height: 0
+        - name: Attack 2
+          Debug: 0
+          <HitBox>k__BackingField:
+            serializedVersion: 2
+            x: 0
+            y: 0
+            width: 0
+            height: 0
+        <DetectableLayers>k__BackingField:
+          serializedVersion: 2
+          m_Bits: 0
+    - rid: 1006279872137134082
+      type: {class: WeaponSpriteData, ns: , asm: Assembly-CSharp}
+      data:
+        name: WeaponSpriteData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          <PhaseSprites>k__BackingField:
+          - <Phase>k__BackingField: 2
+            <Sprites>k__BackingField:
+            - {fileID: -1328531042, guid: 74cf949f52739b147b9e39a096c36719, type: 3}
+            - {fileID: -1539812021, guid: 74cf949f52739b147b9e39a096c36719, type: 3}
+            - {fileID: 1947647199, guid: 74cf949f52739b147b9e39a096c36719, type: 3}
+            - {fileID: -1667156087, guid: 74cf949f52739b147b9e39a096c36719, type: 3}
+            - {fileID: 263001170, guid: 74cf949f52739b147b9e39a096c36719, type: 3}
+        - name: Attack 2
+          <PhaseSprites>k__BackingField:
+          - <Phase>k__BackingField: 2
+            <Sprites>k__BackingField:
+            - {fileID: -1245826842, guid: 74cf949f52739b147b9e39a096c36719, type: 3}
+            - {fileID: 671026734, guid: 74cf949f52739b147b9e39a096c36719, type: 3}
+            - {fileID: 1573090376, guid: 74cf949f52739b147b9e39a096c36719, type: 3}
+            - {fileID: -1395737808, guid: 74cf949f52739b147b9e39a096c36719, type: 3}
+            - {fileID: -24291531, guid: 74cf949f52739b147b9e39a096c36719, type: 3}

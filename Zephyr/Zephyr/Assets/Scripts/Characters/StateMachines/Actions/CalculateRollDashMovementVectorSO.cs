@@ -38,7 +38,7 @@ public class CalculateRollDashMovementVector : StateAction
                 _originSO.RollDashMultiplier = 2;
                 break;
             case FlashState.Dash:
-                _originSO.RollDashMultiplier = 4.5f;
+                _originSO.RollDashMultiplier = 7.5f;
                 break;
         }
     }

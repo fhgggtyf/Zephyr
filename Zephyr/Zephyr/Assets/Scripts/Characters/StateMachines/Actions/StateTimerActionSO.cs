@@ -19,8 +19,7 @@ public class StateTimerActionSO : StateActionSO
 public class StateTimerAction : StateAction
 {
     private Player _player;
-    private StateTimerActionSO _originSO => (StateTimerActionSO)base.OriginSO; // The SO this StateAction spawned from
-    private float _time;
+    private readonly float _time;
     private float _timer;
 
     public StateTimerAction(float stateTimer)
@@ -35,11 +34,12 @@ public class StateTimerAction : StateAction
     public override void OnStateEnter()
     {
         _timer = 0;
+        _player.isAbilityFinished = false;
     }
 
     public override void OnStateExit()
     {
-        _player.isRolling = false;
+        _player.isAbilityFinished = true;
     }
 
     public override void OnUpdate()
@@ -48,7 +48,7 @@ public class StateTimerAction : StateAction
 
         if (_timer >= _time)
         {
-            _player.isRolling = false;
+            _player.isAbilityFinished = true;
         }
     }
 

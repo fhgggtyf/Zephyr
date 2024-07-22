@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: SetAnimationJumpMidOnEnter
   m_EditorClassIdentifier: 
   description: 
-  animName: jump_mid
+  animName: JumpMid
   whenToRun: 0
+  playSpeed: 1

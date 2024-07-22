@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: SetAnimationWalkingOnEnter
   m_EditorClassIdentifier: 
   description: Set animation to walking on enter
-  animName: walk
+  animName: Walk
   whenToRun: 0
+  playSpeed: 1

@@ -20,7 +20,8 @@ MonoBehaviour:
   _initialBaseCooldown: 0
   _initialBaseMana: 200
   _initialBaseTenacity: 0
-  _initialBaseStamina: 0
+  _initialBaseStamina: 100
   _initialBaseLuck: 0
-  _initialBaseCritChance: 0
-  _initialBaseCritDamage: 1.5
+  _initialCritChance: 0
+  _initialCritDamage: 1.5
+  _initialJumpCount: 2

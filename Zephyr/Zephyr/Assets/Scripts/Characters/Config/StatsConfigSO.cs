@@ -13,8 +13,10 @@ public class StatsConfigSO : ScriptableObject
 	[SerializeField] private int _initialBaseTenacity;
 	[SerializeField] private int _initialBaseStamina;
 	[SerializeField] private int _initialBaseLuck;
-	[SerializeField] private float _initialBaseCritChance;
-	[SerializeField] private float _initialBaseCritDamage;
+
+	[SerializeField] private float _initialCritChance;
+	[SerializeField] private float _initialCritDamage;
+	[SerializeField] private int _initialJumpCount;
 
 	public int InitialHealth { get => _initialBaseHealth; set => _initialBaseHealth = value; }
     public int InitialArmor { get => _initialBaseArmor; set => _initialBaseArmor = value; }
@@ -26,7 +28,7 @@ public class StatsConfigSO : ScriptableObject
     public int InitialTenacity { get => _initialBaseTenacity; set => _initialBaseTenacity = value; }
     public int InitialStamina { get => _initialBaseStamina; set => _initialBaseStamina = value; }
     public int InitialLuck { get => _initialBaseLuck; set => _initialBaseLuck = value; }
-    public float InitialCritChance { get => _initialBaseCritChance; set => _initialBaseCritChance = value; }
-    public float InitialCritDamage { get => _initialBaseCritDamage; set => _initialBaseCritDamage = value; }
-
+    public float InitialCritChance { get => _initialCritChance; set => _initialCritChance = value; }
+    public float InitialCritDamage { get => _initialCritDamage; set => _initialCritDamage = value; }
+    public int InitialJumpCount { get => _initialJumpCount; set => _initialJumpCount = value; }
 }

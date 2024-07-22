@@ -4,7 +4,8 @@ using Zephyr.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(menuName = "State Machines/Conditions/Is Rolling")]
 public class IsRollingConditionSO : StateConditionSO<IsRollingCondition>
-{ }
+{
+}
 
 public class IsRollingCondition : Condition
 {

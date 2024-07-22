@@ -82,7 +82,7 @@ public class UIInventory : MonoBehaviour
 		}
 	}
 
-	public void FillInventory(InventoryTabType _selectedTabType = InventoryTabType.Common/* bool isNearPot = false*/)
+	public void FillInventory(InventoryTabType _selectedTabType = InventoryTabType.Inventory/* bool isNearPot = false*/)
 	{
 		//_isNearPot = isNearPot;
 

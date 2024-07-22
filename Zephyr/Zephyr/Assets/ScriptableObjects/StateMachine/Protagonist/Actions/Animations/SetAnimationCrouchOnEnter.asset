@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: SetAnimationCrouchOnEnter
   m_EditorClassIdentifier: 
   description: 
-  animName: crouch
+  animName: Crouch
   whenToRun: 0
+  playSpeed: 1

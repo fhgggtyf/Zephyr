@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Alothai_Roll
   m_EditorClassIdentifier: 
   _actions:
+  - {fileID: 11400000, guid: a07af824dc27c1a4a8ab5a75b67d23db, type: 2}
+  - {fileID: 11400000, guid: 9786cdbd0f9e43a4dbbdaaf5596920a5, type: 2}
   - {fileID: 11400000, guid: 7091781b5219aae408d66caff76de70a, type: 2}
   - {fileID: 11400000, guid: 34e959b9757659245a3973f2fc57d34c, type: 2}
-  - {fileID: 11400000, guid: fcc5faaeeac36a54086c9dbf3c772b3a, type: 2}
+  - {fileID: 11400000, guid: 88e2c96496bcf644a834fdf67794df32, type: 2}
   - {fileID: 11400000, guid: b7fa07aeccfc62a458d4da580bd83918, type: 2}
   - {fileID: 11400000, guid: 78e16b23f0d9fee4fbaec9d899b8ee3a, type: 2}
   - {fileID: 11400000, guid: 31bf4d97de7083e48a07fe717a711e85, type: 2}

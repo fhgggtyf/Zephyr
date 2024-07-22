@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Alothai_Crawl
   m_EditorClassIdentifier: 
   _actions:
+  - {fileID: 11400000, guid: 7091781b5219aae408d66caff76de70a, type: 2}
+  - {fileID: 11400000, guid: 9786cdbd0f9e43a4dbbdaaf5596920a5, type: 2}
   - {fileID: 11400000, guid: c6db351b7eea89948a031c79c7e380e8, type: 2}
   - {fileID: 11400000, guid: 8f81d738844616e44a3349d5d6ee8e9b, type: 2}
   - {fileID: 11400000, guid: 78e16b23f0d9fee4fbaec9d899b8ee3a, type: 2}
   - {fileID: 11400000, guid: 31bf4d97de7083e48a07fe717a711e85, type: 2}
   - {fileID: 11400000, guid: 4289e8c6c1ed06f4684336e4439bda6f, type: 2}
-  _stateTag: 1
+  stateTag: 1

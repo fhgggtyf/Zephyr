@@ -4,7 +4,8 @@ using Zephyr.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(menuName = "State Machines/Conditions/Is Crouching")]
 public class IsCrouchingConditionSO : StateConditionSO<IsCrouchingCondition>
-{ }
+{
+}
 
 public class IsCrouchingCondition : Condition
 {

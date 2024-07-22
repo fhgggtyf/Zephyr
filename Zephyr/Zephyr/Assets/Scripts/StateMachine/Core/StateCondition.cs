@@ -48,6 +48,8 @@ namespace Zephyr.StateMachine
 		public virtual void Awake(StateMachine stateMachine) { }
 		public virtual void OnStateEnter() { }
 		public virtual void OnStateExit() { }
+
+		public virtual void OnTransitionFailed() { }
 	}
 
 	/// <summary>
@@ -58,18 +60,21 @@ namespace Zephyr.StateMachine
 		internal readonly StateMachine _stateMachine;
 		internal readonly Condition _condition;
 		internal readonly bool _expectedResult;
+		//internal readonly bool _isCritical;
 
 		public StateCondition(StateMachine stateMachine, Condition condition, bool expectedResult)
 		{
 			_stateMachine = stateMachine;
 			_condition = condition;
 			_expectedResult = expectedResult;
+			//_isCritical = _condition._originSO.isCritical;
 		}
 
-		public bool IsMet()
+		public bool IsMet(/*out bool isCritical*/)
 		{
 			bool statement = _condition.GetStatement();
 			bool isMet = statement == _expectedResult;
+			//isCritical = _isCritical;
 
 #if UNITY_EDITOR
 			_stateMachine._debugger.TransitionConditionResult(_condition._originSO.name, statement, isMet);

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: SetAnimationJumpRiseOnEnter
   m_EditorClassIdentifier: 
   description: 
-  animName: jump_rise
+  animName: JumpRise
   whenToRun: 0
+  playSpeed: 1
