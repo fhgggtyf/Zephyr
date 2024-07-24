@@ -12,5 +12,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9e866adaec90240b72e0e0b39eea96, type: 3}
   m_Name: Inventory
   m_EditorClassIdentifier: 
-  _items: []
+  _items:
+  - _item: {fileID: 0}
+    Amount: 0
+  - _item: {fileID: 0}
+    Amount: 0
+  - _item: {fileID: 0}
+    Amount: 0
+  - _item: {fileID: 0}
+    Amount: 0
+  - _item: {fileID: 0}
+    Amount: 0
+  - _item: {fileID: 0}
+    Amount: 0
+  - _item: {fileID: 0}
+    Amount: 0
+  - _item: {fileID: 0}
+    Amount: 0
+  - _item: {fileID: 0}
+    Amount: 0
+  - _item: {fileID: 0}
+    Amount: 0
+  - _item: {fileID: 0}
+    Amount: 0
+  - _item: {fileID: 0}
+    Amount: 0
+  - _item: {fileID: 0}
+    Amount: 0
+  - _item: {fileID: 0}
+    Amount: 0
+  - _item: {fileID: 0}
+    Amount: 0
+  - _item: {fileID: 0}
+    Amount: 0
+  - _item: {fileID: 0}
+    Amount: 0
+  - _item: {fileID: 0}
+    Amount: 0
+  - _item: {fileID: 0}
+    Amount: 0
+  - _item: {fileID: 0}
+    Amount: 0
   _defaultItems: []
+  maxCapacity: 20

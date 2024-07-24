@@ -11,7 +11,7 @@ public class UIInventory : MonoBehaviour
 	[SerializeField] private UIInventoryItem _itemPrefab = default;
 	[SerializeField] private GameObject _contentParent = default;
 	//[SerializeField] private GameObject _errorPotMessage = default;
-	[SerializeField] private UIInventoryInspector _inspectorPanel = default;
+	//[SerializeField] private UIInventoryInspector _inspectorPanel = default;
 	[SerializeField] private List<InventoryTabSO> _tabTypesList = new List<InventoryTabSO>();
 	[SerializeField] private List<UIInventoryItem> _availableItemSlots = default;
 
@@ -105,7 +105,7 @@ public class UIInventory : MonoBehaviour
 		{
 			SetTabs(_tabTypesList, _selectedTab);
 			List<ItemStack> listItemsToShow = new List<ItemStack>();
-			listItemsToShow = _currentInventory.Items.FindAll(o => o.Item.ItemType.TabType == _selectedTab);
+			listItemsToShow = _currentInventory.Items.FindAll(o => o.Item != null && o.Item.ItemType.TabType == _selectedTab);
 
 			FillInvetoryItems(listItemsToShow);
 		}
@@ -241,16 +241,16 @@ public class UIInventory : MonoBehaviour
 
 	void ShowItemInformation(ItemSO item)
 	{
-		bool[] availabilityArray = _currentInventory.IngredientsAvailability(item.IngredientsList);
+		//bool[] availabilityArray = _currentInventory.IngredientsAvailability(item.IngredientsList);
 
-		_inspectorPanel.FillInspector(item, availabilityArray);
-		_inspectorPanel.gameObject.SetActive(true);
+		//_inspectorPanel.FillInspector(item, availabilityArray);
+		//_inspectorPanel.gameObject.SetActive(true);
 	}
 
 	void HideItemInformation()
 	{
 		_actionButton.gameObject.SetActive(false);
-		_inspectorPanel.gameObject.SetActive(false);
+		//_inspectorPanel.gameObject.SetActive(false);
 	}
 
 	void UnselectItem(int itemIndex)
@@ -294,8 +294,8 @@ public class UIInventory : MonoBehaviour
 
 	void UseItem(ItemSO itemToUse)
 	{
-		if (itemToUse.HealthResorationValue > 0)
-		{ _restoreHealth.RaiseEvent(itemToUse.HealthResorationValue); }
+		if (itemToUse.ResorationValue > 0)
+		{ _restoreHealth.RaiseEvent(itemToUse.ResorationValue); }
 		_useItemEvent.RaiseEvent(itemToUse);
 		UpdateInventory();
 	}

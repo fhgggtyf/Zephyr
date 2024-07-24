@@ -76,7 +76,10 @@ public class SaveSystem : ScriptableObject
 		saveData._itemStacks.Clear();
 		foreach (var itemStack in _playerInventory.Items)
 		{
-			saveData._itemStacks.Add(new SerializedItemStack(itemStack.Item.Guid, itemStack.Amount));
+            if (itemStack.Item != null)
+            {
+				saveData._itemStacks.Add(new SerializedItemStack(itemStack.Item.Guid, itemStack.Amount));
+			}
 		}
 
 		//saveData._finishedQuestlineItemsGUIds.Clear();

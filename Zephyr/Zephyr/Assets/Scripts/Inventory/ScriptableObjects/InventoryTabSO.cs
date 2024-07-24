@@ -5,7 +5,6 @@ using UnityEngine.Localization;
 
 public enum InventoryTabType
 {
-	Stats,
 	Inventory,
 	Preservable
 }

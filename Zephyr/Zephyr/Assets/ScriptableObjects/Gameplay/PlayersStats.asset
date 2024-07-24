@@ -14,3 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 500
   _currentHealth: 500
+  _currentArmor: 100
+  _currentMR: 100
+  _currentAttack: 100
+  _currentAP: 100
+  _currentCD: 0
+  _currentMana: 200
+  _currentTenacity: 0
+  _currentStamina: 100
+  _maxStamina: 100
+  _currentLuck: 0
+  _currentCritChance: 0
+  _currentCritDmg: 1.5
+  _currentMaxJumps: 2

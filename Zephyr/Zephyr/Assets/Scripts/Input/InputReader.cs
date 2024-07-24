@@ -143,6 +143,12 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 		RollEvent.Invoke();
     }
 
+	public void OnOpenInventory(InputAction.CallbackContext context)
+	{
+		if (context.phase == InputActionPhase.Performed)
+			OpenInventoryEvent.Invoke();
+	}
+
 	public void DisableAllInput()
     {
 		_gameInput.Menus.Disable();
@@ -166,6 +172,7 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 
 	public void EnableMenuInput()
 	{
+		Debug.Log("MenuInputEnableed");
 		_gameInput.Dialogues.Disable();
 		_gameInput.Gameplay.Disable();
 
@@ -174,11 +181,6 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 
 	public bool LeftMouseDown() => Mouse.current.leftButton.isPressed;
 
-	public void OnOpenInventory(InputAction.CallbackContext context)
-	{
-		if (context.phase == InputActionPhase.Performed)
-			OpenInventoryEvent.Invoke();
-	}
 	public void OnCancel(InputAction.CallbackContext context)
 	{
 		if (context.phase == InputActionPhase.Performed)
@@ -241,7 +243,6 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 
 	public void OnClick(InputAction.CallbackContext context)
 	{
-
 	}
 
 	public void OnSubmit(InputAction.CallbackContext context)

@@ -13,11 +13,13 @@ public class InventorySO : ScriptableObject
 
 	public List<ItemStack> Items => _items;
 
+	[SerializeField] public int maxCapacity;
+
 	public void Init()
 	{
 		if (_items == null)
 		{
-			_items = new List<ItemStack>();
+			_items = new List<ItemStack>(maxCapacity);
 		}
 		_items.Clear();
 		foreach (ItemStack item in _defaultItems)
@@ -36,11 +38,7 @@ public class InventorySO : ScriptableObject
 			ItemStack currentItemStack = _items[i];
 			if (item == currentItemStack.Item)
 			{
-				//only add to the amount if the item is usable 
-				if (currentItemStack.Item.ItemType.ActionType == ItemInventoryActionType.Use)
-				{
-					currentItemStack.Amount += count;
-				}
+				currentItemStack.Amount += count;
 
 				return;
 			}
@@ -97,28 +95,28 @@ public class InventorySO : ScriptableObject
 		return 0;
 	}
 
-	public bool[] IngredientsAvailability(List<ItemStack> ingredients)
-	{
-		if (ingredients == null)
-			return null;
-		bool[] availabilityArray = new bool[ingredients.Count];
+	//public bool[] IngredientsAvailability(List<ItemStack> ingredients)
+	//{
+	//	if (ingredients == null)
+	//		return null;
+	//	bool[] availabilityArray = new bool[ingredients.Count];
 
-		for (int i = 0; i < ingredients.Count; i++)
-		{
-			availabilityArray[i] = _items.Exists(o => o.Item == ingredients[i].Item && o.Amount >= ingredients[i].Amount);
+	//	for (int i = 0; i < ingredients.Count; i++)
+	//	{
+	//		availabilityArray[i] = _items.Exists(o => o.Item == ingredients[i].Item && o.Amount >= ingredients[i].Amount);
 
-		}
-		return availabilityArray;
-
-
-	}
-	public bool hasIngredients(List<ItemStack> ingredients)
-	{
-
-		bool hasIngredients = !ingredients.Exists(j => !_items.Exists(o => o.Item == j.Item && o.Amount >= j.Amount));
-
-		return hasIngredients;
+	//	}
+	//	return availabilityArray;
 
 
-	}
+	//}
+	//public bool hasIngredients(List<ItemStack> ingredients)
+	//{
+
+	//	bool hasIngredients = !ingredients.Exists(j => !_items.Exists(o => o.Item == j.Item && o.Amount >= j.Amount));
+
+	//	return hasIngredients;
+
+
+	//}
 }

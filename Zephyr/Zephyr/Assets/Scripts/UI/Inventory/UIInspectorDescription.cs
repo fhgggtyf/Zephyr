@@ -13,9 +13,9 @@ public class UIInspectorDescription : MonoBehaviour
 		_textName.StringReference = itemToInspect.Name;
 		_textName.StringReference.Arguments = new[] { new { Purpose = 0, Amount = 1 } };
 		_textDescription.StringReference = itemToInspect.Description;
-		if (itemToInspect.HealthResorationValue > 0)
+		if (itemToInspect.ResorationValue > 0)
 		{
-			_textHealthRestoration.text = "+" + itemToInspect.HealthResorationValue;
+			_textHealthRestoration.text = "+" + itemToInspect.ResorationValue;
 		}
 		else
 		{

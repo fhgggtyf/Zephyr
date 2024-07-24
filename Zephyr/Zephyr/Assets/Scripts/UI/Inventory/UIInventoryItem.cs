@@ -47,7 +47,7 @@ public class UIInventoryItem : MonoBehaviour
 		else
 		{
 			_bgLocalizedImage.enabled = false;
-			_itemPreviewImage.sprite = itemStack.Item.PreviewImage;
+			_itemPreviewImage.sprite = itemStack.Item.Icon;
 		}
 		_itemCount.text = itemStack.Amount.ToString();
 		_bgImage.color = itemStack.Item.ItemType.TypeColor;

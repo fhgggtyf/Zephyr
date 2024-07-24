@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 [RequireComponent(typeof(Collider2D))]
 public class InteractableDetector : CoreComponent
 {
@@ -64,7 +63,6 @@ public class InteractableDetector : CoreComponent
     {
         if (other.IsInteractable(out var interactable))
         {
-            Debug.Log(1111);
             interactables.Add(interactable);
         }
     }

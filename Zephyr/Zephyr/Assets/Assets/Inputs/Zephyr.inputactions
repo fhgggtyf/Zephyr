@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "Tap",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "OpenInventory",
+                    "type": "Button",
+                    "id": "4f1ce12b-9f27-43e1-89a5-edab2f73656b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -254,6 +263,17 @@
                     "action": "Roll",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "58600d48-a50b-40ff-9b00-2446370e5687",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -362,8 +382,8 @@
                 },
                 {
                     "name": "Click",
-                    "type": "Button",
-                    "id": "28ae2eff-f9c6-460c-86ca-947df3c6a242",
+                    "type": "PassThrough",
+                    "id": "5da03882-b10d-416c-acdc-55c2640a86a7",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -642,17 +662,6 @@
                 },
                 {
                     "name": "",
-                    "id": "6408be7a-2a65-4112-a067-e574f1072309",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Click",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "f841a4de-dbbb-47c8-ada2-7ae953d39664",
                     "path": "<Mouse>/position",
                     "interactions": "",
@@ -681,6 +690,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "CloseInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "44f8fe0e-c917-437e-b74d-da331577b775",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
