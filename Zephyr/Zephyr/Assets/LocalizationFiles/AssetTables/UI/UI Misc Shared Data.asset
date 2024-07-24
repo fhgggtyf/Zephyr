@@ -47,6 +47,10 @@ MonoBehaviour:
     m_Key: CancelNewGame
     m_Metadata:
       m_Items: []
+  - m_Id: 14951938574647296
+    m_Key: UseItem
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
