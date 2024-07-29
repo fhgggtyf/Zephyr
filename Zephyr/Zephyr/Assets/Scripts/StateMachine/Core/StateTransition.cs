@@ -60,8 +60,8 @@ namespace Zephyr.StateMachine
                 for (int j = 0; j < _resultGroups[i]; j++, idx++)
                 {
 
-                    //bool conditionMet = _conditions[idx].IsMet();
-                    _results[i] = j == 0 ? _conditions[idx].IsMet() : _results[i] && _conditions[idx].IsMet();
+                    bool conditionMet = _conditions[idx].IsMet();
+                    //_results[i] = j == 0 ? _conditions[idx].IsMet() : _results[i] && _conditions[idx].IsMet();
                     //if (isCritical && conditionMet)
                     //{
                     //    criticalFoundFlag = true;
@@ -74,14 +74,14 @@ namespace Zephyr.StateMachine
                     //    }
                     //}
 
-                    //if (j == 0)
-                    //{
-                    //    _results[i] = conditionMet/*_conditions[idx].IsMet(/*out isCritical)*/;
-                    //}
-                    //else
-                    //{
-                    //    _results[i] = _results[i] && conditionMet /*_conditions[idx].IsMet(/*out isCritical)*/;
-                    //}
+                    if (j == 0)
+                    {
+                        _results[i] = conditionMet/*_conditions[idx].IsMet(/*out isCritical)*/;
+                    }
+                    else
+                    {
+                        _results[i] = _results[i] && conditionMet /*_conditions[idx].IsMet(/*out isCritical)*/;
+                    }
 
                     //if (criticalFoundFlag && !conditionMet)
                     //{

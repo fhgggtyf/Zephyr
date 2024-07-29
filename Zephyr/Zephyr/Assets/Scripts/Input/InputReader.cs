@@ -20,7 +20,8 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 	public event UnityAction SecondaryAttackEvent = delegate { };
 	public event UnityAction SecondaryAttackCanceledEvent = delegate { }; 
 	public event UnityAction InteractEvent = delegate { }; // Used to talk, pickup objects, interact with tools like the cooking cauldron
-	public event UnityAction RollEvent = delegate { };
+	public event UnityAction RollEvent = delegate { }; 
+	public event UnityAction RollCanceledEvent = delegate { };
 	public event UnityAction InventoryActionButtonEvent = delegate { };
 	public event UnityAction SaveActionButtonEvent = delegate { };
 	public event UnityAction ResetActionButtonEvent = delegate { };
@@ -140,8 +141,13 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
     }
     public void OnRoll(InputAction.CallbackContext context)
     {
-		RollEvent.Invoke();
-    }
+		if (context.phase == InputActionPhase.Performed)
+			RollEvent.Invoke();
+
+		if (context.phase == InputActionPhase.Canceled)
+			RollCanceledEvent.Invoke();
+
+	}
 
 	public void OnOpenInventory(InputAction.CallbackContext context)
 	{

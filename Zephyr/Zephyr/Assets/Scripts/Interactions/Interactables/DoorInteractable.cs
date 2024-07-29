@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Door : MonoBehaviour, IInteractable
+public class DoorInteractable : MonoBehaviour, IInteractable
 {
     public void DisableInteraction()
     {
@@ -24,6 +24,11 @@ public class Door : MonoBehaviour, IInteractable
     }
 
     private void Awake()
+    {
+
+    }
+
+    private void OpenDoor()
     {
 
     }

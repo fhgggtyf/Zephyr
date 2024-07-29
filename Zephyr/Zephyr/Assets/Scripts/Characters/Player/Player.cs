@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
         _inputReader.CrouchEvent += OnCrouch;
         _inputReader.CrouchCanceledEvent += OnCrouchCanceled;
         _inputReader.RollEvent += OnRoll;
+        _inputReader.RollCanceledEvent += OnRollCanceled;
         _inputReader.PrimaryAttackEvent += OnPrimaryAttack;
         _inputReader.PrimaryAttackCanceledEvent += OnPrimaryAttackCanceled;
         _inputReader.SecondaryAttackEvent += OnSecondaryAttack;
@@ -68,6 +69,7 @@ public class Player : MonoBehaviour
         _inputReader.CrouchEvent -= OnCrouch;
         _inputReader.CrouchCanceledEvent -= OnCrouchCanceled;
         _inputReader.RollEvent -= OnRoll;
+        _inputReader.RollCanceledEvent -= OnRollCanceled;
         _inputReader.PrimaryAttackEvent -= OnPrimaryAttack;
         _inputReader.PrimaryAttackCanceledEvent -= OnPrimaryAttackCanceled;
         _inputReader.SecondaryAttackEvent -= OnSecondaryAttack;
@@ -109,8 +111,12 @@ public class Player : MonoBehaviour
 
     private void OnRoll()
     {
-        Debug.Log("Rolling");
         isRolling = true;
+    }
+
+    private void OnRollCanceled()
+    {
+        isRolling = false;
     }
 
     private void OnInteract()
