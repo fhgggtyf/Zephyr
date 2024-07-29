@@ -37,6 +37,8 @@ public class ItemsInventory : CoreComponent
         //index = -1;
         //return false;
 
+        Debug.Log(Data.Items.Count);
+        Debug.Log(Data.maxCapacity);
         if (Data.Items.Count < Data.maxCapacity)
         {
             return true;

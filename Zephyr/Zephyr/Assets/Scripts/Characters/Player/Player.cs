@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader = default;
     [SerializeField] public Core Core;
-    [SerializeField] public AnimationEventHandler animationEventHandler;
+    //[SerializeField] public AnimationEventHandler animationEventHandler;
 
     [SerializeField] public Weapon[] weapons;
 
@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     [NonSerialized] public bool isAbilityFinished;
     [NonSerialized] public int jumpCount;
     [NonSerialized] public bool jumpIncremented;
+    [NonSerialized] public bool isClimbing;
 
     public const float GRAVITY_MULTIPLIER = 3f;
 

@@ -10,6 +10,7 @@ public class Movement : CoreComponent
 
     public Vector2 CurrentVelocity { get; private set; }
 
+    [SerializeField] private TransformEventChannelSO _toClimb;
     private Vector2 workspace;
 
     protected override void Awake()
@@ -20,6 +21,7 @@ public class Movement : CoreComponent
 
         FacingDirection = 1;
         CanSetVelocity = true;
+        _toClimb.OnEventRaised += ForceChangePositionX;
     }
 
     public override void LogicUpdate()
@@ -73,6 +75,27 @@ public class Movement : CoreComponent
             RB.velocity = workspace;
             CurrentVelocity = workspace;
         }
+    }
+
+    public void ForceChangePositionX(Transform transform)
+    {
+        RB.transform.position = new Vector2(transform.position.x, RB.transform.position.y);
+        RB.velocity = new Vector2(0, 0);
+    }
+    public void ForceChangePositionY(Transform transform)
+    {
+        RB.transform.position = new Vector2(RB.transform.position.x, transform.position.y);
+        RB.velocity = new Vector2(0, 0);
+    }
+    public void ForceChangePosition(Transform transform)
+    {
+        RB.transform.position = new Vector2(transform.position.x, transform.position.y);
+        RB.velocity = new Vector2(0, 0);
+    }
+    public void ForceChangePosition(Vector2 vec)
+    {
+        RB.transform.position = vec;
+        RB.velocity = new Vector2(0, 0);
     }
 
     public void Flip()

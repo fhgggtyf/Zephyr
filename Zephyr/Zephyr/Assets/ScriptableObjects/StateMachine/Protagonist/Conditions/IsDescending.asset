@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1efaefb0be97fe4478e20b86a04c1529, type: 3}
   m_Name: IsDescending
   m_EditorClassIdentifier: 
+  isCritical: 0
+  descendingThreashold: -1.5

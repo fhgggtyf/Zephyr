@@ -19,7 +19,7 @@ public class UIActionButton : MonoBehaviour
 		_buttonAction.interactable = isInteractable;
 		_buttonActionText.StringReference = itemType.ActionName;
 
-		bool isKeyboard = true;
+		//bool isKeyboard = true;
 		//_buttonPromptSetter.SetButtonPrompt(isKeyboard);
 		if (isInteractable)
 		{

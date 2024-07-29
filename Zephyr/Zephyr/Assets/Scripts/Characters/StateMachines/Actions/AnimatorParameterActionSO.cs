@@ -14,8 +14,9 @@ public class AnimatorParameterActionSO : StateActionSO
     public string animName = default;
     public Moment whenToRun = default;
     public float playSpeed = 1;
+    public bool replayIfSame = default;
 
-    protected override StateAction CreateAction() => new AnimatorParameterAction(animName, playSpeed);
+    protected override StateAction CreateAction() => new AnimatorParameterAction(animName, playSpeed, replayIfSame);
 
 }
 public class AnimatorParameterAction : StateAction
@@ -24,11 +25,13 @@ public class AnimatorParameterAction : StateAction
     private AnimatorParameterActionSO _originSO => (AnimatorParameterActionSO)base.OriginSO; // The SO this StateAction spawned from
     private string _animName;
     private float _playSpeed;
+    private bool _replayIfSame;
 
-    public AnimatorParameterAction(string param, float playSpeedParam)
+    public AnimatorParameterAction(string param, float playSpeedParam, bool replayIfSame)
     {
         _animName = param;
         _playSpeed = playSpeedParam;
+        _replayIfSame = replayIfSame;
     }
 
     public override void Awake(StateMachine stateMachine)
@@ -50,7 +53,7 @@ public class AnimatorParameterAction : StateAction
 
     private void SetParameter()
     {
-        _animManager.ChangeAnimState(_animName, _playSpeed);
+        _animManager.ChangeAnimState(_animName, _playSpeed, _replayIfSame);
     }
 
     public override void OnUpdate() { }

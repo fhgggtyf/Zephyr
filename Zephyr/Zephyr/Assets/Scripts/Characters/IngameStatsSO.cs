@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 /// <summary>
 /// An instance of the Stats of a character, be it the player or an NPC.
@@ -7,7 +8,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayersIngameStats", menuName = "EntityConfig/Player's stats")]
 public class IngameStatsSO : ScriptableObject
 {
-	[Tooltip("The initial health")]
+	[Tooltip("Stats")]
 	[SerializeField] [ReadOnly] private int _maxHealth;
 	[SerializeField] [ReadOnly] private int _currentHealth;
     [SerializeField] [ReadOnly] private int _currentArmor;
@@ -16,6 +17,8 @@ public class IngameStatsSO : ScriptableObject
     [SerializeField] [ReadOnly] private int _currentAP;
     [SerializeField] [ReadOnly] private int _currentCD;
     [SerializeField] [ReadOnly] private int _currentMana;
+    [SerializeField] [ReadOnly] private int _currentArmorIgnore;
+    [SerializeField] [ReadOnly] private int _currentMRIgnore;
     [SerializeField] [ReadOnly] private int _currentTenacity;
     [SerializeField] [ReadOnly] private float _currentStamina;
     [SerializeField] [ReadOnly] private int _maxStamina;
@@ -23,6 +26,19 @@ public class IngameStatsSO : ScriptableObject
     [SerializeField] [ReadOnly] private float _currentCritChance;
     [SerializeField] [ReadOnly] private float _currentCritDmg;
     [SerializeField] [ReadOnly] private int _currentMaxJumps;
+
+    [Tooltip("Localization")]
+    [SerializeField] public LocalizedString MaxHPLocale;
+    [SerializeField] public LocalizedString ArmorLocale;
+    [SerializeField] public LocalizedString MRLocale;
+    [SerializeField] public LocalizedString AtkLocale;
+    [SerializeField] public LocalizedString APLocale;
+    [SerializeField] public LocalizedString TenacityLocale;
+    [SerializeField] public LocalizedString StaminaLocale;
+    [SerializeField] public LocalizedString LuckLocale;
+    [SerializeField] public LocalizedString ArmorIgnoreLocale;
+    [SerializeField] public LocalizedString MRIgnoreLocale;
+
 
     public int MaxHealth { get => _maxHealth; }
     public int CurrentHealth { get => _currentHealth; }
@@ -39,6 +55,8 @@ public class IngameStatsSO : ScriptableObject
     public float CurrentCritChance { get => _currentCritChance; }
     public float CurrentCritDmg { get => _currentCritDmg; }
     public int CurrentMaxJumps { get => _currentMaxJumps; }
+    public int CurrentArmorIgnore { get => _currentArmorIgnore; set => _currentArmorIgnore = value; }
+    public int CurrentMRIgnore { get => _currentMRIgnore; set => _currentMRIgnore = value; }
 
     public void SetMaxHealth(int newValue)
     {

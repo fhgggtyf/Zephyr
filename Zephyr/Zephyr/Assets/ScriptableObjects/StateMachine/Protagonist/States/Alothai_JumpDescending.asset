@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Alothai_JumpDescending
   m_EditorClassIdentifier: 
   _actions:
+  - {fileID: 11400000, guid: 49bbd3ada0011ef4c809ff74919585fd, type: 2}
   - {fileID: 11400000, guid: 7091781b5219aae408d66caff76de70a, type: 2}
   - {fileID: 11400000, guid: 5b2d0541914e40643aa28f53b9c89dfe, type: 2}
   - {fileID: 11400000, guid: 473faf4b813866c438de29d0423f35c4, type: 2}

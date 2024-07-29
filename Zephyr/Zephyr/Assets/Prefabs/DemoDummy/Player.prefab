@@ -83,7 +83,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inputReader: {fileID: 11400000, guid: e56ee6ed7dd16a744a29977a83f84ef7, type: 2}
   Core: {fileID: 4100804798668305164}
-  animationEventHandler: {fileID: 0}
   weapons:
   - {fileID: 844645727543623245}
   - {fileID: 895573168542982027}
@@ -150,8 +149,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.2}
-  m_Size: {x: 0.12751341, y: 0.39724168}
+  m_Offset: {x: 0, y: 0.19582808}
+  m_Size: {x: 0.12751341, y: 0.384}
   m_Direction: 0
 --- !u!114 &5455805625519164458
 MonoBehaviour:
@@ -223,6 +222,7 @@ Transform:
   - {fileID: 7618823240624415657}
   - {fileID: 366610890918119301}
   - {fileID: 9066797311358880156}
+  - {fileID: 6018083588118753164}
   m_Father: {fileID: 5096723482441089866}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4100804798668305164
@@ -295,38 +295,7 @@ Transform:
   m_GameObject: {fileID: 2628372641130492554}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.125, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 45931273530423845}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2865054854490601127
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 164599406838977398}
-  m_Layer: 0
-  m_Name: WeaponInventory
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &164599406838977398
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2865054854490601127}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -343,7 +312,7 @@ GameObject:
   - component: {fileID: 9066797311358880156}
   - component: {fileID: 3775435366459325114}
   m_Layer: 0
-  m_Name: ConsumableSwap
+  m_Name: ItemInteraction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -510,6 +479,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1ef94526e427b84db9acfae8fe43d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _toClimb: {fileID: 11400000, guid: af24e86b9fedede40bc1aead745ece74, type: 2}
+--- !u!1 &5159774978849230082
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4396857509349178687}
+  m_Layer: 0
+  m_Name: OffClimbCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4396857509349178687
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5159774978849230082}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.15, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 45931273530423845}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5960118390372931622
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,9 +542,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1011828495632055496}
-  - {fileID: 2727938892492459327}
   - {fileID: 7625489501265674611}
-  - {fileID: 164599406838977398}
+  - {fileID: 2727938892492459327}
+  - {fileID: 4396857509349178687}
   m_Father: {fileID: 2039427762333537022}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5181933187891064335
@@ -560,13 +561,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 2348688968845129827}
   groundCheck: {fileID: 1011828495632055496}
-  wallCheck: {fileID: 2727938892492459327}
+  climbableCheck: {fileID: 2727938892492459327}
+  offClimbCheck: {fileID: 4396857509349178687}
   ceilingCheck: {fileID: 7625489501265674611}
   groundCheckRadius: 0.15
-  wallCheckDistance: 0.5
+  offClimbCheckRadius: 0.05
+  climbableCheckDistance: 1.25
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
+  whatIsClimbable:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &6617092757371167338
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,7 +684,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.5}
+  m_Offset: {x: 0.25815874, y: 0.51014155}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -689,7 +695,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 1}
+  m_Size: {x: 0.9263525, y: 0.9797169}
   m_EdgeRadius: 0
 --- !u!114 &8558983517818742014
 MonoBehaviour:
@@ -703,6 +709,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa9e12f7cbaa4e47bd5aed6be27c74f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7781391421090938395
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6018083588118753164}
+  - component: {fileID: 6587293344295601160}
+  m_Layer: 0
+  m_Name: ClimbInteraction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6018083588118753164
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7781391421090938395}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2039427762333537022}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6587293344295601160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7781391421090938395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42a5a2cc2f6b3fb42b9d3fb560160a7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 2348688968845129827}
+  _toClimb: {fileID: 11400000, guid: af24e86b9fedede40bc1aead745ece74, type: 2}
 --- !u!1 &8121103653706759694
 GameObject:
   m_ObjectHideFlags: 0
@@ -713,7 +765,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2727938892492459327}
   m_Layer: 0
-  m_Name: WallCheck
+  m_Name: ClimbableCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -728,7 +780,7 @@ Transform:
   m_GameObject: {fileID: 8121103653706759694}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: -0.24, y: 1.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -759,7 +811,7 @@ Transform:
   m_GameObject: {fileID: 8599333990401312811}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -815,6 +867,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6604080439760694653, guid: 6eba2261a57456f4e8476b055005c563, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663568147366227312, guid: 6eba2261a57456f4e8476b055005c563, type: 3}
+      propertyPath: combatInput
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

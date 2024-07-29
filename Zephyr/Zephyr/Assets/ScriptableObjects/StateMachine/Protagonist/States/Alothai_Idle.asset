@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Alothai_Idle
   m_EditorClassIdentifier: 
   _actions:
+  - {fileID: 11400000, guid: 388e575f79e9ca144a2488700a9c91d4, type: 2}
   - {fileID: 11400000, guid: d1947f757c9f1fb4786bb33c42fa4d66, type: 2}
   - {fileID: 11400000, guid: 9786cdbd0f9e43a4dbbdaaf5596920a5, type: 2}
   - {fileID: 11400000, guid: 707024ae9707d3b418720d9ff93f1b37, type: 2}
-  - {fileID: 11400000, guid: 31bf4d97de7083e48a07fe717a711e85, type: 2}
   - {fileID: 11400000, guid: 78e16b23f0d9fee4fbaec9d899b8ee3a, type: 2}
+  - {fileID: 11400000, guid: 31bf4d97de7083e48a07fe717a711e85, type: 2}
   stateTag: 1

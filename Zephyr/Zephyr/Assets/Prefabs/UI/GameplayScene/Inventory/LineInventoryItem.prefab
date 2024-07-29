@@ -36,10 +36,10 @@ RectTransform:
   - {fileID: 8894835693341904307}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7805103014143480621
 MonoBehaviour:
@@ -308,10 +308,6 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3436543367045413438, guid: 02b1f805af86e3d4399198b869506bf2, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3436543367045413438, guid: 02b1f805af86e3d4399198b869506bf2, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
@@ -382,10 +378,6 @@ PrefabInstance:
     - target: {fileID: 3436543367045413438, guid: 02b1f805af86e3d4399198b869506bf2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2019030446, guid: b125620126ce3403f9719c1123999117, type: 3}
-      propertyPath: m_fontSize
-      value: 25.85
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -528,10 +520,6 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3436543367045413438, guid: 02b1f805af86e3d4399198b869506bf2, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3436543367045413438, guid: 02b1f805af86e3d4399198b869506bf2, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
@@ -602,10 +590,6 @@ PrefabInstance:
     - target: {fileID: 3436543367045413438, guid: 02b1f805af86e3d4399198b869506bf2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2019030446, guid: b125620126ce3403f9719c1123999117, type: 3}
-      propertyPath: m_fontSize
-      value: 25.85
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

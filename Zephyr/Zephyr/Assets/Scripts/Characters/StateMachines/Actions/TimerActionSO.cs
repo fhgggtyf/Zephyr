@@ -3,15 +3,15 @@ using UnityEngine.Events;
 using Zephyr.StateMachine;
 using Zephyr.StateMachine.ScriptableObjects;
 
-[CreateAssetMenu(fileName = "DoubleJumpTimerAction", menuName = "State Machines/Actions/Set DoubleJumpTimer")]
-public class DoubleJumpTimerActionSO : StateActionSO
+[CreateAssetMenu(fileName = "TimerAction", menuName = "State Machines/Actions/Set Timer")]
+public class TimerActionSO : StateActionSO
 {
     public float stateTime;
 
-    protected override StateAction CreateAction() => new DoubleJumpTimerAction(stateTime);
+    protected override StateAction CreateAction() => new TimerAction(stateTime);
 }
 
-public class DoubleJumpTimerAction : StateAction
+public class TimerAction : StateAction
 {
     private readonly float _time;
     private float _timer;
@@ -23,7 +23,7 @@ public class DoubleJumpTimerAction : StateAction
         _player = stateMachine.GetComponent<Player>();
     }
 
-    public DoubleJumpTimerAction(float time)
+    public TimerAction(float time)
     {
         _time = time;
     }

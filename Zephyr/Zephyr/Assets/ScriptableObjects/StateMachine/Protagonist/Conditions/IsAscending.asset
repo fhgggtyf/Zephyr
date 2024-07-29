@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 941849bcaa5fd42498218b4587a888b1, type: 3}
   m_Name: IsAscending
   m_EditorClassIdentifier: 
+  isCritical: 0
+  ascendingThreshold: 1.5

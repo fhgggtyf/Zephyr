@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DoubleJumpTimerAction
   m_EditorClassIdentifier: 
   description: 
-  stateTime: 0.85
+  stateTime: 0.6

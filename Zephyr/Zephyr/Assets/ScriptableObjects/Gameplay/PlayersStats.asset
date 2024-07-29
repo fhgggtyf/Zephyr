@@ -20,6 +20,8 @@ MonoBehaviour:
   _currentAP: 100
   _currentCD: 0
   _currentMana: 200
+  _currentArmorIgnore: 0
+  _currentMRIgnore: 0
   _currentTenacity: 0
   _currentStamina: 100
   _maxStamina: 100
@@ -27,3 +29,96 @@ MonoBehaviour:
   _currentCritChance: 0
   _currentCritDmg: 1.5
   _currentMaxJumps: 2
+  MaxHPLocale:
+    m_TableReference:
+      m_TableCollectionName: GUID:0a6a4101fbbcace4badc5402b3a53863
+    m_TableEntryReference:
+      m_KeyId: 7666270208
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  ArmorLocale:
+    m_TableReference:
+      m_TableCollectionName: GUID:0a6a4101fbbcace4badc5402b3a53863
+    m_TableEntryReference:
+      m_KeyId: 32291028992
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  MRLocale:
+    m_TableReference:
+      m_TableCollectionName: GUID:0a6a4101fbbcace4badc5402b3a53863
+    m_TableEntryReference:
+      m_KeyId: 99282452480
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  AtkLocale:
+    m_TableReference:
+      m_TableCollectionName: GUID:0a6a4101fbbcace4badc5402b3a53863
+    m_TableEntryReference:
+      m_KeyId: 136628535296
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  APLocale:
+    m_TableReference:
+      m_TableCollectionName: GUID:0a6a4101fbbcace4badc5402b3a53863
+    m_TableEntryReference:
+      m_KeyId: 150096445440
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  TenacityLocale:
+    m_TableReference:
+      m_TableCollectionName: GUID:0a6a4101fbbcace4badc5402b3a53863
+    m_TableEntryReference:
+      m_KeyId: 260725407744
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  StaminaLocale:
+    m_TableReference:
+      m_TableCollectionName: GUID:0a6a4101fbbcace4badc5402b3a53863
+    m_TableEntryReference:
+      m_KeyId: 239200239616
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  LuckLocale:
+    m_TableReference:
+      m_TableCollectionName: GUID:0a6a4101fbbcace4badc5402b3a53863
+    m_TableEntryReference:
+      m_KeyId: 276781203456
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  ArmorIgnoreLocale:
+    m_TableReference:
+      m_TableCollectionName: GUID:0a6a4101fbbcace4badc5402b3a53863
+    m_TableEntryReference:
+      m_KeyId: 173978812416
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  MRIgnoreLocale:
+    m_TableReference:
+      m_TableCollectionName: GUID:0a6a4101fbbcace4badc5402b3a53863
+    m_TableEntryReference:
+      m_KeyId: 218119667712
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []

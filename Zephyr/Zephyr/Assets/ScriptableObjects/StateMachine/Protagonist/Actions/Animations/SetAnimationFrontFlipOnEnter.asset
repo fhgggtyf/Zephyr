@@ -16,3 +16,4 @@ MonoBehaviour:
   animName: FrontFlip
   whenToRun: 0
   playSpeed: 1.5
+  replayIfSame: 1

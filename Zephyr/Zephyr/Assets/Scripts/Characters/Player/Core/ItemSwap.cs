@@ -19,9 +19,10 @@ public class ItemSwap : CoreComponent
 
         newItemData = ItemPickup.GetContext();
 
-        
+        Debug.Log("trying");
         if (itemInventory.TryGetEmptyIndex())
         {
+            Debug.Log("Adding available");
             itemInventory.TryAddItem(newItemData);
             interactable.Interact();
             newItemData = null;

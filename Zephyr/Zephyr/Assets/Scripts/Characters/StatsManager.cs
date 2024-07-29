@@ -123,3 +123,18 @@ public class StatsManager : MonoBehaviour
 
 
 }
+
+public enum StatTypes
+{
+    MaxHealth,
+    Armor,
+    MagicResist,
+    Attack,
+    MagicPower,
+    ArmorIgnor,
+    MRIgnore,
+    Stamina,
+    Tenacity,
+    Luck
+
+}
