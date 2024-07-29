@@ -24,4 +24,4 @@ MonoBehaviour:
   _initialBaseLuck: 0
   _initialCritChance: 0
   _initialCritDamage: 1.5
-  _initialJumpCount: 3
+  _initialJumpCount: 2
