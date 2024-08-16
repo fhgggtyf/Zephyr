@@ -3,34 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class DoorInteractable : MonoBehaviour, IInteractable
+public class DoorInteractable : InteractableItems
 {
-    public void DisableInteraction()
+    [SerializeField] private GameObject _doorOpen;
+    [SerializeField] private GameObject _doorClose;
+    [SerializeField] private Collider2D _doorCollider;
+
+    private bool _doorIsOpened = false;
+
+    public override void Interact()
     {
-    }
-
-    public void EnableInteraction()
-    {
-    }
-
-    public Vector3 GetPosition()
-    {
-        return transform.position;
-    }
-
-    public void Interact()
-    {
-
-    }
-
-    private void Awake()
-    {
-
+        if (_doorIsOpened)
+        {
+            CloseDoor();
+            _doorIsOpened = false;
+        }
+        else
+        {
+            OpenDoor();
+            _doorIsOpened = true;
+        }
     }
 
     private void OpenDoor()
     {
+        _doorOpen.SetActive(true); 
+        _doorClose.SetActive(false);
+        _doorCollider.isTrigger = true;
+    }
 
+    private void CloseDoor()
+    {
+        _doorOpen.SetActive(false);
+        _doorClose.SetActive(true);
+        _doorCollider.isTrigger=false;
     }
 }
 

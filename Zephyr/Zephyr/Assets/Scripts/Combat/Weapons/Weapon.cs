@@ -65,7 +65,7 @@ public class Weapon : MonoBehaviour
     private bool initDone;
     private AnimationEventHandler eventHandler;
 
-    public void Enter()
+    public void Enter(float attackSpeed)
     {
         // Debug.Break();
         print($"{transform.name} enter");
@@ -76,6 +76,8 @@ public class Weapon : MonoBehaviour
 
         Anim.SetBool("active", true);
         Anim.SetInteger("counter", currentAttackCounter);
+
+        Anim.speed = attackSpeed;
 
         OnEnter?.Invoke();
     }

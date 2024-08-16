@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5114214318578412672}
   - component: {fileID: 5455805625519164458}
   - component: {fileID: 1046968316758970953}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -195,7 +195,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2039427762333537022}
   - component: {fileID: 4100804798668305164}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,6 +223,7 @@ Transform:
   - {fileID: 366610890918119301}
   - {fileID: 9066797311358880156}
   - {fileID: 6018083588118753164}
+  - {fileID: 7496270962813636188}
   m_Father: {fileID: 5096723482441089866}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4100804798668305164
@@ -247,7 +248,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3727156080682463952}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AnimaBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +280,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1011828495632055496}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +312,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9066797311358880156}
   - component: {fileID: 3775435366459325114}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ItemInteraction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,7 +327,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2986008297485935665}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -355,7 +356,7 @@ GameObject:
   m_Component:
   - component: {fileID: 366610890918119301}
   - component: {fileID: 9010045199400306433}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WeaponSwap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +371,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3190347290216426914}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -399,7 +400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2058440116154865254}
   - component: {fileID: 6354472692527557552}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ItemInventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,7 +446,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9148733100170005606}
   - component: {fileID: 4489248524126551108}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Movement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -489,7 +490,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4396857509349178687}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: OffClimbCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -521,7 +522,7 @@ GameObject:
   m_Component:
   - component: {fileID: 45931273530423845}
   - component: {fileID: 5181933187891064335}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CollisionSenses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -559,14 +560,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96246e6bd2671484f8f376990c7f754b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 2348688968845129827}
   groundCheck: {fileID: 1011828495632055496}
   climbableCheck: {fileID: 2727938892492459327}
   offClimbCheck: {fileID: 4396857509349178687}
+  wallCheck: {fileID: 0}
+  ledgeCheckHorizontal: {fileID: 0}
+  ledgeCheckVertical: {fileID: 0}
   ceilingCheck: {fileID: 7625489501265674611}
   groundCheckRadius: 0.15
   offClimbCheckRadius: 0.05
   climbableCheckDistance: 1.25
+  wallCheckDistance: 0.3
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
@@ -583,7 +587,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7178439644234593048}
   - component: {fileID: 7263776799218698160}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WeaponInventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -619,6 +623,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <WeaponData>k__BackingField: {fileID: 11400000, guid: 512a62838656f5942af57f30c87511b5, type: 2}
   _weaponEventChannel: {fileID: 11400000, guid: 8277a83f45c51d74ab8a9500c3510d71, type: 2}
+--- !u!1 &7286471815401048470
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7496270962813636188}
+  - component: {fileID: 8043572217306181926}
+  m_Layer: 10
+  m_Name: InteractableInteraction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7496270962813636188
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7286471815401048470}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2039427762333537022}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8043572217306181926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7286471815401048470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32af776dfe7244846a7c5922873861f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7665862934272103823
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,7 +767,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6018083588118753164}
   - component: {fileID: 6587293344295601160}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ClimbInteraction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -734,7 +782,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7781391421090938395}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -764,7 +812,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2727938892492459327}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ClimbableCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -795,7 +843,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7625489501265674611}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CeilingCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -825,9 +873,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5096723482441089866}
     m_Modifications:
+    - target: {fileID: 1828616289653949886, guid: 6eba2261a57456f4e8476b055005c563, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4420233420556671214, guid: 6eba2261a57456f4e8476b055005c563, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4601651040902721665, guid: 6eba2261a57456f4e8476b055005c563, type: 3}
       propertyPath: m_Name
       value: PrimaryWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 4601651040902721665, guid: 6eba2261a57456f4e8476b055005c563, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5369802184711207549, guid: 6eba2261a57456f4e8476b055005c563, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6604080439760694653, guid: 6eba2261a57456f4e8476b055005c563, type: 3}
       propertyPath: m_LocalPosition.x
@@ -902,9 +966,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5096723482441089866}
     m_Modifications:
+    - target: {fileID: 1828616289653949886, guid: 6eba2261a57456f4e8476b055005c563, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4420233420556671214, guid: 6eba2261a57456f4e8476b055005c563, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4601651040902721665, guid: 6eba2261a57456f4e8476b055005c563, type: 3}
       propertyPath: m_Name
       value: SecondaryWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 4601651040902721665, guid: 6eba2261a57456f4e8476b055005c563, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5369802184711207549, guid: 6eba2261a57456f4e8476b055005c563, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6604080439760694653, guid: 6eba2261a57456f4e8476b055005c563, type: 3}
       propertyPath: m_LocalPosition.x
@@ -982,6 +1062,10 @@ PrefabInstance:
     - target: {fileID: 8406958218308560175, guid: a8ce21c61cbfdd046b65301625e05b53, type: 3}
       propertyPath: m_Name
       value: PlayerAnimations
+      objectReference: {fileID: 0}
+    - target: {fileID: 8406958218308560175, guid: a8ce21c61cbfdd046b65301625e05b53, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8738805694898277706, guid: a8ce21c61cbfdd046b65301625e05b53, type: 3}
       propertyPath: m_LocalScale.x

@@ -9,6 +9,7 @@ public class StatsConfigSO : ScriptableObject
 	[SerializeField] private int _initialBaseAttack;
 	[SerializeField] private int _initialBaseAbilityPower;
 	[SerializeField] private int _initialBaseCooldown;
+	[SerializeField] private int _initialBaseAttackSpeed;
 	[SerializeField] private int _initialBaseMana;
 	[SerializeField] private int _initialBaseTenacity;
 	[SerializeField] private int _initialBaseStamina;
@@ -31,4 +32,5 @@ public class StatsConfigSO : ScriptableObject
     public float InitialCritChance { get => _initialCritChance; set => _initialCritChance = value; }
     public float InitialCritDamage { get => _initialCritDamage; set => _initialCritDamage = value; }
     public int InitialJumpCount { get => _initialJumpCount; set => _initialJumpCount = value; }
+    public int InitialBaseAttackSpeed { get => _initialBaseAttackSpeed; set => _initialBaseAttackSpeed = value; }
 }

@@ -11,6 +11,7 @@ public class Movement : CoreComponent
     public Vector2 CurrentVelocity { get; private set; }
 
     [SerializeField] private TransformEventChannelSO _toClimb;
+
     private Vector2 workspace;
 
     protected override void Awake()

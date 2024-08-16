@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Character
 {
     [SerializeField] private InputReader _inputReader = default;
     [SerializeField] public Core Core;
@@ -17,9 +17,9 @@ public class Player : MonoBehaviour
     [NonSerialized] public bool extraActionInput;
     [NonSerialized] public bool[] attackInput;
     [NonSerialized] public Vector2 movementVector; //Final movement vector, manipulated by the StateMachine actions
-    [NonSerialized] public ControllerColliderHit lastHit;
+    //[NonSerialized] public ControllerColliderHit lastHit;
     //[NonSerialized] public int facingDirection;
-    [NonSerialized] public bool isRunning; // Used when using the keyboard to run, brings the normalised speed to 1
+    [NonSerialized] public bool isRunning; 
     [NonSerialized] public bool isCrouching;
     [NonSerialized] public bool isRolling;
     [NonSerialized] public bool isAbilityFinished;
@@ -29,10 +29,10 @@ public class Player : MonoBehaviour
 
     public const float GRAVITY_MULTIPLIER = 3f;
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        lastHit = hit;
-    }
+    //private void OnControllerColliderHit(ControllerColliderHit hit)
+    //{
+    //    lastHit = hit;
+    //}
     private void Awake() {
         foreach(Weapon i in weapons)
         {

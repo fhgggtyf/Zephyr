@@ -16,8 +16,8 @@ TagManager:
   - Interactable
   - WorldItem
   - Climbable
-  - 
-  - 
+  - Enemy
+  - Player
   - 
   - 
   - 

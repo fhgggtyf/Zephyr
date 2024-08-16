@@ -90,6 +90,7 @@ public class StatsManager : MonoBehaviour
         _protagonistStats.SetCurrentAttack(_StatsConfig.InitialAttack);
         _protagonistStats.SetCurrentAP(_StatsConfig.InitialAbilityPower);
         _protagonistStats.SetCurrentCD(_StatsConfig.InitialCooldown);
+        _protagonistStats.SetCurrentAttackSpeed(_StatsConfig.InitialBaseAttackSpeed);
         _protagonistStats.SetCurrentMana(_StatsConfig.InitialMana);
         _protagonistStats.SetCurrentLuck(_StatsConfig.InitialLuck);
         _protagonistStats.SetCurrentStamina(_StatsConfig.InitialStamina);
@@ -121,7 +122,10 @@ public class StatsManager : MonoBehaviour
         return _protagonistStats.CurrentStamina;
     }
 
-
+      public float GetCurrentAttackSpeed()
+    {
+        return _protagonistStats.CurrentAttackSpeed;
+    }
 }
 
 public enum StatTypes

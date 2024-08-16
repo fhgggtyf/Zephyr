@@ -15,6 +15,7 @@ public class IngameStatsSO : ScriptableObject
     [SerializeField] [ReadOnly] private int _currentMR;
     [SerializeField] [ReadOnly] private int _currentAttack;
     [SerializeField] [ReadOnly] private int _currentAP;
+    [SerializeField] [ReadOnly] private float _currentAttackSpeed;
     [SerializeField] [ReadOnly] private int _currentCD;
     [SerializeField] [ReadOnly] private int _currentMana;
     [SerializeField] [ReadOnly] private int _currentArmorIgnore;
@@ -57,6 +58,7 @@ public class IngameStatsSO : ScriptableObject
     public int CurrentMaxJumps { get => _currentMaxJumps; }
     public int CurrentArmorIgnore { get => _currentArmorIgnore; set => _currentArmorIgnore = value; }
     public int CurrentMRIgnore { get => _currentMRIgnore; set => _currentMRIgnore = value; }
+    public float CurrentAttackSpeed { get => _currentAttackSpeed; set => _currentAttackSpeed = value; }
 
     public void SetMaxHealth(int newValue)
     {
@@ -103,6 +105,11 @@ public class IngameStatsSO : ScriptableObject
     public void SetCurrentCD(int newValue)
     {
         _currentCD = newValue;
+    }
+
+    public void SetCurrentAttackSpeed(float newValue)
+    {
+        _currentAttackSpeed = newValue;
     }
 
     public void SetCurrentMana(int newValue)

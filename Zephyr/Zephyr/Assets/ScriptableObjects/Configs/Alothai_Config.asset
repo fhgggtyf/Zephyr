@@ -18,6 +18,7 @@ MonoBehaviour:
   _initialBaseAttack: 100
   _initialBaseAbilityPower: 100
   _initialBaseCooldown: 0
+  _initialBaseAttackSpeed: 1
   _initialBaseMana: 200
   _initialBaseTenacity: 0
   _initialBaseStamina: 100

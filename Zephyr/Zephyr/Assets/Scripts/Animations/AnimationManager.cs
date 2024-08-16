@@ -13,9 +13,9 @@ public class AnimationManager : MonoBehaviour
         _animator = gameObject.GetComponentInChildren<Animator>();
     }
 
-    public void ChangeAnimState(string newAnim, float speed, bool replayIfSame)
+    public void ChangeAnimState(string newAnim, float speed)
     {
-        if (_currentAnim == newAnim && !replayIfSame) return;
+        if (_currentAnim == newAnim) return;
 
         ChangePlaySpeed(speed);
 
