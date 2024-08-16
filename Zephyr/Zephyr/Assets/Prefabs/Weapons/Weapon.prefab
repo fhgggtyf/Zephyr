@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7165845102989834130}
   - component: {fileID: 7319505868398618582}
   - component: {fileID: 7122277863794377295}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: OptionalSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 2954971014370491384}
   - component: {fileID: 8170515423848073106}
   - component: {fileID: 5504868080545075926}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 6604080439760694653}
   - component: {fileID: 704059033712136167}
   - component: {fileID: 8663568147366227312}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,8 +245,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6096028603823556606}
   - {fileID: 1357506522120074875}
@@ -291,7 +291,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1357506522120074875}
   - component: {fileID: 718960464532586402}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WeaponSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -8,11 +8,11 @@ public class IsStaminaEmptyConditionSO : StateConditionSO<IsStaminaEmpty>
 
 public class IsStaminaEmpty: Condition
 {
-    private StatsManager _statsManager;
+    private PlayerStatsManager _statsManager;
 
     public override void Awake(StateMachine stateMachine)
     {
-        _statsManager = stateMachine.GetComponent<StatsManager>();
+        _statsManager = stateMachine.GetComponent<PlayerStatsManager>();
     }
 
     protected override bool Statement()

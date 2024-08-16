@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3727156080682463952}
@@ -149,8 +149,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.19582808}
-  m_Size: {x: 0.12751341, y: 0.384}
+  m_Offset: {x: 0, y: 0.6521076}
+  m_Size: {x: 0.42461962, y: 1.27872}
   m_Direction: 0
 --- !u!114 &5455805625519164458
 MonoBehaviour:
@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 323f6a0b37aafd248a2a48bb88644d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _statsManager: {fileID: 0}
   _healthConfigSO: {fileID: 11400000, guid: 31d79cecdad87bd46ae10488ab9bd0ef, type: 2}
   _currentStatsSO: {fileID: 11400000, guid: 16ffc6ea4b3b0194cbd2e02d5feca888, type: 2}
   _updateHealthUI: {fileID: 11400000, guid: e5d1c3b6bf84fac4dabfba80412a3428, type: 2}
@@ -732,7 +733,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.25815874, y: 0.51014155}
+  m_Offset: {x: 0.8596685, y: 1.6987715}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -743,7 +744,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9263525, y: 0.9797169}
+  m_Size: {x: 3.0847538, y: 3.2624574}
   m_EdgeRadius: 0
 --- !u!114 &8558983517818742014
 MonoBehaviour:
@@ -873,25 +874,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5096723482441089866}
     m_Modifications:
-    - target: {fileID: 1828616289653949886, guid: 6eba2261a57456f4e8476b055005c563, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4420233420556671214, guid: 6eba2261a57456f4e8476b055005c563, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 4601651040902721665, guid: 6eba2261a57456f4e8476b055005c563, type: 3}
       propertyPath: m_Name
       value: PrimaryWeapon
-      objectReference: {fileID: 0}
-    - target: {fileID: 4601651040902721665, guid: 6eba2261a57456f4e8476b055005c563, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5369802184711207549, guid: 6eba2261a57456f4e8476b055005c563, type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6604080439760694653, guid: 6eba2261a57456f4e8476b055005c563, type: 3}
       propertyPath: m_LocalPosition.x
@@ -931,10 +916,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6604080439760694653, guid: 6eba2261a57456f4e8476b055005c563, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8663568147366227312, guid: 6eba2261a57456f4e8476b055005c563, type: 3}
-      propertyPath: combatInput
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1069,15 +1050,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8738805694898277706, guid: a8ce21c61cbfdd046b65301625e05b53, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8738805694898277706, guid: a8ce21c61cbfdd046b65301625e05b53, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8738805694898277706, guid: a8ce21c61cbfdd046b65301625e05b53, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8738805694898277706, guid: a8ce21c61cbfdd046b65301625e05b53, type: 3}
       propertyPath: m_LocalPosition.x

@@ -14,7 +14,7 @@ public class HasEnoughStaminaConditionSO : StateConditionSO
 public class HasEnoughStaminaCondition : Condition
 {
     private readonly float _cost;
-    private StatsManager _statsManager;
+    private PlayerStatsManager _statsManager;
     private Player _player;
 
     public HasEnoughStaminaCondition(RollDashTimeStaminaCostActionSO reference)
@@ -24,7 +24,7 @@ public class HasEnoughStaminaCondition : Condition
 
     public override void Awake(StateMachine stateMachine)
     {
-        _statsManager = stateMachine.GetComponent<StatsManager>();
+        _statsManager = stateMachine.GetComponent<PlayerStatsManager>();
         _player = stateMachine.GetComponent<Player>();
     }
 

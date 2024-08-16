@@ -18,7 +18,7 @@ public class GenerateWeaponAction : StateAction
     private Weapon _weapon;
     private WeaponGenerator _weaponGenerator;
 
-    private StatsManager _statsManager;
+    private PlayerStatsManager _statsManager;
     public GenerateWeaponAction(CombatInputs weaponIndex)
     {
         _weaponIndex = weaponIndex;
@@ -27,7 +27,7 @@ public class GenerateWeaponAction : StateAction
     public override void Awake(StateMachine stateMachine)
     {
         _player = stateMachine.GetComponent<Player>();
-        _statsManager = stateMachine.GetComponent<StatsManager>();
+        _statsManager = stateMachine.GetComponent<PlayerStatsManager>();
     }
 
     public override void OnStateEnter()

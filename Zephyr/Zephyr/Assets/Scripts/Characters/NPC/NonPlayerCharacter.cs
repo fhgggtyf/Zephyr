@@ -17,7 +17,7 @@ public class NonPlayerCharacter : Character
     [SerializeField]
     public EnemyPropertiesConfigSO entityData;
     [SerializeField]
-    public StatsConfigSO entityStats;
+    public StatsConfigSO entityInitStats;
     [SerializeField]
     public AnimationEventHandler animationEventHandler;
 

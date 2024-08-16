@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class Damageable : MonoBehaviour
 {
 	[Header("Health")]
+	[SerializeField] private StatsManager _statsManager;
 	[SerializeField] private StatsConfigSO _healthConfigSO;
 	[SerializeField] private IngameStatsSO _currentStatsSO;
 
@@ -32,23 +33,22 @@ public class Damageable : MonoBehaviour
 
 	private void Awake()
 	{
-		//If the HealthSO hasn't been provided in the Inspector (as it's the case for the player),
-		//we create a new SO unique to this instance of the component. This is typical for enemies.
-		if (_currentStatsSO == null)
-		{
-			_currentStatsSO = ScriptableObject.CreateInstance<IngameStatsSO>();
-			_currentStatsSO.SetMaxHealth(_healthConfigSO.InitialHealth);
-			_currentStatsSO.SetCurrentHealth(_healthConfigSO.InitialHealth);
-		}
 
 		if (_updateHealthUI != null)
 			_updateHealthUI.RaiseEvent();
 	}
 
 	private void OnEnable()
-	{
-		if (_restoreHealth != null)
-			_restoreHealth.OnEventRaised += Cure;
+    {
+        if (_statsManager != null)
+        {
+            _healthConfigSO = _statsManager._StatsConfig;
+            _currentStatsSO = _statsManager.currentStatsSO;
+        }
+
+
+        if (_restoreHealth != null)
+            _restoreHealth.OnEventRaised += Cure;
 	}
 
 	private void OnDisable()
@@ -57,12 +57,14 @@ public class Damageable : MonoBehaviour
 			_restoreHealth.OnEventRaised -= Cure;
 	}
 
-	public void ReceiveAnAttack(int damage)
+	public void ReceiveAnAttack(DamageData data)
 	{
 		if (IsDead)
 			return;
 
-		_currentStatsSO.InflictDamage(damage);
+		float damage = CalculateActualDamage(data);
+
+		_currentStatsSO.InflictDamage((int)damage);
 
 		if (_updateHealthUI != null)
 			_updateHealthUI.RaiseEvent();
@@ -83,15 +85,31 @@ public class Damageable : MonoBehaviour
 		}
 	}
 
-	public void Kill()
-	{
-		ReceiveAnAttack(_currentStatsSO.CurrentHealth);
-	}
+	private float CalculateActualDamage(DamageData data)
+    {
+        switch (data.AbilityParam.type)
+        {
+			case DamageType.Physical:
+				int equivArmor = _currentStatsSO.CurrentArmor - data.ArmorIgnore;
+				return data.Amount * (1f - (equivArmor / (100f + equivArmor)));
+			case DamageType.Magical:
+				int equivMR = _currentStatsSO.CurrentMR - data.MrIgnore;
+				return data.Amount * (1f - (equivMR / (100f + equivMR)));
+			case DamageType.True:
+				return data.Amount;
+		}
+		return 0;
+    }
 
-	/// <summary>
-	/// Called by the StateMachine action ResetHealthSO. Used to revive the Rock critters.
-	/// </summary>
-	public void Revive()
+    public void Kill()
+    {
+        ReceiveAnAttack(new DamageData(_currentStatsSO.CurrentHealth, 0, 0, new AbilityDataSO(), EnemyType.None, null));
+    }
+
+    /// <summary>
+    /// Called by the StateMachine action ResetHealthSO. Used to revive the Rock critters.
+    /// </summary>
+    public void Revive()
 	{
 		_currentStatsSO.SetCurrentHealth(_healthConfigSO.InitialHealth);
 

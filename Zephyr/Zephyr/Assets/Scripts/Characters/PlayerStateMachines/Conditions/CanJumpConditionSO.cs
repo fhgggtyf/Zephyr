@@ -10,12 +10,12 @@ public class CanJumpConditionSO : StateConditionSO<CanJumpCondition>
 public class CanJumpCondition : Condition
 {
     private Player _player;
-    private StatsManager _statsManager;
+    private PlayerStatsManager _statsManager;
 
     public override void Awake(StateMachine stateMachine)
     {
         _player = stateMachine.GetComponent<Player>();
-        _statsManager = stateMachine.GetComponent<StatsManager>();
+        _statsManager = stateMachine.GetComponent<PlayerStatsManager>();
     }
 
     protected override bool Statement()

@@ -14,6 +14,22 @@ public class EnemyPropertiesConfigSO : ScriptableObject
 
 	public float hitStrength;
 	public float stunDuration;
+	public EnemyType type;
 
     public float BaseSpeed { get => _baseSpeed; set => _baseSpeed = value; }
+}
+
+public enum EnemyType
+{
+	Health,
+	Attack,
+	AttackSpeed,
+	Magic,
+	Armor,
+	MagicResist,
+	Mana,
+	Stamina,
+	Tenacity,
+	Luck,
+	None
 }

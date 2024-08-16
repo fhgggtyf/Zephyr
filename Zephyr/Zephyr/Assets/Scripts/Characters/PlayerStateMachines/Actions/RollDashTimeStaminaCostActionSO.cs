@@ -19,7 +19,7 @@ public class RollDashStaminaCostAction: StateAction
     private Player _player;
     private readonly float _time;
     private float _timer;
-    private StatsManager _statsManager;
+    private PlayerStatsManager _statsManager;
     public RollDashStaminaCostAction(int cost, float stateTimer)
     {
         _baseStaminaCost = cost;
@@ -29,7 +29,7 @@ public class RollDashStaminaCostAction: StateAction
     public override void Awake(StateMachine stateMachine)
     {
         _player = stateMachine.GetComponent<Player>();
-        _statsManager = stateMachine.GetComponent<StatsManager>();
+        _statsManager = stateMachine.GetComponent<PlayerStatsManager>();
     }
 
     public override void OnStateEnter()

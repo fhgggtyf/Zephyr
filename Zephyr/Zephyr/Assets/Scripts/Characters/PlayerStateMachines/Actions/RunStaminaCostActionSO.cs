@@ -14,7 +14,7 @@ public class RunStaminaCostActionSO : StateActionSO
 public class RunStaminaCostAction : StateAction
 {
     private readonly int _baseStaminaCost;
-    private StatsManager _statsManager;
+    private PlayerStatsManager _statsManager;
     private Player _player;
     public RunStaminaCostAction(int cost)
     {
@@ -23,7 +23,7 @@ public class RunStaminaCostAction : StateAction
 
     public override void Awake(StateMachine stateMachine)
     {
-        _statsManager = stateMachine.GetComponent<StatsManager>();
+        _statsManager = stateMachine.GetComponent<PlayerStatsManager>();
         _player = stateMachine.GetComponent<Player>();
     }
 
