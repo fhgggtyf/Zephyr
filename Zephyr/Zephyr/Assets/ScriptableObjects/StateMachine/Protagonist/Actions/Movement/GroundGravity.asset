@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GroundGravity
   m_EditorClassIdentifier: 
   description: 
-  verticalPull: -0.01
+  verticalPull: -1
