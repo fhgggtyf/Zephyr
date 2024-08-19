@@ -32,29 +32,29 @@ MonoBehaviour:
         repeatData: 0
         attackData:
         - name: Attack 1
-          Debug: 0
+          Debug: 1
           <HitBox>k__BackingField:
             serializedVersion: 2
             x: 0
-            y: 0
-            width: 0
-            height: 0
+            y: -0.7
+            width: 1.4
+            height: 1.3
         - name: Attack 2
-          Debug: 0
+          Debug: 1
           <HitBox>k__BackingField:
             serializedVersion: 2
             x: 0
-            y: 0
-            width: 0
-            height: 0
+            y: -0.7
+            width: 1.45
+            height: 1.3
         - name: Attack 3
-          Debug: 0
+          Debug: 1
           <HitBox>k__BackingField:
             serializedVersion: 2
             x: 0
-            y: 0
-            width: 0
-            height: 0
+            y: -0.7
+            width: 1
+            height: 1.65
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
           m_Bits: 0
