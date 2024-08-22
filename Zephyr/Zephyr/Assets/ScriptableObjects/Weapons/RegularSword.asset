@@ -22,6 +22,7 @@ MonoBehaviour:
   <ComponentData>k__BackingField:
   - rid: 1006279872137134082
   - rid: 1006279668881162242
+  - rid: 6459434511655763970
   references:
     version: 2
     RefIds:
@@ -91,3 +92,24 @@ MonoBehaviour:
             - {fileID: -2042820896, guid: 4a13994fed3372d4ebc4510151187785, type: 3}
             - {fileID: 1175769166, guid: 4a13994fed3372d4ebc4510151187785, type: 3}
             - {fileID: -867031902, guid: 4a13994fed3372d4ebc4510151187785, type: 3}
+    - rid: 6459434511655763970
+      type: {class: DamageOnHitBoxActionData, ns: , asm: Assembly-CSharp}
+      data:
+        name: DamageOnHitBoxActionData
+        repeatData: 1
+        attackData:
+        - name: Attack 1
+          <Amount>k__BackingField: 10
+          <ArmorIgnore>k__BackingField: 0
+          <MRIgnore>k__BackingField: 0
+          <AbilityData>k__BackingField: {fileID: 11400000, guid: 192eef3327caf441badf8766554aae65, type: 2}
+        - name: Attack 2
+          <Amount>k__BackingField: 10
+          <ArmorIgnore>k__BackingField: 5
+          <MRIgnore>k__BackingField: 0
+          <AbilityData>k__BackingField: {fileID: 11400000, guid: 192eef3327caf441badf8766554aae65, type: 2}
+        - name: Attack 3
+          <Amount>k__BackingField: 30
+          <ArmorIgnore>k__BackingField: 10
+          <MRIgnore>k__BackingField: 0
+          <AbilityData>k__BackingField: {fileID: 11400000, guid: 192eef3327caf441badf8766554aae65, type: 2}

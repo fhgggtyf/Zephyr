@@ -16,7 +16,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7091781b5219aae408d66caff76de70a, type: 2}
   - {fileID: 11400000, guid: 22530f473bb53e94284fa224180e0eec, type: 2}
   - {fileID: 11400000, guid: d5925807dd3b706438219e8b65b10166, type: 2}
-  - {fileID: 11400000, guid: 8f27b4840baecc04d902caa652b1a679, type: 2}
-  - {fileID: 11400000, guid: c0e52ea7df92233438a758f308a3a434, type: 2}
-  - {fileID: 11400000, guid: 31bf4d97de7083e48a07fe717a711e85, type: 2}
   stateTag: 2
