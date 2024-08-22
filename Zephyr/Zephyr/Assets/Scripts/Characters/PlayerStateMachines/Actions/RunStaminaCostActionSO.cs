@@ -31,6 +31,7 @@ public class RunStaminaCostAction : StateAction
 
     public override void OnStateEnter()
     {
+        _wasRunning = false;
         if (_player.isRunning)
         {
             _statsManager.CanRestoreStamina = false;
