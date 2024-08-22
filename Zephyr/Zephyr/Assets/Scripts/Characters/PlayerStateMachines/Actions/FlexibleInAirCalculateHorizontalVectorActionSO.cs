@@ -21,7 +21,7 @@ public class FlexibleInAirCalculateHorizontalVectorAction : StateAction
         _player = stateMachine.GetComponent<Player>();
     }
 
-    public override void OnStateEnter()
+    public override void OnUpdate()
     {
         switch (_player.isRunning)
         {
@@ -32,9 +32,6 @@ public class FlexibleInAirCalculateHorizontalVectorAction : StateAction
                 _runMultiplier = 1.6f;
                 break;
         }
-    }
-    public override void OnUpdate()
-    {
         _player.movementVector.x = _player.InputVector.x * _originSO.speed * _runMultiplier;
     }
 }

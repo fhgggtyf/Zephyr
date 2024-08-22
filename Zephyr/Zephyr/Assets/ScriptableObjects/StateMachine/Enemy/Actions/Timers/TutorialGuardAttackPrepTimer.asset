@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TutorialGuardAttackPrepTimer
   m_EditorClassIdentifier: 
   description: 
-  stateTime: 1
+  stateTime: 0.7

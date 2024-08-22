@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2ad2cbea5c55914aa798b690982ab27, type: 3}
-  m_Name: InitHoverVerticalVelo
+  m_Script: {fileID: 11500000, guid: a00cce60e024aee48abfcc862946921e, type: 3}
+  m_Name: Alothai_HitCeiling
   m_EditorClassIdentifier: 
-  description: 
-  initVelo: 1.5
+  _actions:
+  - {fileID: 11400000, guid: 7091781b5219aae408d66caff76de70a, type: 2}
+  - {fileID: 11400000, guid: f3722504de3954a469a4646074138232, type: 2}
+  stateTag: 3

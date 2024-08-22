@@ -53,7 +53,7 @@ MonoBehaviour:
             serializedVersion: 2
             x: 0
             y: -0.7
-            width: 1
+            width: 1.05
             height: 1.65
         <DetectableLayers>k__BackingField:
           serializedVersion: 2

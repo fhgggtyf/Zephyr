@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: JumpBoost
   m_EditorClassIdentifier: 
   description: 
-  initVelo: 10
+  initVelo: 7.5

@@ -44,17 +44,18 @@ public class RollDashStaminaCostAction: StateAction
     {
         _player.isAbilityFinished = true;
         _statsManager.CanRestoreStamina = true;
-        _statsManager.ReturnStamina((int)(_baseStaminaCost * (1 - (_timer / _time))));
+        _statsManager.updatedFlag = true;
+        _statsManager.ReturnStamina((int)(_baseStaminaCost * Mathf.Max(1 - (_timer / _time), 0f)));
     }
 
     public override void OnUpdate()
     {
         _timer += Time.deltaTime;
 
-        if (_timer >= _time)
-        {
-            _player.isAbilityFinished = true;
-        }
+        //if (_timer >= _time)
+        //{
+        //    _player.isAbilityFinished = true;
+        //}
     }
 
 

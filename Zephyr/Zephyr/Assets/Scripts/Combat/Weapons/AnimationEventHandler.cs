@@ -10,6 +10,9 @@ public class AnimationEventHandler : MonoBehaviour
     public event Action OnAttackAction;
     public event Action OnMinHoldPassed;
 
+    public event Action<bool> OnIFrameActive;
+    public event Action<bool> OnIFrameEnd;
+
     /*
      * This trigger is used to indicate in the weapon animation when the input should be "used" meaning the player has to release the input key and press it down again to trigger the next attack.
      * Generally this animation event is added to the first "action" frame of an animation. e.g the first sword strike frame, or the frame where the bow is released.
@@ -38,6 +41,9 @@ public class AnimationEventHandler : MonoBehaviour
     private void AttackActionTrigger() => OnAttackAction?.Invoke();
     private void MinHoldPassedTrigger() => OnMinHoldPassed?.Invoke();
     private void UseInputTrigger() => OnUseInput?.Invoke();
+
+    private void IFrameStartTrigger() => OnIFrameActive?.Invoke(true);
+    private void IFrameEndTrigger() => OnIFrameActive?.Invoke(false);
 
     private void SetOptionalSpriteEnabled() => OnSetOptionalSpriteActive?.Invoke(true);
     private void SetOptionalSpriteDisabled() => OnSetOptionalSpriteActive?.Invoke(false);

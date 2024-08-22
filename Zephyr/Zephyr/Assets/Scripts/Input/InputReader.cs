@@ -26,7 +26,8 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 	public event UnityAction SaveActionButtonEvent = delegate { };
 	public event UnityAction ResetActionButtonEvent = delegate { };
 	public event UnityAction<Vector2> MoveEvent = delegate { };
-	public event UnityAction<Vector2> RunEvent = delegate { };
+	public event UnityAction MoveCanceledEvent = delegate { };
+	public event UnityAction<Vector2> RunPrepEvent = delegate { };
 	public event UnityAction CrouchEvent = delegate { };
 	public event UnityAction CrouchCanceledEvent = delegate { };
 	//public event UnityAction RunCanceledEvent = delegate { };
@@ -78,12 +79,14 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
     public void OnMove(InputAction.CallbackContext context)
     {
         MoveEvent.Invoke(context.ReadValue<Vector2>());
+		if (context.phase == InputActionPhase.Canceled)
+			MoveCanceledEvent.Invoke();
 	}
 
-    public void OnRun(InputAction.CallbackContext context)
+    public void OnRunPrep(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
-            RunEvent.Invoke(context.ReadValue<Vector2>());
+            RunPrepEvent.Invoke(context.ReadValue<Vector2>());
 	}
 
     public void OnJump(InputAction.CallbackContext context)

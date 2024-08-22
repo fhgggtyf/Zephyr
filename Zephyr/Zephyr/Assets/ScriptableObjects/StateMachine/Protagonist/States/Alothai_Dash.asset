@@ -20,4 +20,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4a97b08005c9f634087cf638f7216ac1, type: 2}
   - {fileID: 11400000, guid: 390bb7bf2bf1d6e4ba290548d44a8a71, type: 2}
   - {fileID: 11400000, guid: 31bf4d97de7083e48a07fe717a711e85, type: 2}
+  - {fileID: 11400000, guid: 34ebcdab33f444646849b711c5f69f13, type: 2}
+  - {fileID: 11400000, guid: 018c18769f9c44740afddd4cc375b4dc, type: 2}
   stateTag: 2

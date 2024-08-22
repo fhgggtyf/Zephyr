@@ -7,9 +7,11 @@ public class Player : Character
 {
     [SerializeField] private InputReader _inputReader = default;
     [SerializeField] public Core Core;
-    //[SerializeField] public AnimationEventHandler animationEventHandler;
+    [SerializeField] public AnimationEventHandler animationEventHandler;
 
     [SerializeField] public Weapon[] weapons;
+
+    [SerializeField] public LayerMask whatIsEnemy;
 
     //These fields are read and manipulated by the StateMachine actions
     [NonSerialized] public Vector2 InputVector;
@@ -19,6 +21,7 @@ public class Player : Character
     [NonSerialized] public Vector2 movementVector; //Final movement vector, manipulated by the StateMachine actions
     //[NonSerialized] public ControllerColliderHit lastHit;
     //[NonSerialized] public int facingDirection;
+    [NonSerialized] public bool isRunningPrep; 
     [NonSerialized] public bool isRunning; 
     [NonSerialized] public bool isCrouching;
     [NonSerialized] public bool isRolling;
@@ -44,10 +47,12 @@ public class Player : Character
 
     private void OnEnable()
     {
+        animationEventHandler.OnFinish += OnAbilityFinished;
         _inputReader.MoveEvent += OnMove;
+        _inputReader.MoveCanceledEvent += OnMoveCanceled;
         _inputReader.JumpEvent += OnJumpInitiated;
         _inputReader.JumpCanceledEvent += OnJumpCanceled;
-        _inputReader.RunEvent += OnRun;
+        _inputReader.RunPrepEvent += OnRunPrep;
         _inputReader.InteractEvent += OnInteract;
         _inputReader.CrouchEvent += OnCrouch;
         _inputReader.CrouchCanceledEvent += OnCrouchCanceled;
@@ -61,10 +66,11 @@ public class Player : Character
 
     private void OnDisable()
     {
+        animationEventHandler.OnFinish -= OnAbilityFinished;
         _inputReader.MoveEvent -= OnMove;
         _inputReader.JumpEvent -= OnJumpInitiated;
         _inputReader.JumpCanceledEvent -= OnJumpCanceled;
-        _inputReader.RunEvent -= OnRun;
+        _inputReader.RunPrepEvent -= OnRunPrep;
         _inputReader.InteractEvent -= OnInteract;
         _inputReader.CrouchEvent -= OnCrouch;
         _inputReader.CrouchCanceledEvent -= OnCrouchCanceled;
@@ -78,16 +84,44 @@ public class Player : Character
 
     // Update is called once per frame
     void Update() {
+
+        Debug.Log(isRunning);
     }
+
+    private void OnAbilityFinished() => isAbilityFinished = true;
 
     private void OnMove(Vector2 inputMovement)
     {
-        InputVector = new Vector2(Math.Sign(inputMovement.x) * (Math.Abs(inputMovement.x) >= 1 ? Math.Abs(inputMovement.x) : 1), Math.Sign(inputMovement.y) * (Math.Abs(inputMovement.y) >= 1 ? Math.Abs(inputMovement.y) : 1)) ;
-    }
-    private void OnRun(Vector2 inputMovement)
-    {
-        isRunning = true;
         InputVector = new Vector2(Math.Sign(inputMovement.x) * (Math.Abs(inputMovement.x) >= 1 ? Math.Abs(inputMovement.x) : 1), Math.Sign(inputMovement.y) * (Math.Abs(inputMovement.y) >= 1 ? Math.Abs(inputMovement.y) : 1));
+        if (isRunningPrep)
+        {
+            isRunning = true;
+        }
+    }
+    private void OnMoveCanceled()
+    {
+        if (isRunningPrep)
+        {
+            isRunningPrep = false;
+            isRunning = false;
+        }
+    }
+    private void OnRunPrep(Vector2 inputMovement)
+    {
+        isRunningPrep = true;
+        InputVector = new Vector2(Math.Sign(inputMovement.x) * (Math.Abs(inputMovement.x) >= 1 ? Math.Abs(inputMovement.x) : 1), Math.Sign(inputMovement.y) * (Math.Abs(inputMovement.y) >= 1 ? Math.Abs(inputMovement.y) : 1));
+        StartCoroutine(DoubleTapDelay());
+    }
+
+    IEnumerator DoubleTapDelay()
+    {
+        // µÈ´ý0.5Ãë  
+        yield return new WaitForSeconds(0.5f);
+
+        if (InputVector.x == 0 && Core.GetCoreComponent<CollisionSenses>().Ground)
+        {
+            isRunningPrep = false;
+        }
     }
 
     private void OnCrouch()

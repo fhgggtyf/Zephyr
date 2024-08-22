@@ -38,6 +38,11 @@ public class CollisionSenses : CoreComponent
         get => GenericNotImplementedError<Transform>.TryGet(ceilingCheck, core.transform.parent.name);
         private set => ceilingCheck = value;
     }
+    public Transform CrouchCeilingCheck
+    {
+        get => GenericNotImplementedError<Transform>.TryGet(crouchCeilingCheck, core.transform.parent.name);
+        private set => crouchCeilingCheck = value;
+    }
     public Transform LedgeCheckHorizontal
     {
         get => GenericNotImplementedError<Transform>.TryGet(ledgeCheckHorizontal, core.transform.parent.name);
@@ -49,7 +54,6 @@ public class CollisionSenses : CoreComponent
         private set => ledgeCheckVertical = value;
     }
 
-    public float GroundCheckRadius { get => groundCheckRadius; set => groundCheckRadius = value; }
     public float ClimbableCheckDistance { get => climbableCheckDistance; set => climbableCheckDistance = value; }
     public LayerMask WhatIsGround { get => whatIsGround; set => whatIsGround = value; }
 
@@ -59,9 +63,10 @@ public class CollisionSenses : CoreComponent
     [SerializeField] private Transform wallCheck;
     [SerializeField] private Transform ledgeCheckHorizontal;
     [SerializeField] private Transform ledgeCheckVertical;
-    [SerializeField] private Transform ceilingCheck;
+    [SerializeField] private Transform ceilingCheck; 
+    [SerializeField] private Transform crouchCeilingCheck;
 
-    [SerializeField] private float groundCheckRadius;
+    [SerializeField] private Vector3 groundCheckOffset;
     [SerializeField] private float offClimbCheckRadius;
     [SerializeField] private float climbableCheckDistance;
     [SerializeField] private float wallCheckDistance;
@@ -73,12 +78,17 @@ public class CollisionSenses : CoreComponent
 
     public bool Ceiling
     {
-        get => Physics2D.OverlapCircle(CeilingCheck.position, groundCheckRadius, whatIsGround);
+        get => Physics2D.OverlapArea(CeilingCheck.position - groundCheckOffset, CeilingCheck.position + groundCheckOffset, whatIsGround);
+    }
+
+    public bool CrouchCeiling
+    {
+        get => Physics2D.OverlapArea(CrouchCeilingCheck.position - groundCheckOffset, CrouchCeilingCheck.position + groundCheckOffset, whatIsGround);
     }
 
     public bool Ground
     {
-        get => Physics2D.OverlapCircle(GroundCheck.position, groundCheckRadius, whatIsGround);
+        get => Physics2D.OverlapArea(GroundCheck.position - groundCheckOffset, GroundCheck.position + groundCheckOffset, whatIsGround);
     }
     public bool OffClimb
     {
@@ -109,7 +119,6 @@ public class CollisionSenses : CoreComponent
     {
         get => Physics2D.Raycast(WallCheck.position, Vector2.right * -Movement.FacingDirection, wallCheckDistance, whatIsGround);
     }
-
 
 }
 

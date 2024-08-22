@@ -11,7 +11,7 @@ public class PlayerStatsManager : MonoBehaviour
 
     [SerializeField] private VoidEventChannelSO _updateStaminaUI = default;
 
-    private bool _canRestoreStamina = true;
+    [SerializeField] private bool _canRestoreStamina = true;
 
     public bool CanRestoreStamina { get => _canRestoreStamina; set => _canRestoreStamina = value; }
 
@@ -34,8 +34,15 @@ public class PlayerStatsManager : MonoBehaviour
                 yield return null; // 暂停协程但不消耗时间，或者使用yield return new WaitForSeconds(smallDelay)来添加小延迟  
             }
             updatedFlag = false;
-            // 暂停两秒  
-            yield return new WaitForSeconds(1.5f);
+            for (int i = 0; i < 15; i++)
+            {
+                // 暂停两秒  
+                yield return new WaitForSeconds(0.1f);
+                if (updatedFlag)
+                {
+                    break;
+                }
+            }
 
             // 开始恢复stamina，直到条件不再满足  
             while (CanRestoreStamina && !updatedFlag)

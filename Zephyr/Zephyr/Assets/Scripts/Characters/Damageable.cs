@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Damageable : MonoBehaviour
+public class Damageable : MonoBehaviour, IDamageable
 {
 	[Header("Health")]
 	[SerializeField] private StatsManager _statsManager;
@@ -25,11 +25,14 @@ public class Damageable : MonoBehaviour
 	//Flags that the StateMachine uses for Conditions to move between states
 	public bool GetHit { get; set; }
 	public bool IsDead { get; set; }
+	public bool Invincible { get => invincible; set => invincible = value; }
 
-	//public GetHitEffectConfigSO GetHitEffectConfig => _getHitEffectSO;
-	//public Renderer MainMeshRenderer => _mainMeshRenderer; //used to apply the hit flash effect
+	[SerializeField] private bool invincible;
 
-	public event UnityAction OnDie;
+    //public GetHitEffectConfigSO GetHitEffectConfig => _getHitEffectSO;
+    //public Renderer MainMeshRenderer => _mainMeshRenderer; //used to apply the hit flash effect
+
+    public event UnityAction OnDie;
 
 	private void Awake()
 	{
@@ -57,7 +60,7 @@ public class Damageable : MonoBehaviour
 			_restoreHealth.OnEventRaised -= Cure;
 	}
 
-	public void ReceiveAnAttack(DamageData data)
+	public void Damage(DamageData data)
 	{
 		if (IsDead)
 			return;
@@ -103,7 +106,7 @@ public class Damageable : MonoBehaviour
 
     public void Kill()
     {
-        ReceiveAnAttack(new DamageData(_currentStatsSO.CurrentHealth, 0, 0, new AbilityDataSO(), EnemyType.None, null));
+        Damage(new DamageData(_currentStatsSO.CurrentHealth, 0, 0, new AbilityDataSO(), EnemyType.None, null));
     }
 
     /// <summary>

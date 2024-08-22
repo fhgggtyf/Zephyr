@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Alothai_Crouch
   m_EditorClassIdentifier: 
   _actions:
+  - {fileID: 11400000, guid: 34ebcdab33f444646849b711c5f69f13, type: 2}
   - {fileID: 11400000, guid: 9786cdbd0f9e43a4dbbdaaf5596920a5, type: 2}
   - {fileID: 11400000, guid: 60b9cf15a6e713b40b3a6015eeabdd81, type: 2}
   - {fileID: 11400000, guid: 707024ae9707d3b418720d9ff93f1b37, type: 2}

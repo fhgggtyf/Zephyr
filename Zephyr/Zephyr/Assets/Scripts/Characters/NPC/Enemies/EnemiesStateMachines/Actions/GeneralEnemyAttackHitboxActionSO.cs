@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Zephyr.StateMachine;
 using Zephyr.StateMachine.ScriptableObjects;
+using static CombatDamageUtilities;
 
 [CreateAssetMenu(fileName = "EnemyAttackHitbox", menuName = "State Machines/Actions/Enemies/AttackHitBox")]
 public class GeneralEnemyAttackHitboxActionSO : StateActionSO<GeneralEnemyAttackHitboxAction>
@@ -53,13 +54,7 @@ public class GeneralEnemyAttackHitboxAction : StateAction
 
         detected = Physics2D.OverlapBoxAll(offset, _originSO.hitbox.size, 0f, _npc.entityData.whatIsPlayer);
 
-        foreach (var item in detected)
-        {
-            if (item.TryGetComponent(out Damageable damageable))
-            {
-                damageable.ReceiveAnAttack(new DamageData(_stats.currentStatsSO.CurrentAttack, _stats.currentStatsSO.CurrentArmorIgnore, _stats.currentStatsSO.CurrentMRIgnore, _originSO.abilityData, _npc.entityData.type, _npc.gameObject));
-            }
-        }
+        TryDamage(detected, new DamageData(_stats.currentStatsSO.CurrentAttack, _stats.currentStatsSO.CurrentArmorIgnore, _stats.currentStatsSO.CurrentMRIgnore, _originSO.abilityData, _npc.entityData.type, _npc.gameObject), out _);
     }
     public override void OnUpdate()
     {

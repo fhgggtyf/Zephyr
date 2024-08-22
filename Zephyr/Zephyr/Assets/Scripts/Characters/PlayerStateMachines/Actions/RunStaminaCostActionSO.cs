@@ -16,6 +16,8 @@ public class RunStaminaCostAction : StateAction
     private readonly int _baseStaminaCost;
     private PlayerStatsManager _statsManager;
     private Player _player;
+    private bool _wasRunning;
+
     public RunStaminaCostAction(int cost)
     {
         _baseStaminaCost = cost;
@@ -38,7 +40,7 @@ public class RunStaminaCostAction : StateAction
 
     public override void OnStateExit()
     {
-        if (_player.isRunning)
+        if (_player.isRunning || _wasRunning)
         {
             _statsManager.updatedFlag = true;
             _statsManager.CanRestoreStamina = true;
@@ -50,6 +52,15 @@ public class RunStaminaCostAction : StateAction
         if (_player.isRunning)
         {
             _statsManager.SpendStamina(_baseStaminaCost * Time.deltaTime);
+            _wasRunning = true;
+        }
+        else
+        {
+            if (_wasRunning)
+            {
+                _statsManager.updatedFlag = true;
+                _statsManager.CanRestoreStamina = true;
+            }
         }
     }
 
