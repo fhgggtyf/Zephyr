@@ -20,38 +20,45 @@ public class NonPlayerCharacter : Character
     public StatsConfigSO entityInitStats;
     [SerializeField]
     public AnimationEventHandler animationEventHandler;
+    [SerializeField]
+    public VoidEventChannelSO playerIsDeadChannel;
 
     [SerializeField] public GameObject alertSymbol, lookForPlayerSymbol;
 
     [NonSerialized] public bool shouldTransit = false;
+    [NonSerialized] public bool targetIsDead = false;
     [NonSerialized] public Vector2 movementVector; //Final movement vector, manipulated by the StateMachine actions
     [NonSerialized] public bool attackFinished = true;
 
     protected virtual void OnEnable()
     {
         animationEventHandler.OnFinish += AttackFinished;
+        playerIsDeadChannel.OnEventRaised += TargetDead;
     }
 
     protected virtual void OnDisable()
     {
         animationEventHandler.OnFinish -= AttackFinished;
+        playerIsDeadChannel.OnEventRaised -= TargetDead;
     }
+
+    private void TargetDead() => targetIsDead = true;
 
     private void AttackFinished() => attackFinished = true;
 
     public virtual bool CheckPlayerInMinAgroRange()
     {
-        return Physics2D.Raycast(playerCheck.position, transform.right, entityData.minAgroDistance, entityData.whatIsPlayer);
+        return Physics2D.Raycast(playerCheck.position, transform.right, entityData.minAgroDistance, entityData.whatIsPlayer) && !targetIsDead;
     }
 
     public virtual bool CheckPlayerInMaxAgroRange()
     {
-        return Physics2D.Raycast(playerCheck.position, transform.right, entityData.maxAgroDistance, entityData.whatIsPlayer);
+        return Physics2D.Raycast(playerCheck.position, transform.right, entityData.maxAgroDistance, entityData.whatIsPlayer) && !targetIsDead;
     }
 
     public virtual bool CheckPlayerInCloseRangeAction()
     {
-        return Physics2D.Raycast(playerCheck.position, transform.right, entityData.closeRangeActionDistance, entityData.whatIsPlayer);
+        return Physics2D.Raycast(playerCheck.position, transform.right, entityData.closeRangeActionDistance, entityData.whatIsPlayer) && !targetIsDead;
     }
 
     public virtual void OnDrawGizmos()

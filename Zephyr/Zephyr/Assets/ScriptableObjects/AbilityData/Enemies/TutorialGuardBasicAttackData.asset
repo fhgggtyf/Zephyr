@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: TutorialGuardBasicAttackData
   m_EditorClassIdentifier: 
   type: 0
+  knockBackDirection: {x: 1, y: 1}
+  knockBackVelocity: 5
+  stunDuration: 0.1

@@ -5,9 +5,9 @@ public class ItemsInventory : CoreComponent
 {
     [field: SerializeField] public InventorySO Data { get; private set; }
 
-    [SerializeField] private ItemEventChannelSO _itemEventChannel;
+    [SerializeField] private ItemStackEventChannelSO _itemEventChannel;
 
-    public bool TryAddItem(ItemSO newData)
+    public bool TryAddItem(ItemSO newData, int count)
     {
         //if (index >= Data.Items.Capacity)
         //{
@@ -16,9 +16,9 @@ public class ItemsInventory : CoreComponent
         //}
 
         //oldData = Data.Items[index].Item;
-        Data.Add(newData);
+        //Data.Add(newData, count);
 
-        _itemEventChannel.RaiseEvent(newData);
+        _itemEventChannel.RaiseEvent(new ItemStack(newData, count));
 
         return true;
     }

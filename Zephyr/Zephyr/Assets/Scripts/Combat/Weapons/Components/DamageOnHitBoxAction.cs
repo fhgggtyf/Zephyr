@@ -8,6 +8,7 @@ public class DamageOnHitBoxAction : WeaponComponent<DamageOnHitBoxActionData, At
 
     private void HandleDetectCollider2D(Collider2D[] colliders)
     {
+        Debug.Log(currentAttackData.Amount);
         // Notice that this is equal to (1), the logic has just been offloaded to a static helper class. Notice the using statement (2) is static, allowing as to call the Damage function directly instead of saying
         // Bardent.Utilities.CombatUtilities.Damage(...);
         TryDamage(colliders, new DamageData(currentAttackData.Amount, currentAttackData.ArmorIgnore, currentAttackData.MRIgnore, currentAttackData.AbilityData, EnemyType.None, Core.Root), out _);

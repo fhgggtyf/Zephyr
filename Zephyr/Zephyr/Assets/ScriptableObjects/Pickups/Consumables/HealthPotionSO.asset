@@ -32,7 +32,9 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  _ResorationValue: 0
+  _effects:
+  - statType: 1
+    value: 5
   _itemType: {fileID: 11400000, guid: a5b1b6816ce4f774eb23bed701191a3c, type: 2}
   references:
     version: 2

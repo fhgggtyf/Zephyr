@@ -7,6 +7,7 @@ public class ItemSwap : CoreComponent
     private ItemsInventory itemInventory;
 
     private ItemSO newItemData;
+    private int count;
 
     private ItemPickup ItemPickup;
 
@@ -18,12 +19,14 @@ public class ItemSwap : CoreComponent
         ItemPickup = pickup;
 
         newItemData = ItemPickup.GetContext();
+        count = ItemPickup.GetItemCount();
+
 
         Debug.Log("trying");
         if (itemInventory.TryGetEmptyIndex())
         {
             Debug.Log("Adding available");
-            itemInventory.TryAddItem(newItemData);
+            itemInventory.TryAddItem(newItemData, count);
             interactable.Interact();
             newItemData = null;
             return;

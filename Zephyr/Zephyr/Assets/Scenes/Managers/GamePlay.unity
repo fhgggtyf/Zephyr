@@ -4961,7 +4961,7 @@ MonoBehaviour:
   _equipItemEvent: {fileID: 11400000, guid: f69e568f638b61d4cabfa3e58b665a7f, type: 2}
   _rewardItemEvent: {fileID: 11400000, guid: 1628ece64b3c7d242831047fb9dad70e, type: 2}
   _giveItemEvent: {fileID: 11400000, guid: e0e25f10ce910884bb5c69733c00bb76, type: 2}
-  _addItemEvent: {fileID: 11400000, guid: 6113af94017ab60408dedf7b17f3bb59, type: 2}
+  _addItemEvent: {fileID: 11400000, guid: fcfab331d219a44718e68abd103e7502, type: 2}
   _removeItemEvent: {fileID: 11400000, guid: 901f9c8c9b368854bae341ca51783d6c, type: 2}
 --- !u!4 &1266845925
 Transform:

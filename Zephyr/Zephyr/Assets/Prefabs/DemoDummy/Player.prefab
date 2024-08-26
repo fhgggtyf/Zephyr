@@ -137,9 +137,10 @@ MonoBehaviour:
   _statsManager: {fileID: 0}
   _healthConfigSO: {fileID: 11400000, guid: 31d79cecdad87bd46ae10488ab9bd0ef, type: 2}
   _currentStatsSO: {fileID: 11400000, guid: 16ffc6ea4b3b0194cbd2e02d5feca888, type: 2}
-  _updateHealthUI: {fileID: 11400000, guid: e5d1c3b6bf84fac4dabfba80412a3428, type: 2}
+  updateHealthBar: {fileID: 11400000, guid: e5d1c3b6bf84fac4dabfba80412a3428, type: 2}
   _deathEvent: {fileID: 11400000, guid: c5f315dd284294a4eb099a3b06d7609b, type: 2}
   _restoreHealth: {fileID: 11400000, guid: aff094c0673dab44d9a0611a331e517d, type: 2}
+  invincible: 0
 --- !u!114 &1046968316758970953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +156,7 @@ MonoBehaviour:
   _protagonistStats: {fileID: 11400000, guid: 16ffc6ea4b3b0194cbd2e02d5feca888, type: 2}
   _StatsConfig: {fileID: 11400000, guid: 31d79cecdad87bd46ae10488ab9bd0ef, type: 2}
   _updateStaminaUI: {fileID: 11400000, guid: 4c1689bbc4bbe50489508787e42ac3a3, type: 2}
+  _canRestoreStamina: 1
   updatedFlag: 1
 --- !u!60 &5365404867371635150
 PolygonCollider2D:
@@ -512,7 +514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Data>k__BackingField: {fileID: 11400000, guid: 5eab31f84d857ee4c8ae7c0a1374ac39, type: 2}
-  _itemEventChannel: {fileID: 11400000, guid: 6113af94017ab60408dedf7b17f3bb59, type: 2}
+  _itemEventChannel: {fileID: 11400000, guid: fcfab331d219a44718e68abd103e7502, type: 2}
 --- !u!1 &4910323502604700014
 GameObject:
   m_ObjectHideFlags: 0

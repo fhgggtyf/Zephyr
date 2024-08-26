@@ -15,6 +15,7 @@ public class ItemPickup : MonoBehaviour, IInteractable<ItemSO>
     private ItemSO ItemData;
 
     public ItemSO GetContext() => ItemData;
+    public int GetItemCount() => ItemDataStack.Amount;
 
     public void SetContext(ItemSO context)
     {

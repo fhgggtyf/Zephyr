@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class WeaponMovement : WeaponComponent<WeaponMovementData, AttackMovement>
@@ -9,11 +10,16 @@ public class WeaponMovement : WeaponComponent<WeaponMovementData, AttackMovement
 
     private float velocity;
     private Vector2 direction;
+    private bool hasGravity;
+
+    private float _timer;
 
     private void HandleStartMovement()
     {
         velocity = currentAttackData.Velocity;
         direction = currentAttackData.Direction;
+        hasGravity = currentAttackData.HasGravity;
+        _timer = 0;
 
         SetVelocity();
     }
@@ -23,7 +29,12 @@ public class WeaponMovement : WeaponComponent<WeaponMovementData, AttackMovement
         velocity = 0f;
         direction = Vector2.zero;
 
-        SetVelocity();
+        if (!hasGravity)
+        {
+            SetVelocity();
+        }
+
+        hasGravity = false;
     }
 
     protected override void HandleEnter()
@@ -42,9 +53,28 @@ public class WeaponMovement : WeaponComponent<WeaponMovementData, AttackMovement
         SetVelocityX();
     }
 
+    private void Update()
+    {
+        if (!isAttackActive)
+            return;
+
+        if (hasGravity)
+        {
+            Debug.Log(hasGravity);
+            _timer += Time.deltaTime;
+            SetVelocityY();
+        }
+
+    }
+
     private void SetVelocity()
     {
         coreMovement.SetVelocity(velocity, direction, coreMovement.FacingDirection);
+    }
+
+    private void SetVelocityY()
+    {
+        coreMovement.SetVelocityY(velocity * direction.y + _timer * -9.8f * GenericPhysicsData.GRAVITY_MULTIPLIER * (coreMovement.CurrentVelocity.y >= 0 ? 1 : 2));
     }
 
     private void SetVelocityX()

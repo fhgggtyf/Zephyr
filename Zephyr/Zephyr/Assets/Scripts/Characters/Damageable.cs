@@ -1,138 +1,148 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Damageable : MonoBehaviour, IDamageable
 {
-	[Header("Health")]
-	[SerializeField] private StatsManager _statsManager;
-	[SerializeField] private StatsConfigSO _healthConfigSO;
-	[SerializeField] private IngameStatsSO _currentStatsSO;
+    [Header("Health")]
+    [SerializeField] private NonPlayerStatsManager _statsManager;
+    [SerializeField] private StatsConfigSO _healthConfigSO;
+    [SerializeField] private IngameStatsSO _currentStatsSO;
 
-	//[Header("Combat")]
-	//[SerializeField] private GetHitEffectConfigSO _getHitEffectSO;
-	//[SerializeField] private Renderer _mainMeshRenderer;
-	//[SerializeField] private DroppableRewardConfigSO _droppableRewardSO;
+    //[Header("Combat")]
+    //[SerializeField] private GetHitEffectConfigSO _getHitEffectSO;
+    //[SerializeField] private Renderer _mainMeshRenderer;
+    //[SerializeField] private DroppableRewardConfigSO _droppableRewardSO;
 
-	[Header("Broadcasting On")]
-	[SerializeField] private VoidEventChannelSO _updateHealthUI = default;
-	[SerializeField] private VoidEventChannelSO _deathEvent = default;
+    [Header("Broadcasting On")]
+    [SerializeField] public VoidEventChannelSO updateHealthBar = default;
+    [SerializeField] private VoidEventChannelSO _deathEvent = default;
 
-	[Header("Listening To")]
-	[SerializeField] private IntEventChannelSO _restoreHealth = default; //Getting cured when eating food
+    [Header("Listening To")]
+    [SerializeField] private IntEventChannelSO _restoreHealth = default; //Getting cured when eating food
 
-	//public DroppableRewardConfigSO DroppableRewardConfig => _droppableRewardSO;
+    //public DroppableRewardConfigSO DroppableRewardConfig => _droppableRewardSO;
 
-	//Flags that the StateMachine uses for Conditions to move between states
-	public bool GetHit { get; set; }
-	public bool IsDead { get; set; }
-	public bool Invincible { get => invincible; set => invincible = value; }
+    //Flags that the StateMachine uses for Conditions to move between states
+    public bool GetHit { get; set; }
+    public bool IsDead { get; set; }
+    public bool Invincible { get => invincible; set => invincible = value; }
 
-	[SerializeField] private bool invincible;
+    [SerializeField] private bool invincible;
+
+    [NonSerialized] public DamageData lastHitData;
 
     //public GetHitEffectConfigSO GetHitEffectConfig => _getHitEffectSO;
     //public Renderer MainMeshRenderer => _mainMeshRenderer; //used to apply the hit flash effect
 
     public event UnityAction OnDie;
 
-	private void Awake()
-	{
+    private void Awake()
+    {
 
-		if (_updateHealthUI != null)
-			_updateHealthUI.RaiseEvent();
-	}
+        if (updateHealthBar != null)
+            updateHealthBar.RaiseEvent();
+        else
+        {
+            updateHealthBar = ScriptableObject.CreateInstance<VoidEventChannelSO>();
+        }
+    }
 
-	private void OnEnable()
+    private void Start()
     {
         if (_statsManager != null)
         {
-            _healthConfigSO = _statsManager._StatsConfig;
+            _healthConfigSO = _statsManager.statsConfig;
+            Debug.Log("1");
             _currentStatsSO = _statsManager.currentStatsSO;
         }
 
 
         if (_restoreHealth != null)
             _restoreHealth.OnEventRaised += Cure;
-	}
+    }
 
-	private void OnDisable()
-	{
-		if (_restoreHealth != null)
-			_restoreHealth.OnEventRaised -= Cure;
-	}
+    private void OnDisable()
+    {
+        if (_restoreHealth != null)
+            _restoreHealth.OnEventRaised -= Cure;
+    }
 
-	public void Damage(DamageData data)
-	{
-		if (IsDead)
-			return;
+    public void Damage(DamageData data)
+    {
+        lastHitData = data;
 
-		float damage = CalculateActualDamage(data);
+        if (IsDead)
+            return;
 
-		_currentStatsSO.InflictDamage((int)damage);
+        float damage = CalculateActualDamage(data);
 
-		if (_updateHealthUI != null)
-			_updateHealthUI.RaiseEvent();
+        _currentStatsSO.InflictDamage((int)damage);
 
-		GetHit = true;
+        if (updateHealthBar != null)
+            updateHealthBar.RaiseEvent();
 
-		if (_currentStatsSO.CurrentHealth <= 0)
-		{
-			IsDead = true;
+        GetHit = true;
+        Debug.Log(_currentStatsSO.CurrentHealth);
+        if (_currentStatsSO.CurrentHealth <= 0)
+        {
+            IsDead = true;
 
-			if (OnDie != null)
-				OnDie.Invoke();
+            //if (OnDie != null)
+            //    OnDie.Invoke();
 
-			if (_deathEvent != null)
-				_deathEvent.RaiseEvent();
+            //if (_deathEvent != null)
+            //    _deathEvent.RaiseEvent();
 
-			_currentStatsSO.SetCurrentHealth(_healthConfigSO.InitialHealth);
-		}
-	}
+            //_currentStatsSO.SetCurrentHealth(_healthConfigSO.InitialHealth);
+        }
+    }
 
-	private float CalculateActualDamage(DamageData data)
+    private float CalculateActualDamage(DamageData data)
     {
         switch (data.AbilityParam.type)
         {
-			case DamageType.Physical:
-				int equivArmor = _currentStatsSO.CurrentArmor - data.ArmorIgnore;
-				return data.Amount * (1f - (equivArmor / (100f + equivArmor)));
-			case DamageType.Magical:
-				int equivMR = _currentStatsSO.CurrentMR - data.MrIgnore;
-				return data.Amount * (1f - (equivMR / (100f + equivMR)));
-			case DamageType.True:
-				return data.Amount;
-		}
-		return 0;
+            case DamageType.Physical:
+                int equivArmor = _currentStatsSO.CurrentArmor - data.ArmorIgnore;
+                return data.Amount * (1f - (equivArmor / (100f + equivArmor)));
+            case DamageType.Magical:
+                int equivMR = _currentStatsSO.CurrentMR - data.MrIgnore;
+                return data.Amount * (1f - (equivMR / (100f + equivMR)));
+            case DamageType.True:
+                return data.Amount;
+        }
+        return 0;
     }
 
     public void Kill()
     {
-        Damage(new DamageData(_currentStatsSO.CurrentHealth, 0, 0, new AbilityDataSO(), EnemyType.None, null));
+        Damage(new DamageData(_currentStatsSO.CurrentHealth, 0, 0, ScriptableObject.CreateInstance<AbilityDataSO>(), EnemyType.None, null));
     }
 
     /// <summary>
     /// Called by the StateMachine action ResetHealthSO. Used to revive the Rock critters.
     /// </summary>
     public void Revive()
-	{
-		_currentStatsSO.SetCurrentHealth(_healthConfigSO.InitialHealth);
+    {
+        _currentStatsSO.SetCurrentHealth(_healthConfigSO.InitialHealth);
 
-		if (_updateHealthUI != null)
-			_updateHealthUI.RaiseEvent();
+        if (updateHealthBar != null)
+            updateHealthBar.RaiseEvent();
 
-		IsDead = false;
-	}
+        IsDead = false;
+    }
 
-	/// <summary>
-	/// Used for cure events, like eating food. Triggered by an IntEventChannelSO.
-	/// </summary>
-	private void Cure(int healthToAdd)
-	{
-		if (IsDead)
-			return;
+    /// <summary>
+    /// Used for cure events, like eating food. Triggered by an IntEventChannelSO.
+    /// </summary>
+    private void Cure(int healthToAdd)
+    {
+        if (IsDead)
+            return;
 
-		_currentStatsSO.RestoreHealth(healthToAdd);
+        _currentStatsSO.RestoreHealth(healthToAdd);
 
-		if (_updateHealthUI != null)
-			_updateHealthUI.RaiseEvent();
-	}
+        if (updateHealthBar != null)
+            updateHealthBar.RaiseEvent();
+    }
 }

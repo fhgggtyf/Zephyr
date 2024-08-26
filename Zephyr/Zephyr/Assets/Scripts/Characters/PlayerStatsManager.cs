@@ -28,15 +28,15 @@ public class PlayerStatsManager : MonoBehaviour
 
         while (true)
         {
-            // µÈ´ýÖ±µ½¿ÉÒÔ»Ö¸´stamina  
+            // ï¿½È´ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½Ô»Ö¸ï¿½stamina  
             while (!CanRestoreStamina)
             {
-                yield return null; // ÔÝÍ£Ð­³Ìµ«²»ÏûºÄÊ±¼ä£¬»òÕßÊ¹ÓÃyield return new WaitForSeconds(smallDelay)À´Ìí¼ÓÐ¡ÑÓ³Ù  
+                yield return null; // ï¿½ï¿½Í£Ð­ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£¬ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½yield return new WaitForSeconds(smallDelay)ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½Ó³ï¿½  
             }
             updatedFlag = false;
             for (int i = 0; i < 15; i++)
             {
-                // ÔÝÍ£Á½Ãë  
+                // ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½  
                 yield return new WaitForSeconds(0.1f);
                 if (updatedFlag)
                 {
@@ -44,40 +44,40 @@ public class PlayerStatsManager : MonoBehaviour
                 }
             }
 
-            // ¿ªÊ¼»Ö¸´stamina£¬Ö±µ½Ìõ¼þ²»ÔÙÂú×ã  
+            // ï¿½ï¿½Ê¼ï¿½Ö¸ï¿½staminaï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
             while (CanRestoreStamina && !updatedFlag)
             {
-                // Æ½»¬Ôö¼ÓstaminaµÄÂß¼­  
-                // ¼ÙÉèRestoreStamina·½·¨»á´¦ÀístaminaµÄÔö¼Ó£¬²¢ÇÒ²»»á³¬¹ý×î´óÖµ  
-                float amountToRestore = CalculateAmountToRestore(); // ÄãÐèÒªÊµÏÖÕâ¸ö·½·¨À´¼ÆËãÃ¿´ÎÒª»Ö¸´µÄstaminaÁ¿  
+                // Æ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½staminaï¿½ï¿½ï¿½ß¼ï¿½  
+                // ï¿½ï¿½ï¿½ï¿½RestoreStaminaï¿½ï¿½ï¿½ï¿½ï¿½á´¦ï¿½ï¿½staminaï¿½ï¿½ï¿½ï¿½ï¿½Ó£ï¿½ï¿½ï¿½ï¿½Ò²ï¿½ï¿½á³¬ï¿½ï¿½ï¿½ï¿½ï¿½Öµ  
+                float amountToRestore = CalculateAmountToRestore(); // ï¿½ï¿½ï¿½ï¿½ÒªÊµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½Òªï¿½Ö¸ï¿½ï¿½ï¿½staminaï¿½ï¿½  
                 _protagonistStats.RestoreStamina(amountToRestore);
-                _updateStaminaUI.RaiseEvent(); // ¸üÐÂUI  
+                _updateStaminaUI.RaiseEvent(); // ï¿½ï¿½ï¿½ï¿½UI  
 
-                // ¼ÙÉèÎÒÃÇ²»Ï£ÍûÃ¿´ÎÔö¼Ó¶¼µÈ´ý£¬¶øÊÇ¸ù¾ÝÔö¼ÓµÄÁ¿À´¾ö¶¨µÈ´ýÊ±¼ä£¨ÕâÀïÎªÁË¼òµ¥Æð¼û£¬ÎÒÃÇÖ±½Ó¼ÌÐø£©  
-                // µ«Èç¹ûÄãÏëÒªÆ½»¬µÄ¶¯»­Ð§¹û£¬Äã¿ÉÄÜÐèÒªÔÚÕâÀïÌí¼ÓÒ»Ð©ÑÓ³Ù  
-                // yield return new WaitForSeconds(smallDelay); // smallDelayÊÇÒ»¸öÐ¡µÄÑÓ³ÙÖµ£¬±ÈÈç0.1f  
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç²ï¿½Ï£ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½Ó¶ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½Ê±ï¿½ä£¨ï¿½ï¿½ï¿½ï¿½Îªï¿½Ë¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½  
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÒªÆ½ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Ð©ï¿½Ó³ï¿½  
+                // yield return new WaitForSeconds(smallDelay); // smallDelayï¿½ï¿½Ò»ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Ó³ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½0.1f  
 
-                // ¼ì²éÊÇ·ñÈÔÈ»¿ÉÒÔ»Ö¸´stamina£¨ÀíÂÛÉÏÕâ¸ö¼ì²éÔÚÄÚ²¿Ñ­»·ÖÐ²»ÊÇ±ØÐèµÄ£¬µ«Èç¹ûÓÐÍâ²¿Ìõ¼þ¿ÉÄÜ¸Ä±äËü£¬ÔòÓ¦¸Ã±£Áô£©  
+                // ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½È»ï¿½ï¿½ï¿½Ô»Ö¸ï¿½staminaï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú²ï¿½Ñ­ï¿½ï¿½ï¿½Ð²ï¿½ï¿½Ç±ï¿½ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½â²¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü¸Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½Ã±ï¿½ï¿½ï¿½ï¿½  
                 if (!CanRestoreStamina)
                     break;
 
-                // ×¢Òâ£ºÈç¹ûRestoreStamina·½·¨ÄÚ²¿ÒÑ¾­´¦ÀíÁËstaminaµÄ×î´óÖµÏÞÖÆ£¬ÔòÏÂÃæµÄ¼ì²é¿ÉÄÜ²»ÊÇ±ØÐèµÄ  
-                // µ«Èç¹ûÎ´´¦Àí£¬ÄãÓ¦¸ÃÔÚÕâÀïÌí¼ÓÂß¼­À´·ÀÖ¹³¬¹ý×î´óÖµ  
+                // ×¢ï¿½â£ºï¿½ï¿½ï¿½RestoreStaminaï¿½ï¿½ï¿½ï¿½ï¿½Ú²ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½staminaï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½Æ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Ü²ï¿½ï¿½Ç±ï¿½ï¿½ï¿½ï¿½  
+                // ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½ï¿½ï¿½ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ  
 
-                // Ò»¸öÐ¡ÑÓ³ÙÀ´Ä£ÄâÆ½»¬Ôö¼Ó£¨¿ÉÑ¡£©  
-                yield return new WaitForSeconds(0.1f); // ¸ù¾ÝÐèÒªµ÷ÕûÕâ¸öÖµ  
+                // Ò»ï¿½ï¿½Ð¡ï¿½Ó³ï¿½ï¿½ï¿½Ä£ï¿½ï¿½Æ½ï¿½ï¿½ï¿½ï¿½ï¿½Ó£ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½  
+                yield return new WaitForSeconds(0.1f); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ  
             }
 
-            // µ±canRestoreStamina±äÎª¼ÙÊ±£¬Ð­³Ì»á»Øµ½Íâ²ãÑ­»·µÄ¿ªÊ¼£¬²¢µÈ´ýÖ±µ½ËüÔÙ´Î±äÎªÕæ  
+            // ï¿½ï¿½canRestoreStaminaï¿½ï¿½Îªï¿½ï¿½Ê±ï¿½ï¿½Ð­ï¿½Ì»ï¿½Øµï¿½ï¿½ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½Ä¿ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½Ù´Î±ï¿½Îªï¿½ï¿½  
         }
 
     }
 
     private float CalculateAmountToRestore()
     {
-        // ÕâÀïÖ»ÊÇÒ»¸öÊ¾Àý£¬Äã¿ÉÄÜÐèÒª¸ù¾ÝÄãµÄÓÎÏ·Âß¼­À´µ÷ÕûÕâ¸ö¼ÆËã·½·¨  
+        // ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½Ò»ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ß¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã·½ï¿½ï¿½  
         float maxStamina = _protagonistStats.MaxStamina;
-        float amount = Mathf.Max(maxStamina * 0.02f, 1f); // Ã¿´Î×î¶à»Ö¸´1µã£¬»òÕß»Ö¸´µ½×î´óÖµ  
+        float amount = Mathf.Max(maxStamina * 0.02f, 1f); // Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½1ï¿½ã£¬ï¿½ï¿½ï¿½ß»Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ  
         return amount;
     }
 
@@ -129,15 +129,21 @@ public class PlayerStatsManager : MonoBehaviour
         return _protagonistStats.CurrentStamina;
     }
 
-      public float GetCurrentAttackSpeed()
+    public float GetCurrentAttackSpeed()
     {
         return _protagonistStats.CurrentAttackSpeed;
+    }
+
+    public int GetCurrentTenacity()
+    {
+        return _protagonistStats.CurrentTenacity;
     }
 }
 
 public enum StatTypes
 {
     MaxHealth,
+    CurrentHealth,
     Armor,
     MagicResist,
     Attack,

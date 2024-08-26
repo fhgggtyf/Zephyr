@@ -21,23 +21,23 @@ public class Player : Character
     [NonSerialized] public Vector2 movementVector; //Final movement vector, manipulated by the StateMachine actions
     //[NonSerialized] public ControllerColliderHit lastHit;
     //[NonSerialized] public int facingDirection;
-    [NonSerialized] public bool isRunningPrep; 
-    [NonSerialized] public bool isRunning; 
+    [NonSerialized] public bool isRunningPrep;
+    [NonSerialized] public bool isRunning;
     [NonSerialized] public bool isCrouching;
     [NonSerialized] public bool isRolling;
     [NonSerialized] public bool isAbilityFinished;
     [NonSerialized] public int jumpCount;
     [NonSerialized] public bool jumpIncremented;
     [NonSerialized] public bool isClimbing;
-
-    public const float GRAVITY_MULTIPLIER = 3f;
+    [NonSerialized] public bool stunOver;
 
     //private void OnControllerColliderHit(ControllerColliderHit hit)
     //{
     //    lastHit = hit;
     //}
-    private void Awake() {
-        foreach(Weapon i in weapons)
+    private void Awake()
+    {
+        foreach (Weapon i in weapons)
         {
             i.SetCore(Core);
         }
@@ -83,7 +83,8 @@ public class Player : Character
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
 
         Debug.Log(isRunning);
     }
@@ -115,7 +116,7 @@ public class Player : Character
 
     IEnumerator DoubleTapDelay()
     {
-        // µÈ´ý0.5Ãë  
+        // ï¿½È´ï¿½0.5ï¿½ï¿½  
         yield return new WaitForSeconds(0.5f);
 
         if (InputVector.x == 0 && Core.GetCoreComponent<CollisionSenses>().Ground)

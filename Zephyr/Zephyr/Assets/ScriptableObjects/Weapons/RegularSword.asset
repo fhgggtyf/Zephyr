@@ -59,7 +59,7 @@ MonoBehaviour:
             height: 1.65
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
-          m_Bits: 0
+          m_Bits: 512
     - rid: 1006279872137134082
       type: {class: WeaponSpriteData, ns: , asm: Assembly-CSharp}
       data:
@@ -97,7 +97,7 @@ MonoBehaviour:
       type: {class: DamageOnHitBoxActionData, ns: , asm: Assembly-CSharp}
       data:
         name: DamageOnHitBoxActionData
-        repeatData: 1
+        repeatData: 0
         attackData:
         - name: Attack 1
           <Amount>k__BackingField: 10
@@ -123,9 +123,12 @@ MonoBehaviour:
         - name: Attack 1
           <Direction>k__BackingField: {x: 1, y: 0}
           <Velocity>k__BackingField: 5
+          <HasGravity>k__BackingField: 0
         - name: Attack 2
           <Direction>k__BackingField: {x: 1, y: 0}
           <Velocity>k__BackingField: 5
+          <HasGravity>k__BackingField: 0
         - name: Attack 3
           <Direction>k__BackingField: {x: 1, y: 1}
           <Velocity>k__BackingField: 5
+          <HasGravity>k__BackingField: 1
