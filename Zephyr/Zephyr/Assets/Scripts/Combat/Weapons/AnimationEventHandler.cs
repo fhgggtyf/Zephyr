@@ -8,10 +8,10 @@ public class AnimationEventHandler : MonoBehaviour
     public event Action OnStartMovement;
     public event Action OnStopMovement;
     public event Action OnAttackAction;
+    public event Action<bool> OnAttackHitboxActive;
     public event Action OnMinHoldPassed;
 
     public event Action<bool> OnIFrameActive;
-    public event Action<bool> OnIFrameEnd;
 
     /*
      * This trigger is used to indicate in the weapon animation when the input should be "used" meaning the player has to release the input key and press it down again to trigger the next attack.
@@ -41,6 +41,8 @@ public class AnimationEventHandler : MonoBehaviour
     private void AttackActionTrigger() => OnAttackAction?.Invoke();
     private void MinHoldPassedTrigger() => OnMinHoldPassed?.Invoke();
     private void UseInputTrigger() => OnUseInput?.Invoke();
+
+    private void AttackHitboxActiveTrigger(string param) => OnAttackHitboxActive?.Invoke(param.ToLower() == "true");
 
     private void IFrameStartTrigger() => OnIFrameActive?.Invoke(true);
     private void IFrameEndTrigger() => OnIFrameActive?.Invoke(false);

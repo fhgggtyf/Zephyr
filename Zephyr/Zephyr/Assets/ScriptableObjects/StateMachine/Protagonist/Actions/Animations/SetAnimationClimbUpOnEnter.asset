@@ -16,4 +16,3 @@ MonoBehaviour:
   animName: LedgeClimb
   whenToRun: 0
   playSpeed: 1
-  replayIfSame: 0

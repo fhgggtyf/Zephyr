@@ -6,8 +6,6 @@ using UnityEngine;
 public class Player : Character
 {
     [SerializeField] private InputReader _inputReader = default;
-    [SerializeField] public Core Core;
-    [SerializeField] public AnimationEventHandler animationEventHandler;
 
     [SerializeField] public Weapon[] weapons;
 
@@ -16,11 +14,7 @@ public class Player : Character
     //These fields are read and manipulated by the StateMachine actions
     [NonSerialized] public Vector2 InputVector;
     [NonSerialized] public bool jumpInput;
-    [NonSerialized] public bool extraActionInput;
     [NonSerialized] public bool[] attackInput;
-    [NonSerialized] public Vector2 movementVector; //Final movement vector, manipulated by the StateMachine actions
-    //[NonSerialized] public ControllerColliderHit lastHit;
-    //[NonSerialized] public int facingDirection;
     [NonSerialized] public bool isRunningPrep;
     [NonSerialized] public bool isRunning;
     [NonSerialized] public bool isCrouching;
@@ -29,12 +23,7 @@ public class Player : Character
     [NonSerialized] public int jumpCount;
     [NonSerialized] public bool jumpIncremented;
     [NonSerialized] public bool isClimbing;
-    [NonSerialized] public bool stunOver;
 
-    //private void OnControllerColliderHit(ControllerColliderHit hit)
-    //{
-    //    lastHit = hit;
-    //}
     private void Awake()
     {
         foreach (Weapon i in weapons)

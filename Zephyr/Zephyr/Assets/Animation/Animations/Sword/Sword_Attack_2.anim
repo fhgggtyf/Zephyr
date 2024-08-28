@@ -124,6 +124,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.2
+    functionName: AttackHitboxActiveTrigger
+    data: true
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.4
     functionName: StopMovementTrigger
     data: 
@@ -134,6 +141,13 @@ AnimationClip:
   - time: 0.4
     functionName: SetFlipActive
     data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.4
+    functionName: AttackHitboxActiveTrigger
+    data: false
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

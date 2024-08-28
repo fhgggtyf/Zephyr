@@ -5,30 +5,17 @@ using UnityEngine;
 
 public class NonPlayerCharacter : Character
 {
-    public Core Core;
-    [SerializeField]
-    private Transform wallCheck;
-    [SerializeField]
-    private Transform ledgeCheck;
     [SerializeField]
     private Transform playerCheck;
     [SerializeField]
-    private Transform groundCheck;
-    [SerializeField]
     public EnemyPropertiesConfigSO entityData;
-    [SerializeField]
-    public StatsConfigSO entityInitStats;
-    [SerializeField]
-    public AnimationEventHandler animationEventHandler;
     [SerializeField]
     public VoidEventChannelSO playerIsDeadChannel;
 
-    [SerializeField] public GameObject alertSymbol, lookForPlayerSymbol;
+    [SerializeField] public GameObject alertSymbol, lookForPlayerSymbol, stunnedSymbol;
 
     [NonSerialized] public bool shouldTransit = false;
     [NonSerialized] public bool targetIsDead = false;
-    [NonSerialized] public Vector2 movementVector; //Final movement vector, manipulated by the StateMachine actions
-    [NonSerialized] public bool attackFinished = true;
 
     protected virtual void OnEnable()
     {
@@ -44,7 +31,7 @@ public class NonPlayerCharacter : Character
 
     private void TargetDead() => targetIsDead = true;
 
-    private void AttackFinished() => attackFinished = true;
+    private void AttackFinished() => isAttackFinished = true;
 
     public virtual bool CheckPlayerInMinAgroRange()
     {

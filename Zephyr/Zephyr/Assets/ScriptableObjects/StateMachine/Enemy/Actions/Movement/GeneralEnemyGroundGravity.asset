@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2e7a7c697011d840963603a464bc6c1, type: 3}
+  m_Script: {fileID: 11500000, guid: b8421077babcd8642bbcd904130422e0, type: 3}
   m_Name: GeneralEnemyGroundGravity
   m_EditorClassIdentifier: 
   description: 

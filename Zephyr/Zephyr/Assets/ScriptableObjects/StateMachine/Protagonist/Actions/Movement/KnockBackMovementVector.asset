@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d87b9e83181849d2a2594595f8e9c84, type: 3}
+  m_Script: {fileID: 11500000, guid: 61b453160f7d5406d94471915e106551, type: 3}
   m_Name: KnockBackMovementVector
   m_EditorClassIdentifier: 
   description: 

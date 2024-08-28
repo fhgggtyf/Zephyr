@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -11,6 +13,9 @@ public class ActionHitBox : WeaponComponent<ActionHitBoxData, AttackActionHitBox
     private Vector2 offset;
 
     private Collider2D[] detected;
+    private HashSet<Collider2D> _hasCounted;
+
+    private bool _detecting;
 
     private void HandleAttackAction()
     {
@@ -24,22 +29,43 @@ public class ActionHitBox : WeaponComponent<ActionHitBoxData, AttackActionHitBox
         if (detected.Length == 0)
             return;
 
-        OnDetectedCollider2D?.Invoke(detected);
+        Collider2D[] newCounted = detected.Where(collider => !_hasCounted.Contains(collider)).ToArray();
+
+        OnDetectedCollider2D?.Invoke(newCounted);
+
+        foreach (Collider2D coll in newCounted)
+        {
+            _hasCounted.Add(coll);
+        }
     }
 
     protected override void Start()
     {
         base.Start();
 
+        _hasCounted = new HashSet<Collider2D>();
+        _detecting = false;
         movement = new CoreComp<Movement>(Core);
 
-        AnimationEventHandler.OnAttackAction += HandleAttackAction;
+        AnimationEventHandler.OnAttackHitboxActive += IsDetectingEnemies;
+        AnimationEventHandler.OnFinish += IsAttackOver;
+    }
+
+    private void IsDetectingEnemies(bool param) => _detecting = param;
+    private void IsAttackOver() => _hasCounted = new HashSet<Collider2D>();
+
+    protected void Update()
+    {
+        if (_detecting)
+        {
+            HandleAttackAction();
+        }
     }
 
     protected override void OnDestroy()
     {
         base.OnDestroy();
-        AnimationEventHandler.OnAttackAction -= HandleAttackAction;
+        AnimationEventHandler.OnAttackHitboxActive -= IsDetectingEnemies;
     }
 
     private void OnDrawGizmosSelected()

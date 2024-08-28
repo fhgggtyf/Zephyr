@@ -42,12 +42,12 @@ public class GenerateWeaponAction : StateAction
 
     private void HandleFinish()
     {
-        _player.isAbilityFinished = true;
+        _player.isAttackFinished = true;
     }
 
     public override void OnUpdate()
     {
-        
+
     }
 
     public override void OnStateExit()

@@ -44,6 +44,9 @@ public class GeneralEnemyAlertIconAction : StateAction
             case AlertIconTypes.LookForPlayer:
                 _npc.lookForPlayerSymbol.SetActive(flag);
                 break;
+            case AlertIconTypes.Stunned:
+                _npc.stunnedSymbol.SetActive(flag);
+                break;
         }
     }
 }
@@ -51,5 +54,6 @@ public class GeneralEnemyAlertIconAction : StateAction
 public enum AlertIconTypes
 {
     Alert,
-    LookForPlayer
+    LookForPlayer,
+    Stunned
 }
