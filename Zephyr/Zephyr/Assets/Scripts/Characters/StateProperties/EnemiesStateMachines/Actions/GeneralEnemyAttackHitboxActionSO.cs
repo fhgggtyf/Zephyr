@@ -54,7 +54,7 @@ public class GeneralEnemyAttackHitboxAction : StateAction
 
         detected = Physics2D.OverlapBoxAll(offset, _originSO.hitbox.size, 0f, _npc.entityData.whatIsPlayer);
 
-        TryDamage(detected, new DamageData(_stats.currentStatsSO.CurrentAttack, _stats.currentStatsSO.CurrentArmorIgnore, _stats.currentStatsSO.CurrentMRIgnore, _originSO.abilityData, _npc.entityData.type, _npc.gameObject), out _);
+        TryDamage(detected, new DamageData(_stats.CurrentStatsSO.CurrentAttack, _stats.CurrentStatsSO.CurrentArmorIgnore, _stats.CurrentStatsSO.CurrentMRIgnore, _originSO.abilityData, _npc.entityData.type, _npc.gameObject), out _);
     }
     public override void OnUpdate()
     {

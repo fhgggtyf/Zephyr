@@ -4,10 +4,8 @@ using UnityEngine.Events;
 
 public class Damageable : MonoBehaviour, IDamageable
 {
-    [Header("Health")]
-    [SerializeField] private NonPlayerStatsManager _statsManager;
-    [SerializeField] private StatsConfigSO _healthConfigSO;
-    [SerializeField] private IngameStatsSO _currentStatsSO;
+    [Header("stats")]
+    [SerializeField] private StatsManager _statsManager;
 
     //[Header("Combat")]
     //[SerializeField] private GetHitEffectConfigSO _getHitEffectSO;
@@ -22,6 +20,9 @@ public class Damageable : MonoBehaviour, IDamageable
     [SerializeField] private IntEventChannelSO _restoreHealth = default; //Getting cured when eating food
 
     //public DroppableRewardConfigSO DroppableRewardConfig => _droppableRewardSO;
+
+    private StatsConfigSO _healthConfigSO;
+    private IngameStatsSO _currentStatsSO;
 
     //Flags that the StateMachine uses for Conditions to move between states
     public bool GetHit { get; set; }
@@ -50,13 +51,9 @@ public class Damageable : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        if (_statsManager != null)
-        {
-            _healthConfigSO = _statsManager.statsConfig;
-            Debug.Log("1");
-            _currentStatsSO = _statsManager.currentStatsSO;
-        }
-
+        _healthConfigSO = _statsManager.StatsConfig;
+        Debug.Log("1");
+        _currentStatsSO = _statsManager.CurrentStatsSO;
 
         if (_restoreHealth != null)
             _restoreHealth.OnEventRaised += Cure;

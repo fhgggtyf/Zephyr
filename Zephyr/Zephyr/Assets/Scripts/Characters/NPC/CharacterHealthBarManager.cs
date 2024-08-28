@@ -55,6 +55,6 @@ public class CharacterHealthBarManager : MonoBehaviour
         //	_heartImages[i].SetImage(heartPercent);
         //}
 
-        _healthText.SetText(Mathf.FloorToInt((float)_statsManager.currentStatsSO.CurrentHealth).ToString());
+        _healthText.SetText(Mathf.FloorToInt((float)_statsManager.CurrentStatsSO.CurrentHealth).ToString());
     }
 }

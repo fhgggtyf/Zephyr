@@ -15,4 +15,7 @@ MonoBehaviour:
   _actions:
   - {fileID: 11400000, guid: 8f66a14d1a2374647b4d3630c1d3e8ae, type: 2}
   - {fileID: 11400000, guid: 6f5e8da9172b741bb9fddd6bbf2eea0d, type: 2}
+  - {fileID: 11400000, guid: 0b9e92e698baee946a1fafac6982b3f4, type: 2}
+  - {fileID: 11400000, guid: 8f27b4840baecc04d902caa652b1a679, type: 2}
+  - {fileID: 11400000, guid: 31bf4d97de7083e48a07fe717a711e85, type: 2}
   stateTag: 3

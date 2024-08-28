@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStatsManager : MonoBehaviour
+public class PlayerStatsManager : StatsManager
 {
     private IEnumerator RestoreStaminaCoroutine;
 
-    [SerializeField] private IngameStatsSO _protagonistStats = default;
-    [SerializeField] private StatsConfigSO _StatsConfig = default;
+    //[SerializeField] private IngameStatsSO currentStatsSO = default;
+    //[SerializeField] private StatsConfigSO statsConfig = default;
 
     [SerializeField] private VoidEventChannelSO _updateStaminaUI = default;
 
@@ -50,7 +50,7 @@ public class PlayerStatsManager : MonoBehaviour
                 // ƽ������stamina���߼�  
                 // ����RestoreStamina�����ᴦ��stamina�����ӣ����Ҳ��ᳬ�����ֵ  
                 float amountToRestore = CalculateAmountToRestore(); // ����Ҫʵ���������������ÿ��Ҫ�ָ���stamina��  
-                _protagonistStats.RestoreStamina(amountToRestore);
+                currentStatsSO.RestoreStamina(amountToRestore);
                 _updateStaminaUI.RaiseEvent(); // ����UI  
 
                 // �������ǲ�ϣ��ÿ�����Ӷ��ȴ������Ǹ������ӵ����������ȴ�ʱ�䣨����Ϊ�˼����������ֱ�Ӽ�����  
@@ -76,7 +76,7 @@ public class PlayerStatsManager : MonoBehaviour
     private float CalculateAmountToRestore()
     {
         // ����ֻ��һ��ʾ�����������Ҫ���������Ϸ�߼�������������㷽��  
-        float maxStamina = _protagonistStats.MaxStamina;
+        float maxStamina = currentStatsSO.MaxStamina;
         float amount = Mathf.Max(maxStamina * 0.02f, 1f); // ÿ�����ָ�1�㣬���߻ָ������ֵ  
         return amount;
     }
@@ -87,56 +87,31 @@ public class PlayerStatsManager : MonoBehaviour
         StopAllCoroutines();
     }
 
-    private void InitializeStats()
-    {
-        _protagonistStats.SetMaxHealth(_StatsConfig.InitialHealth);
-        _protagonistStats.SetCurrentHealth(_StatsConfig.InitialHealth);
-        _protagonistStats.SetCurrentArmor(_StatsConfig.InitialArmor);
-        _protagonistStats.SetCurrentMR(_StatsConfig.InitialMagicResist);
-        _protagonistStats.SetCurrentMaxJumps(_StatsConfig.InitialJumpCount);
-        _protagonistStats.SetCurrentAttack(_StatsConfig.InitialAttack);
-        _protagonistStats.SetCurrentAP(_StatsConfig.InitialAbilityPower);
-        _protagonistStats.SetCurrentCD(_StatsConfig.InitialCooldown);
-        _protagonistStats.SetCurrentAttackSpeed(_StatsConfig.InitialBaseAttackSpeed);
-        _protagonistStats.SetCurrentMana(_StatsConfig.InitialMana);
-        _protagonistStats.SetCurrentLuck(_StatsConfig.InitialLuck);
-        _protagonistStats.SetCurrentStamina(_StatsConfig.InitialStamina);
-        _protagonistStats.SetMaxStamina(_StatsConfig.InitialStamina);
-        _protagonistStats.SetCurrentTenacity(_StatsConfig.InitialTenacity);
-        _protagonistStats.SetCurrentCritChance(_StatsConfig.InitialCritChance);
-        _protagonistStats.SetCurrentCritDmg(_StatsConfig.InitialCritDamage);
-    }
-
     public int GetMaxJumps()
     {
-        return _protagonistStats.CurrentMaxJumps;
+        return currentStatsSO.CurrentMaxJumps;
     }
 
     public void SpendStamina(float spent)
     {
-        _protagonistStats.SpendStamina(spent);
+        currentStatsSO.SpendStamina(spent);
         _updateStaminaUI.RaiseEvent();
     }
 
     public void ReturnStamina(int returned)
     {
-        _protagonistStats.RestoreStamina(returned);
+        currentStatsSO.RestoreStamina(returned);
         _updateStaminaUI.RaiseEvent();
     }
 
     public float GetCurrentStamina()
     {
-        return _protagonistStats.CurrentStamina;
+        return currentStatsSO.CurrentStamina;
     }
 
     public float GetCurrentAttackSpeed()
     {
-        return _protagonistStats.CurrentAttackSpeed;
-    }
-
-    public int GetCurrentTenacity()
-    {
-        return _protagonistStats.CurrentTenacity;
+        return currentStatsSO.CurrentAttackSpeed;
     }
 }
 

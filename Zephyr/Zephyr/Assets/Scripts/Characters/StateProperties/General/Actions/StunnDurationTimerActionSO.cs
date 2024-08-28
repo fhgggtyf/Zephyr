@@ -2,7 +2,7 @@ using UnityEngine;
 using Zephyr.StateMachine;
 using Zephyr.StateMachine.ScriptableObjects;
 
-[CreateAssetMenu(fileName = "StunTimer", menuName = "State Machines/Actions/StunTimer")]
+[CreateAssetMenu(fileName = "StunTimer", menuName = "State Machines/Actions/General/StunTimer")]
 public class StunnDurationTimerActionSO : StateActionSO<StunnDurationTimerAction>
 {
 
@@ -11,22 +11,22 @@ public class StunnDurationTimerActionSO : StateActionSO<StunnDurationTimerAction
 public class StunnDurationTimerAction : StateAction
 {
     private Damageable _damageable;
-    private Player _player;
-    private PlayerStatsManager _statsManager;
+    private Character character;
+    private StatsManager _statsManager;
 
     private float _timer;
 
     public override void Awake(StateMachine stateMachine)
     {
         _damageable = stateMachine.GetComponent<Damageable>();
-        _player = stateMachine.GetComponent<Player>();
-        _statsManager = stateMachine.GetComponent<PlayerStatsManager>();
+        character = stateMachine.GetComponent<Character>();
+        _statsManager = stateMachine.GetComponent<StatsManager>();
     }
 
     public override void OnStateEnter()
     {
         _timer = 0;
-        _player.stunOver = false;
+        character.stunOver = false;
     }
 
     public override void OnUpdate()
@@ -35,7 +35,7 @@ public class StunnDurationTimerAction : StateAction
 
         if (_timer >= CalculateStunTime(_damageable.lastHitData.AbilityParam.stunDuration, _statsManager.GetCurrentTenacity()))
         {
-            _player.stunOver = true;
+            character.stunOver = true;
         }
     }
 
