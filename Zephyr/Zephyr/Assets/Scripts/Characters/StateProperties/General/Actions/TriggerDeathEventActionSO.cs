@@ -17,7 +17,7 @@ public class TriggerDeathEventAction : StateAction
 
     public override void Awake(StateMachine stateMachine)
     {
-        _character = stateMachine.GetComponent<Player>();
+        _character = stateMachine.GetComponent<Character>();
     }
 
     public override void OnStateEnter()

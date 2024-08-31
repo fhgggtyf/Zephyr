@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a68631051b054c3e80d75e40d245db5, type: 3}
-  m_Name: GeneralEnemyResetIsHitAction
+  m_Script: {fileID: 11500000, guid: 869437af0a5663449b314a383b94ea52, type: 3}
+  m_Name: SecondaryCanBeInterrupted
   m_EditorClassIdentifier: 
-  description: 
+  isCritical: 0
+  weaponIndex: 1

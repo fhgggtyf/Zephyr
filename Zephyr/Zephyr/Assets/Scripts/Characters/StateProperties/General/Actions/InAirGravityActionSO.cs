@@ -28,6 +28,7 @@ public class InAirGravityAction : StateAction
     {
         if (_character.movementVector.y >= -20 && !_collisionSenses.Ground)
         {
+            Debug.Log("GravityHolding");
             _character.movementVector.y += (_character.movementVector.y >= 0 ? 1 : 2) * _originSO.verticalPull * Time.deltaTime * GenericPhysicsData.GRAVITY_MULTIPLIER;
         }
 

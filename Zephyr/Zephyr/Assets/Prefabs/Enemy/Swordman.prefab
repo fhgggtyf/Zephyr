@@ -72,7 +72,7 @@ Transform:
   m_GameObject: {fileID: 1345311444134207220}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1, y: 0.02, z: 0}
+  m_LocalPosition: {x: 0.22, y: 0.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -185,9 +185,9 @@ GameObject:
   - component: {fileID: 2405551647363355732}
   - component: {fileID: 1905061639047096098}
   - component: {fileID: 7558742246840553780}
-  - component: {fileID: 2491430026104798106}
   - component: {fileID: 3457471267196366137}
   - component: {fileID: 8587772122752227418}
+  - component: {fileID: 3181760766383717921}
   m_Layer: 9
   m_Name: Swordman
   m_TagString: Untagged
@@ -229,13 +229,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Core: {fileID: 3175311390805081555}
-  wallCheck: {fileID: 5275892574077229795}
-  ledgeCheck: {fileID: 4929466707727058868}
-  playerCheck: {fileID: 304599545255138409}
-  groundCheck: {fileID: 6881743666917321646}
-  entityData: {fileID: 11400000, guid: 0e2f240151bc73e4b978301dd56d9456, type: 2}
-  entityInitStats: {fileID: 11400000, guid: daacc4dd425a7bc4fbf5add8625b7a24, type: 2}
   animationEventHandler: {fileID: 573682565611050120}
+  playerCheck: {fileID: 304599545255138409}
+  entityData: {fileID: 11400000, guid: 0e2f240151bc73e4b978301dd56d9456, type: 2}
   playerIsDeadChannel: {fileID: 11400000, guid: 3b6672b55a76a4544852f07b00829a25, type: 2}
   alertSymbol: {fileID: 7116119982351246641}
   lookForPlayerSymbol: {fileID: 1821731447790827218}
@@ -298,8 +294,39 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &2491430026104798106
-BoxCollider2D:
+--- !u!114 &3457471267196366137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3465768809754452173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323f6a0b37aafd248a2a48bb88644d06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _statsManager: {fileID: 8587772122752227418}
+  updateHealthBar: {fileID: 0}
+  _deathEvent: {fileID: 0}
+  _restoreHealth: {fileID: 0}
+  invincible: 0
+--- !u!114 &8587772122752227418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3465768809754452173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ef37b6bb338bd84e840d7f3706f7df1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statsConfig: {fileID: 11400000, guid: daacc4dd425a7bc4fbf5add8625b7a24, type: 2}
+  currentStatsSO: {fileID: 0}
+--- !u!60 &3181760766383717921
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -330,7 +357,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.6344812}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -340,42 +367,17 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.489, y: 1.2389761}
-  m_EdgeRadius: 0
---- !u!114 &3457471267196366137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3465768809754452173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 323f6a0b37aafd248a2a48bb88644d06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _statsManager: {fileID: 8587772122752227418}
-  _healthConfigSO: {fileID: 0}
-  _currentStatsSO: {fileID: 0}
-  updateHealthBar: {fileID: 0}
-  _deathEvent: {fileID: 0}
-  _restoreHealth: {fileID: 0}
-  invincible: 0
---- !u!114 &8587772122752227418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3465768809754452173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ef37b6bb338bd84e840d7f3706f7df1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statsConfig: {fileID: 11400000, guid: daacc4dd425a7bc4fbf5add8625b7a24, type: 2}
-  currentStatsSO: {fileID: 0}
+  m_Points:
+    m_Paths:
+    - - {x: -0.212, y: 1.2}
+      - {x: 0.212, y: 1.2}
+      - {x: 0.2175, y: 1.1}
+      - {x: 0.2175, y: 0.1}
+      - {x: 0.212, y: 0.02}
+      - {x: -0.212, y: 0.02}
+      - {x: -0.2175, y: 0.1}
+      - {x: -0.2175, y: 1.1}
+  m_UseDelaunayMesh: 0
 --- !u!1 &3807183712217273241
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,7 +433,7 @@ MonoBehaviour:
   ledgeCheckVertical: {fileID: 4929466707727058868}
   ceilingCheck: {fileID: 0}
   crouchCeilingCheck: {fileID: 0}
-  groundCheckOffset: {x: 0.2445, y: 0.15, z: 0}
+  groundCheckOffset: {x: 0.212, y: 0.15, z: 0}
   offClimbCheckRadius: 0
   climbableCheckDistance: 0
   wallCheckDistance: 0.3

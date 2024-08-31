@@ -2,7 +2,7 @@ using UnityEngine;
 using static CombatDamageUtilities;
 
 
-public class DamageOnHitBoxAction : WeaponComponent<DamageOnHitBoxActionData, AttackProperties>
+public class EffectsOnHitBoxAction : WeaponComponent<DamageOnHitBoxActionData, AttackProperties>
 {
     private ActionHitBox hitBox;
 

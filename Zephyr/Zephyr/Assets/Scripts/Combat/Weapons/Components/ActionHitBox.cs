@@ -48,11 +48,11 @@ public class ActionHitBox : WeaponComponent<ActionHitBoxData, AttackActionHitBox
         movement = new CoreComp<Movement>(Core);
 
         AnimationEventHandler.OnAttackHitboxActive += IsDetectingEnemies;
-        AnimationEventHandler.OnFinish += IsAttackOver;
+        AnimationEventHandler.OnEnterAttackPhase += IsAttackStarted;
     }
 
     private void IsDetectingEnemies(bool param) => _detecting = param;
-    private void IsAttackOver() => _hasCounted = new HashSet<Collider2D>();
+    private void IsAttackStarted(AttackPhases phase) => _hasCounted = new HashSet<Collider2D>();
 
     protected void Update()
     {

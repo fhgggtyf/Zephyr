@@ -16,3 +16,5 @@ MonoBehaviour:
   knockBackDirection: {x: 1, y: 1}
   knockBackVelocity: 5
   stunDuration: 0.1
+  IsEnemyAbility: 1
+  canBeInterupted: 1

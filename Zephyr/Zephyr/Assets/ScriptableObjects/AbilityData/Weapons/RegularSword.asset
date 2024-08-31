@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: RegularSword
   m_EditorClassIdentifier: 
   type: 0
+  knockBackDirection: {x: 1, y: 1}
+  knockBackVelocity: 5
+  stunDuration: 2

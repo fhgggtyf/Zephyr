@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a00cce60e024aee48abfcc862946921e, type: 3}
   m_Name: TutorialGuard_GotHitTransition
   m_EditorClassIdentifier: 
-  _actions: []
-  stateTag: 0
+  _actions:
+  - {fileID: 11400000, guid: 49bd66bfbd565d04ba5704aa2c9a8691, type: 2}
+  stateTag: 3

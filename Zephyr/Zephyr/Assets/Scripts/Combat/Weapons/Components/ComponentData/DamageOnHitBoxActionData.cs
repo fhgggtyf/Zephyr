@@ -2,6 +2,6 @@ public class DamageOnHitBoxActionData : ComponentData<AttackProperties>
 {
     protected override void SetComponentDependency()
     {
-        ComponentDependency = typeof(DamageOnHitBoxAction);
+        ComponentDependency = typeof(EffectsOnHitBoxAction);
     }
 }

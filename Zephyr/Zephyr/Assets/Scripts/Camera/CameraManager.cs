@@ -184,7 +184,7 @@ public class CameraManager : MonoBehaviour
         Transform target = PlayerFollowObjectTransformAnchor.Value;
 
         VCam.Follow = target;
-        VCam.OnTargetObjectWarped(target, target.position - VCam.transform.position - Vector3.forward);
+        VCam.OnTargetObjectWarped(target, target.position - VCam.transform.position - Vector3.forward);       
 
         characterLoaded = true;
     }

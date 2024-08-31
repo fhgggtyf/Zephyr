@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: TutorialGuard_Stunned
   m_EditorClassIdentifier: 
   _actions:
+  - {fileID: 11400000, guid: f377f1a47e8f44f4993f53282d01d556, type: 2}
   - {fileID: 11400000, guid: 5074971e73bc645f0906c5b671e5bd60, type: 2}
   - {fileID: 11400000, guid: db059b4d252124bf7ae1c928e3227813, type: 2}
   - {fileID: 11400000, guid: 34adcf5e736604af0bc01af65f173d3c, type: 2}

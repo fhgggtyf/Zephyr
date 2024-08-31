@@ -10,6 +10,14 @@ public class AbilityDataSO : ScriptableObject
     public float knockBackVelocity;
     public float stunDuration;
 
+    public bool IsEnemyAbility;
+
+    #region Is Enemy
+
+    public bool canBeInterupted;
+
+    #endregion
+
     public AbilityDataSO()
     {
         type = DamageType.True;

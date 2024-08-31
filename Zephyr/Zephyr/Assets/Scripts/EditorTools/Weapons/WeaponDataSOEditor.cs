@@ -27,6 +27,7 @@ public class WeaponDataSOEditor : Editor
 
         if (GUILayout.Button("Set Number of Attacks"))
         {
+            dataSO.InitializeInteruptParam();
             foreach (var item in dataSO.ComponentData)
             {
                 item.InitializeAttackData(dataSO.NumberOfAttacks);

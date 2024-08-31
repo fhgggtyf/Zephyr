@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class ClimbInteraction : CoreComponent
 {
+    protected Movement Movement
+    {
+        get => movement ?? core.GetCoreComponent(ref movement);
+    }
+
+    protected CollisionSenses CollisionSenses
+    {
+        get => collisionSenses ?? core.GetCoreComponent(ref collisionSenses);
+    }
+
+    private Movement movement;
+    private CollisionSenses collisionSenses;
+
     private InteractableDetector interactableDetector;
     private Climbable _climbable;
 
@@ -22,6 +35,11 @@ public class ClimbInteraction : CoreComponent
         _player.isClimbing = true;
 
         _toClimb.RaiseEvent(_climbable.transform);
+
+        if (!CollisionSenses.WallFront)
+        {
+            Movement.Flip();
+        }
     }
 
     protected override void Awake()
