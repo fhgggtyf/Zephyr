@@ -1,4 +1,4 @@
-using Cinemachine;
+using Unity.Cinemachine;
 using System.Collections;
 using UnityEngine;
 
@@ -6,7 +6,7 @@ public class LocationEntrance : MonoBehaviour
 {
 	[SerializeField] private PathSO _entrancePath;
 	[SerializeField] private PathStorageSO _pathStorage = default; //This is where the last path taken has been stored
-	[SerializeField] private CinemachineVirtualCamera entranceShot;
+	[SerializeField] private CinemachineCamera entranceShot;
 
 	[Header("Lisenting on")]
 	[SerializeField] private VoidEventChannelSO _onSceneReady;

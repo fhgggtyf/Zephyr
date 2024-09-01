@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
+using Unity.Cinemachine;
 
 public class CameraManager : MonoBehaviour
 {
 
     public InputReader inputReader;
     public Camera mainCamera;
-    public CinemachineVirtualCamera VCam;
+    public CinemachineCamera VCam;
     public CinemachineImpulseSource impulseSource;
 
     [SerializeField] [Range(.5f, 3f)] private float _speedMultiplier = 1f; //TODO: make this modifiable in the game settings											
@@ -22,7 +22,7 @@ public class CameraManager : MonoBehaviour
 
     public static CameraManager instance;
 
-    [SerializeField] private CinemachineVirtualCamera[] _allVirtualCameras;
+    [SerializeField] private CinemachineCamera[] _allVirtualCameras;
 
     [SerializeField] private float _fallPanAmount = 0.25f;
     [SerializeField] private float _yOffset = 0;
@@ -39,8 +39,8 @@ public class CameraManager : MonoBehaviour
 
     private Player player;
 
-    private CinemachineVirtualCamera _currentCamera;
-    private CinemachineFramingTransposer _framingTransposer;
+    private CinemachineCamera _currentCamera;
+    private CinemachinePositionComposer _positionComposer;
 
     private float _normPanAmount;
     private float _normYOffsetAmount;
@@ -64,11 +64,11 @@ public class CameraManager : MonoBehaviour
             if (_allVirtualCameras[i].enabled)
             {
                 _currentCamera = _allVirtualCameras[i];
-                _framingTransposer = _currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+                _positionComposer = _currentCamera.GetComponent<CinemachinePositionComposer>();
             }
 
-            _normPanAmount = _framingTransposer.m_YDamping;
-            _normYOffsetAmount = _framingTransposer.m_TrackedObjectOffset.y;
+            _normPanAmount = _positionComposer.Damping.y;
+            _normYOffsetAmount = _positionComposer.TargetOffset.y;
         }
 
         Debug.Log(PlayerFollowObjectTransformAnchor.isSet);
@@ -106,7 +106,7 @@ public class CameraManager : MonoBehaviour
 
     public void LerpYDamping(bool isPlayerFalling)
     {
-        _lerpYPanCoroutine = StartCoroutine(LerpYAction(isPlayerFalling));
+        //_lerpYPanCoroutine = StartCoroutine(LerpYAction(isPlayerFalling));
         StartCoroutine(ReduceYOffset(isPlayerFalling));
     }
 
@@ -114,7 +114,7 @@ public class CameraManager : MonoBehaviour
     {
         isLerpingYDamping = true;
 
-        float startDampAmount = _framingTransposer.m_YDamping;
+        float startDampAmount = _positionComposer.Damping.y;
         float endDampAmount;
 
         if (isPlayerFalling)
@@ -133,7 +133,7 @@ public class CameraManager : MonoBehaviour
         {
             elaspedTime += Time.deltaTime;
             float lerpedPanAmount = Mathf.Lerp(startDampAmount, endDampAmount, elaspedTime / _fallYPanTime);
-            _framingTransposer.m_YDamping = lerpedPanAmount;
+            _positionComposer.Damping.y = lerpedPanAmount;
 
             yield return null;
         }
@@ -145,7 +145,7 @@ public class CameraManager : MonoBehaviour
     private IEnumerator ReduceYOffset(bool isPlayerFalling)
     {
         isDecreasingYOffset = true;
-        float startYOffsetAmount = _framingTransposer.m_TrackedObjectOffset.y;
+        float startYOffsetAmount = _positionComposer.TargetOffset.y;
         float endYOffsetAmount;
 
         if (isPlayerFalling)
@@ -164,7 +164,7 @@ public class CameraManager : MonoBehaviour
         {
             elaspedTime += Time.deltaTime;
             float lerpedYOffsetChangeAmount = Mathf.Lerp(startYOffsetAmount, endYOffsetAmount, elaspedTime / _fallYPanTime);
-            _framingTransposer.m_TrackedObjectOffset.y = lerpedYOffsetChangeAmount;
+            _positionComposer.TargetOffset.y = lerpedYOffsetChangeAmount;
 
             yield return null;
         }
