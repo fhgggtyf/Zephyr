@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a00cce60e024aee48abfcc862946921e, type: 3}
+  m_Name: Alothai_MultiJump
+  m_EditorClassIdentifier: 
+  _actions:
+  - {fileID: 11400000, guid: 49bbd3ada0011ef4c809ff74919585fd, type: 2}
+  - {fileID: 11400000, guid: 7091781b5219aae408d66caff76de70a, type: 2}
+  - {fileID: 11400000, guid: 5b2d0541914e40643aa28f53b9c89dfe, type: 2}
+  - {fileID: 11400000, guid: 49bbd3ada0011ef4c809ff74919585fd, type: 2}
+  - {fileID: 11400000, guid: 3d1a5c452f00b7d47b9291c93d20cc69, type: 2}
+  - {fileID: 11400000, guid: 2e0ae19c52d03ba4694de8a50b3187b3, type: 2}
+  - {fileID: 11400000, guid: 4289e8c6c1ed06f4684336e4439bda6f, type: 2}
+  - {fileID: 11400000, guid: c0e52ea7df92233438a758f308a3a434, type: 2}
+  - {fileID: 11400000, guid: 8f27b4840baecc04d902caa652b1a679, type: 2}
+  - {fileID: 11400000, guid: 31bf4d97de7083e48a07fe717a711e85, type: 2}
+  - {fileID: 11400000, guid: d5925807dd3b706438219e8b65b10166, type: 2}
+  stateTag: 2

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a00cce60e024aee48abfcc862946921e, type: 3}
+  m_Name: TutorialGuard_Patrol
+  m_EditorClassIdentifier: 
+  _actions:
+  - {fileID: 11400000, guid: cb48c7d42ab635645b1ae95f3c4f66f4, type: 2}
+  - {fileID: 11400000, guid: bffb93d7b47c363459ef64ff2ec54f86, type: 2}
+  - {fileID: 11400000, guid: d7a8c2941838c034291a4e79a68d5c0f, type: 2}
+  - {fileID: 11400000, guid: 210ffb58cfdfd614c81d3c74add12e6f, type: 2}
+  - {fileID: 11400000, guid: 22091e03515f1e549a13dbe2539f4690, type: 2}
+  - {fileID: 11400000, guid: f1a375ba011fa24499ad9f650daf644f, type: 2}
+  stateTag: 1

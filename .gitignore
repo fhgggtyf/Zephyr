@@ -16,6 +16,13 @@
 /Zephyr(old)/[Bb]uilds/
 /Zephyr(old)/[Ll]ogs/
 /Zephyr(old)/[Uu]ser[Ss]ettings/
+/Present/[Ll]ibrary/
+/Present/[Tt]emp/
+/Present/[Oo]bj/
+/Present/[Bb]uild/
+/Present/[Bb]uilds/
+/Present/[Ll]ogs/
+/Present/[Uu]ser[Ss]ettings/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
