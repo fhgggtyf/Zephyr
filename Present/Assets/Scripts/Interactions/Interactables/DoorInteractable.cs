@@ -27,16 +27,16 @@ public class DoorInteractable : InteractableItems
 
     private void OpenDoor()
     {
-        _doorOpen.SetActive(true); 
+        _doorOpen.SetActive(true);
         _doorClose.SetActive(false);
-        _doorCollider.isTrigger = true;
+        //_doorCollider.isTrigger = true;
     }
 
     private void CloseDoor()
     {
         _doorOpen.SetActive(false);
         _doorClose.SetActive(true);
-        _doorCollider.isTrigger=false;
+        //_doorCollider.isTrigger = false;
     }
 }
 
