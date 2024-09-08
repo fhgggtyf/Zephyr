@@ -36,7 +36,7 @@ public class ClimbInteraction : CoreComponent
 
         _toClimb.RaiseEvent(_climbable.transform);
 
-        if (!CollisionSenses.WallFront)
+        if (!CollisionSenses.WallFront && _climbable.climbType == ClimbTypes.Rope)
         {
             Movement.Flip();
         }
