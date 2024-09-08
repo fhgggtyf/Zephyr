@@ -1,16 +1,18 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class CharacterHealthBarManager : MonoBehaviour
 {
-    //[SerializeField] private IngameStatsSO _characterStats = default; //the HealthBar is watching this object, which is the health of the player
-    //[SerializeField] private StatsConfigSO _StatsConfig = default;
     [SerializeField] private NonPlayerStatsManager _statsManager = default;
     [SerializeField] private Damageable _damageable = default;
-    [SerializeField] private TMP_Text _healthText = default;
+    [SerializeField] private SpriteRenderer _healthBarSprite;
+    [SerializeField] private float _updateSpeed;
 
     [Header("Listening to")]
     [SerializeField] private VoidEventChannelSO _barUpdateNeeded; //The player's Damageable issues this
+
+    private float targetScaleX;
 
     private void OnEnable()
     {
@@ -33,28 +35,28 @@ public class CharacterHealthBarManager : MonoBehaviour
 
     private void UpdateHealth()
     {
-        //int heartValue = _protagonistHealth.MaxHealth / _heartImages.Length;
-        //int filledHeartCount = Mathf.FloorToInt((float)_protagonistHealth.CurrentHealth / heartValue);
+        targetScaleX = Mathf.Max((float)_statsManager.CurrentStatsSO.CurrentHealth / _statsManager.StatsConfig.InitialHealth, 0);
+        StartCoroutine(SmoothHealthBar());
+    }
 
-        //for (int i = 0; i < _heartImages.Length; i++)
-        //{
-        //	float heartPercent = 0;
+    private IEnumerator SmoothHealthBar()
+    {
+        float preChangeScaleX = _healthBarSprite.transform.localScale.x;
+        float elapsedTime = 0f;
 
-        //	if (i < filledHeartCount)
-        //	{
-        //		heartPercent = 1;
-        //	}
-        //	else if (i == filledHeartCount)
-        //	{
-        //		heartPercent = ((float)_protagonistHealth.CurrentHealth - (float)filledHeartCount * (float)heartValue) / (float)heartValue;
-        //	}
-        //	else
-        //	{
-        //		heartPercent = 0;
-        //	}
-        //	_heartImages[i].SetImage(heartPercent);
-        //}
+        while (elapsedTime < _updateSpeed)
+        {
+            elapsedTime += Time.deltaTime;
+            float newScaleX = Mathf.Max(Mathf.Lerp(preChangeScaleX, targetScaleX, elapsedTime / _updateSpeed), 0);
+            SetHealthBarScale(newScaleX);
+            yield return null;
+        }
 
-        _healthText.SetText(Mathf.FloorToInt((float)_statsManager.CurrentStatsSO.CurrentHealth).ToString());
+        SetHealthBarScale(targetScaleX);  // Ensure the final value is set correctly
+    }
+
+    private void SetHealthBarScale(float scaleX)
+    {
+        _healthBarSprite.transform.localScale = new Vector3(scaleX, _healthBarSprite.transform.localScale.y, _healthBarSprite.transform.localScale.z);
     }
 }
