@@ -1,14 +1,20 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
+using UnityEngine.UI;
 
 public class UIStaminaBarManager : MonoBehaviour
 {
 	[SerializeField] private IngameStatsSO _protagonistStats = default; //the StaminaBar is watching this object, which is the Stamina of the player
 	[SerializeField] private StatsConfigSO _StatsConfig = default;
 	[SerializeField] private TMP_Text _StaminaText = default;
+	[SerializeField] private Image _staminaBarImage;
+	[SerializeField] private float _timeToDrop;
 
 	[Header("Listening to")]
 	[SerializeField] private VoidEventChannelSO _UIUpdateNeeded = default; //The player's Damageable issues this
+
+	private float _staminaPercentage;
 
 	private void OnEnable()
 	{
@@ -29,28 +35,25 @@ public class UIStaminaBarManager : MonoBehaviour
 
 	private void UpdateStamina()
 	{
-		//int heartValue = _protagonistStamina.MaxStamina / _heartImages.Length;
-		//int filledHeartCount = Mathf.FloorToInt((float)_protagonistStamina.CurrentStamina / heartValue);
-
-		//for (int i = 0; i < _heartImages.Length; i++)
-		//{
-		//	float heartPercent = 0;
-
-		//	if (i < filledHeartCount)
-		//	{
-		//		heartPercent = 1;
-		//	}
-		//	else if (i == filledHeartCount)
-		//	{
-		//		heartPercent = ((float)_protagonistStamina.CurrentStamina - (float)filledHeartCount * (float)heartValue) / (float)heartValue;
-		//	}
-		//	else
-		//	{
-		//		heartPercent = 0;
-		//	}
-		//	_heartImages[i].SetImage(heartPercent);
-		//}
+		_staminaPercentage = (float)_protagonistStats.CurrentStamina / _StatsConfig.InitialStamina;
+		Debug.Log(_staminaPercentage);
+		StartCoroutine(SmoothStaminaBar());
 
 		_StaminaText.SetText(Mathf.FloorToInt(_protagonistStats.CurrentStamina).ToString());
+	}
+
+	private IEnumerator SmoothStaminaBar()
+	{
+		float preChangeValue = _staminaBarImage.fillAmount;
+		float elapsedTime = 0f;
+
+		while (elapsedTime < _timeToDrop)
+		{
+			elapsedTime += Time.deltaTime;
+			_staminaBarImage.fillAmount = Mathf.Lerp(preChangeValue, _staminaPercentage, elapsedTime / _timeToDrop);
+			yield return null;  // Wait for the next frame
+		}
+
+		_staminaBarImage.fillAmount = _staminaPercentage;  // Ensure the final value is set correctly
 	}
 }
