@@ -61,7 +61,7 @@ public class PlayerSpawnSystem : MonoBehaviour
 		Transform spawnLocation = GetSpawnLocation();
 		Player playerInstance = Instantiate(_playerPrefab, spawnLocation.position, spawnLocation.rotation);
 		
-		CameraFollowObject followObjectInstance = Instantiate(_playerFollow);
+		CameraFollowObject followObjectInstance = Instantiate(_playerFollow, spawnLocation.position, spawnLocation.rotation);
 
 		_playerInstantiatedChannel.RaiseEvent(playerInstance.transform);
 		_playerTransformAnchor.Provide(playerInstance.transform); //the CameraSystem will pick this up to frame the player
