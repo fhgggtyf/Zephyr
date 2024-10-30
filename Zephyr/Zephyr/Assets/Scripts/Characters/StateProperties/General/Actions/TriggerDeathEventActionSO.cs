@@ -27,7 +27,7 @@ public class TriggerDeathEventAction : StateAction
 
     public override void OnStateExit()
     {
-        _character.animationEventHandler.OnFinish += BroadcastCharacterDead;
+        _character.animationEventHandler.OnFinish -= BroadcastCharacterDead;
     }
 
     private void BroadcastCharacterDead() => _originSO.deathEventChannel.RaiseEvent();
