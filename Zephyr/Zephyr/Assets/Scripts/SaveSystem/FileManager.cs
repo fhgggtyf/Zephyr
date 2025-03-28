@@ -4,13 +4,35 @@ using UnityEngine;
 
 public static class FileManager
 {
+	private static string GetSavePath(string fileName)
+	{
+#if UNITY_EDITOR
+		// Save inside the project directory in Editor
+		return Path.Combine(Application.dataPath, "../Saves", fileName);
+#else
+        // Save in persistent data path in builds
+        return Path.Combine(Application.persistentDataPath, fileName);
+#endif
+	}
+
 	public static bool WriteToFile(string fileName, string fileContents)
 	{
-		var fullPath = Path.Combine(Application.persistentDataPath, fileName);
+		var fullPath = GetSavePath(fileName);
 
 		try
 		{
+			string savePath = Path.Combine(Application.dataPath, "../Saves/save.zyp");
+			string directory = Path.GetDirectoryName(savePath);
+
+			// Ensure the directory exists
+			if (!Directory.Exists(directory))
+			{
+				Directory.CreateDirectory(directory);
+			}
+
+			// Write to the file
 			File.WriteAllText(fullPath, fileContents);
+			Debug.Log("Saved");
 			return true;
 		}
 		catch (Exception e)
