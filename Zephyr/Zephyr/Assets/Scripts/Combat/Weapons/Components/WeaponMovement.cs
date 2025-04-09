@@ -6,7 +6,7 @@ using UnityEngine;
 public class WeaponMovement : WeaponComponent<WeaponMovementData, AttackMovement>
 {
 
-    private Movement coreMovement;
+    private CoreComp<Movement> coreMovement;
 
     private float velocity;
     private Vector2 direction;
@@ -69,24 +69,24 @@ public class WeaponMovement : WeaponComponent<WeaponMovementData, AttackMovement
 
     private void SetVelocity()
     {
-        coreMovement.SetVelocity(velocity, direction, coreMovement.FacingDirection);
+        coreMovement.Comp.SetVelocity(velocity, direction, coreMovement.Comp.FacingDirection);
     }
 
     private void SetVelocityY()
     {
-        coreMovement.SetVelocityY(velocity * direction.y + _timer * -9.8f * GenericPhysicsData.GRAVITY_MULTIPLIER * (coreMovement.CurrentVelocity.y >= 0 ? 1 : 2));
+        coreMovement.Comp.SetVelocityY(velocity * direction.y + _timer * -9.8f * GenericPhysicsData.GRAVITY_MULTIPLIER * (coreMovement.Comp.CurrentVelocity.y >= 0 ? 1 : 2));
     }
 
     private void SetVelocityX()
     {
-        coreMovement.SetVelocityX((direction * velocity).x * coreMovement.FacingDirection);
+        coreMovement.Comp.SetVelocityX((direction * velocity).x * coreMovement.Comp.FacingDirection);
     }
 
     protected override void Start()
     {
         base.Start();
 
-        coreMovement = Core.GetCoreComponent<Movement>();
+        coreMovement = new CoreComp<Movement>(Core);
 
         AnimationEventHandler.OnStartMovement += HandleStartMovement;
         AnimationEventHandler.OnStopMovement += HandleStopMovement;

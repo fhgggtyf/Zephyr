@@ -3,8 +3,8 @@ using UnityEngine;
 public class DamageData
 {
     public float Amount { get; private set; }
-    public int ArmorIgnore;
-    public int MrIgnore;
+    public int ArmorIgnore { get; private set; }
+    public int MrIgnore { get; private set; }
     public AbilityDataSO AbilityParam;
     public EnemyType EnemyType;
 

@@ -62,6 +62,26 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: abb608c4a977a40ff9dfba1ed51eaf4b
+    m_Address: Assets/Scenes/Maps/Home.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2d6f6e244b111463380693cf0f6982f1
+    m_Address: Assets/Scenes/Maps/SessionMap1.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2a65cb08662ae4a06b0a14e9557e75a8
+    m_Address: Assets/Scenes/Maps/SessionMap2.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 02449e7a9a97e43bea5f9e31a0efdd32
+    m_Address: Assets/Scenes/Maps/SessionMap3.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: aaaca3e714efd404a8d37d7ccbfd9dfc, type: 2}
   m_SchemaSet:

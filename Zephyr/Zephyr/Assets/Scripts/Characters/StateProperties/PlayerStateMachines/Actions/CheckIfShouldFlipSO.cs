@@ -4,8 +4,9 @@ using Zephyr.StateMachine;
 using Zephyr.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "FlipCheck", menuName = "State Machines/Actions/FlipCheck")]
-public class CheckIfShouldFlipSO : StateActionSO<CheckIfShouldFlip> {
-    public event UnityAction FlipEvent = delegate { };
+public class CheckIfShouldFlipSO : StateActionSO<CheckIfShouldFlip>
+{
+    public event UnityAction FlipEvent;
 
     public void InvokeEvent()
     {
@@ -13,7 +14,7 @@ public class CheckIfShouldFlipSO : StateActionSO<CheckIfShouldFlip> {
     }
 }
 
-public class CheckIfShouldFlip: StateAction
+public class CheckIfShouldFlip : StateAction
 {
     private Player _player;
 
@@ -36,10 +37,6 @@ public class CheckIfShouldFlip: StateAction
     {
         _originSO.FlipEvent += Movement.Flip;
     }
-    public override void OnStateExit()
-    {
-        _originSO.FlipEvent -= Movement.Flip;
-    }
 
     public override void OnUpdate()
     {
@@ -47,5 +44,10 @@ public class CheckIfShouldFlip: StateAction
         {
             _originSO.InvokeEvent();
         }
+    }
+
+    public override void OnStateExit()
+    {
+        _originSO.FlipEvent -= Movement.Flip;
     }
 }
