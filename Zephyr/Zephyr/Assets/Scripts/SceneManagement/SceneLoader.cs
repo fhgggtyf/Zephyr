@@ -11,11 +11,13 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     [SerializeField] private GameSceneSO _gameplayScene = default;
+    [SerializeField] private GameSceneSO _sessionScene = default;
     [SerializeField] private InputReader _inputReader = default;
 
     [Header("Listening to")]
     [SerializeField] private LoadEventChannelSO _loadLocation = default;
     [SerializeField] private LoadEventChannelSO _loadMenu = default;
+    [SerializeField] private LoadEventChannelSO _loadHome = default;
     [SerializeField] private LoadEventChannelSO _coldStartupLocation = default;
 
     [Header("Broadcasting on")]
@@ -25,6 +27,7 @@ public class SceneLoader : MonoBehaviour
 
     private AsyncOperationHandle<SceneInstance> _loadingOperationHandle;
     private AsyncOperationHandle<SceneInstance> _gameplayManagerLoadingOpHandle;
+    private AsyncOperationHandle<SceneInstance> _sessionManagerLoadingOpHandle;
 
     //Parameters coming from scene loading requests
     private GameSceneSO _sceneToLoad;
@@ -32,6 +35,7 @@ public class SceneLoader : MonoBehaviour
     private bool _showLoadingScreen;
 
     private SceneInstance _gameplayManagerSceneInstance = new SceneInstance();
+    private SceneInstance _sessionManagerSceneInstance = new SceneInstance();
     private float _fadeDuration = .5f;
     private bool _isLoading = false; //To prevent a new loading request while already loading a new scene
 
@@ -39,6 +43,7 @@ public class SceneLoader : MonoBehaviour
     {
         _loadLocation.OnLoadingRequested += LoadLocation;
         _loadMenu.OnLoadingRequested += LoadMenu;
+        _loadHome.OnLoadingRequested += LoadHome;
 #if UNITY_EDITOR
         _coldStartupLocation.OnLoadingRequested += LocationColdStartup;
 #endif
@@ -48,6 +53,7 @@ public class SceneLoader : MonoBehaviour
     {
         _loadLocation.OnLoadingRequested -= LoadLocation;
         _loadMenu.OnLoadingRequested -= LoadMenu;
+        _loadHome.OnLoadingRequested -= LoadHome;
 #if UNITY_EDITOR
         _coldStartupLocation.OnLoadingRequested -= LocationColdStartup;
 #endif
@@ -68,15 +74,28 @@ public class SceneLoader : MonoBehaviour
             _gameplayManagerLoadingOpHandle.WaitForCompletion();
             _gameplayManagerSceneInstance = _gameplayManagerLoadingOpHandle.Result;
 
+            _sessionManagerLoadingOpHandle = _sessionScene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
+            _sessionManagerLoadingOpHandle.WaitForCompletion();
+            _sessionManagerSceneInstance = _sessionManagerLoadingOpHandle.Result;
+
+            StartGameplay();
+        }
+        else if (_currentlyLoadedScene.sceneType == GameSceneSO.GameSceneType.Home)
+        {
+            //Gameplay managers is loaded synchronously
+            _gameplayManagerLoadingOpHandle = _gameplayScene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
+            _gameplayManagerLoadingOpHandle.WaitForCompletion();
+            _gameplayManagerSceneInstance = _gameplayManagerLoadingOpHandle.Result;
+
             StartGameplay();
         }
     }
 #endif
 
     /// <summary>
-    /// This function loads the location scenes passed as array parameter
+    /// This function loads the home scenes passed as array parameter
     /// </summary>
-    private void LoadLocation(GameSceneSO locationToLoad, bool showLoadingScreen, bool fadeScreen)
+    private void LoadHome(GameSceneSO locationToLoad, bool showLoadingScreen, bool fadeScreen)
     {
         //Prevent a double-loading, for situations where the player falls in two Exit colliders in one frame
         if (_isLoading)
@@ -97,6 +116,53 @@ public class SceneLoader : MonoBehaviour
         {
             StartCoroutine(UnloadPreviousScene());
         }
+    }
+
+    /// <summary>
+    /// This function loads the location scenes passed as array parameter
+    /// </summary>
+    private void LoadLocation(GameSceneSO locationToLoad, bool showLoadingScreen, bool fadeScreen)
+    {
+        //Prevent a double-loading, for situations where the player falls in two Exit colliders in one frame
+        if (_isLoading)
+            return;
+
+        _sceneToLoad = locationToLoad;
+        _showLoadingScreen = showLoadingScreen;
+        _isLoading = true;
+
+        //In case we are coming from the main menu, we need to load the Gameplay manager scene first
+        if (_gameplayManagerSceneInstance.Scene == null
+            || !_gameplayManagerSceneInstance.Scene.isLoaded)
+        {
+            _gameplayManagerLoadingOpHandle = _gameplayScene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
+            _gameplayManagerLoadingOpHandle.Completed += LoadSession;
+        }
+        else if (_sessionManagerSceneInstance.Scene == null
+            || !_sessionManagerSceneInstance.Scene.isLoaded)
+        {
+            _sessionManagerLoadingOpHandle = _sessionScene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
+            _gameplayManagerLoadingOpHandle.Completed += OnSessionManagersLoaded;
+        }
+        else
+        {
+            StartCoroutine(UnloadPreviousScene());
+        }
+    }
+
+    private void LoadSession(AsyncOperationHandle<SceneInstance> obj)
+    {
+        _gameplayManagerSceneInstance = _gameplayManagerLoadingOpHandle.Result;
+
+        _sessionManagerLoadingOpHandle = _sessionScene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
+        _sessionManagerLoadingOpHandle.Completed += OnSessionManagersLoaded;
+    }
+
+    private void OnSessionManagersLoaded(AsyncOperationHandle<SceneInstance> obj)
+    {
+        _sessionManagerSceneInstance = _sessionManagerLoadingOpHandle.Result;
+
+        StartCoroutine(UnloadPreviousScene());
     }
 
     private void OnGameplayManagersLoaded(AsyncOperationHandle<SceneInstance> obj)

@@ -6,7 +6,7 @@ public class LocationEntrance : MonoBehaviour
 {
 	[SerializeField] private PathSO _entrancePath;
 	[SerializeField] private PathStorageSO _pathStorage = default; //This is where the last path taken has been stored
-	[SerializeField] private CinemachineCamera entranceShot;
+//	[SerializeField] private CinemachineCamera entranceShot;
 
 	[Header("Lisenting on")]
 	[SerializeField] private VoidEventChannelSO _onSceneReady;
@@ -16,7 +16,7 @@ public class LocationEntrance : MonoBehaviour
 	{
 		if (_pathStorage.lastPathTaken == _entrancePath)
 		{
-			entranceShot.Priority = 100;
+//			entranceShot.Priority = 100;
 			_onSceneReady.OnEventRaised += PlanTransition;
 		}
 	}
@@ -31,7 +31,7 @@ public class LocationEntrance : MonoBehaviour
 
 		yield return new WaitForSeconds(.1f);
 
-		entranceShot.Priority = -1;
+//		entranceShot.Priority = -1;
 		_onSceneReady.OnEventRaised -= PlanTransition;
 	}
 }

@@ -36,7 +36,6 @@ public class UIStaminaBarManager : MonoBehaviour
 	private void UpdateStamina()
 	{
 		_staminaPercentage = (float)_protagonistStats.CurrentStamina / _StatsConfig.InitialStamina;
-		Debug.Log(_staminaPercentage);
 		StartCoroutine(SmoothStaminaBar());
 
 		_StaminaText.SetText(Mathf.FloorToInt(_protagonistStats.CurrentStamina).ToString());

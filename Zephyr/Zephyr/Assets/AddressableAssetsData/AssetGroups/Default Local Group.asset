@@ -82,6 +82,21 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 15a2a53497fe42744a1882ec8c1e085e
+    m_Address: Assets/ScriptableObjects/EventChannels/SceneManagement/LoadHomeChannel.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8a3cfd366d7285f4e98a2138a6db5a3b
+    m_Address: Assets/ScriptableObjects/EventChannels/SceneManagement/LoadLocationChannel.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 545755d9e1d1048499bdfd35b704e035
+    m_Address: Assets/Scenes/Managers/SessionManager.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: aaaca3e714efd404a8d37d7ccbfd9dfc, type: 2}
   m_SchemaSet:

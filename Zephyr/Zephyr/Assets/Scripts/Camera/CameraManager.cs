@@ -72,8 +72,8 @@ public class CameraManager : MonoBehaviour
         }
 
         Debug.Log(PlayerFollowObjectTransformAnchor.isSet);
-        if (PlayerFollowObjectTransformAnchor.isSet)
-            SetupProtagonistVirtualCamera();
+//        if (PlayerFollowObjectTransformAnchor.isSet)
+ //           SetupProtagonistVirtualCamera();
     }
 
     private void OnEnable()

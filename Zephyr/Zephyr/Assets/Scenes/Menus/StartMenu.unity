@@ -3983,6 +3983,7 @@ MonoBehaviour:
   _saveSystem: {fileID: 11400000, guid: daf7780e9a1c201469facf9e56b86f3e, type: 2}
   _showLoadScreen: 1
   _loadLocation: {fileID: 11400000, guid: 8a3cfd366d7285f4e98a2138a6db5a3b, type: 2}
+  _loadHome: {fileID: 11400000, guid: 15a2a53497fe42744a1882ec8c1e085e, type: 2}
   _onNewGameButton: {fileID: 11400000, guid: f2d2603595b665a4f89cc9cb9d348f60, type: 2}
   _onContinueButton: {fileID: 11400000, guid: 411721222c0fc304e905a9ad9ad7dbb0, type: 2}
 --- !u!1 &1800490862

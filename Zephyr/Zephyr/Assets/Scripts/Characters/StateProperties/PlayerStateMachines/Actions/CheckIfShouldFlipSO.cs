@@ -6,12 +6,7 @@ using Zephyr.StateMachine.ScriptableObjects;
 [CreateAssetMenu(fileName = "FlipCheck", menuName = "State Machines/Actions/FlipCheck")]
 public class CheckIfShouldFlipSO : StateActionSO<CheckIfShouldFlip>
 {
-    public event UnityAction FlipEvent;
-
-    public void InvokeEvent()
-    {
-        FlipEvent.Invoke();
-    }
+    public VoidEventChannelSO PlayerFlipEvent;
 }
 
 public class CheckIfShouldFlip : StateAction
@@ -33,21 +28,12 @@ public class CheckIfShouldFlip : StateAction
         Movement.FacingDirection = 1;
     }
 
-    public override void OnStateEnter()
-    {
-        _originSO.FlipEvent += Movement.Flip;
-    }
-
     public override void OnUpdate()
     {
         if (_player.InputVector.x != 0 && _player.InputVector.x != Movement.FacingDirection)
         {
-            _originSO.InvokeEvent();
+            Movement.Flip();
+            _originSO.PlayerFlipEvent.RaiseEvent();
         }
-    }
-
-    public override void OnStateExit()
-    {
-        _originSO.FlipEvent -= Movement.Flip;
     }
 }

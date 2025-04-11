@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4759634da17e714782ee4d82a1770b5, type: 3}
-  m_Name: MainMenu
+  m_Script: {fileID: 11500000, guid: a80590dfee2641e44bb545e981481a2e, type: 3}
+  m_Name: SessionManager
   m_EditorClassIdentifier: 
-  _guid: 9736d925de622104a8b0c14dec552e99
+  _guid: 999a6d64a109424489bd2c7c006fef5c
   description: 
-  sceneType: 2
+  sceneType: 6
   sceneReference:
-    m_AssetGUID: 2caeb491bd9d89c4083ec11a0b882e34
+    m_AssetGUID: 545755d9e1d1048499bdfd35b704e035
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  musicTrack: {fileID: 11400000, guid: 6ac41ba53ece6b44391789ae9091efc9, type: 2}
+  musicTrack: {fileID: 0}

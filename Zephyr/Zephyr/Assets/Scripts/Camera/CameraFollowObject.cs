@@ -6,9 +6,9 @@ public class CameraFollowObject : MonoBehaviour
 {
     [SerializeField] private TransformAnchor _playerTransformAnchor;
     [SerializeField] private float _flipRotationTime = 0.5f;
-    [SerializeField] private CheckIfShouldFlipSO CheckIfShouldFlip;
     [SerializeField] private Player _player;
     [SerializeField] private TransformEventChannelSO _playerInstantiatedChannel;
+    [SerializeField] private VoidEventChannelSO _playerFlippedChannel;
 
     protected Movement Movement
     {
@@ -17,21 +17,16 @@ public class CameraFollowObject : MonoBehaviour
 
     private Movement movement;
 
-    void Awake()
-    {
-        //_player = GameObject.FindWithTag("Player").GetComponent<Player>();
-    }
-
     private void OnEnable()
     {
-        CheckIfShouldFlip.FlipEvent += CallTurn;
         _playerInstantiatedChannel.OnEventRaised += AddPlayer;
+        _playerFlippedChannel.OnEventRaised += CallTurn;
     }
 
     private void OnDisable()
     {
-        CheckIfShouldFlip.FlipEvent -= CallTurn;
         _playerInstantiatedChannel.OnEventRaised -= AddPlayer;
+        _playerFlippedChannel.OnEventRaised -= CallTurn;
     }
 
     // Update is called once per frame
@@ -48,7 +43,7 @@ public class CameraFollowObject : MonoBehaviour
 
     private float DetermineEndRotation()
     {
-        if (Movement.FacingDirection == -1)
+        if (Movement.FacingDirection == 1)
         {
             return 0f;
         }

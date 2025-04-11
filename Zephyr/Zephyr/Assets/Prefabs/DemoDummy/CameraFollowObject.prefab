@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerTransformAnchor: {fileID: 11400000, guid: d86674e865ed2ae49b1b0ad808ad55c0, type: 2}
   _flipRotationTime: 0.5
-  CheckIfShouldFlip: {fileID: 11400000, guid: 4289e8c6c1ed06f4684336e4439bda6f, type: 2}
   _player: {fileID: 2348688968845129827, guid: 255de077b03072d4c8331ceca1591339, type: 3}
   _playerInstantiatedChannel: {fileID: 11400000, guid: 192348c72bb3f8e4ca9b22b880c218d0, type: 2}
+  _playerFlippedChannel: {fileID: 11400000, guid: 70c25be83223d6a4bb734990acc45431, type: 2}
