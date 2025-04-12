@@ -3337,6 +3337,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9969da420d492a4190f4f6164854654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveSystem: {fileID: 0}
+  _receiveStatsChannel: {fileID: 0}
 --- !u!1 &857402511
 GameObject:
   m_ObjectHideFlags: 0
@@ -7218,5 +7220,5 @@ SceneRoots:
   - {fileID: 450873361}
   - {fileID: 1266845925}
   - {fileID: 512366275}
-  - {fileID: 979254305}
   - {fileID: 750284157}
+  - {fileID: 979254305}

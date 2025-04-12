@@ -97,6 +97,8 @@ public class SceneLoader : MonoBehaviour
     /// </summary>
     private void LoadHome(GameSceneSO locationToLoad, bool showLoadingScreen, bool fadeScreen)
     {
+        Debug.Log("Homecoming");
+
         //Prevent a double-loading, for situations where the player falls in two Exit colliders in one frame
         if (_isLoading)
             return;
@@ -104,6 +106,10 @@ public class SceneLoader : MonoBehaviour
         _sceneToLoad = locationToLoad;
         _showLoadingScreen = showLoadingScreen;
         _isLoading = true;
+
+        if (_sessionManagerSceneInstance.Scene != null
+            && _sessionManagerSceneInstance.Scene.isLoaded)
+            Addressables.UnloadSceneAsync(_sessionManagerLoadingOpHandle, true);
 
         //In case we are coming from the main menu, we need to load the Gameplay manager scene first
         if (_gameplayManagerSceneInstance.Scene == null
@@ -142,7 +148,7 @@ public class SceneLoader : MonoBehaviour
             || !_sessionManagerSceneInstance.Scene.isLoaded)
         {
             _sessionManagerLoadingOpHandle = _sessionScene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
-            _gameplayManagerLoadingOpHandle.Completed += OnSessionManagersLoaded;
+            _sessionManagerLoadingOpHandle.Completed += OnSessionManagersLoaded;
         }
         else
         {
@@ -189,6 +195,10 @@ public class SceneLoader : MonoBehaviour
         if (_gameplayManagerSceneInstance.Scene != null
             && _gameplayManagerSceneInstance.Scene.isLoaded)
             Addressables.UnloadSceneAsync(_gameplayManagerLoadingOpHandle, true);
+
+        if (_sessionManagerSceneInstance.Scene != null
+            && _sessionManagerSceneInstance.Scene.isLoaded)
+            Addressables.UnloadSceneAsync(_sessionManagerLoadingOpHandle, true);
 
         StartCoroutine(UnloadPreviousScene());
     }
@@ -260,7 +270,9 @@ public class SceneLoader : MonoBehaviour
 
     private void StartGameplay()
     {
-        _onSceneReady.RaiseEvent(); //Spawn system will spawn the PigChef in a gameplay scene
+        Debug.Log(_sessionManagerSceneInstance.Scene == null);
+        Debug.Log(!_sessionManagerSceneInstance.Scene.isLoaded);
+        _onSceneReady.RaiseEvent(); //Spawn system will spawn the Player in a gameplay scene
     }
 
     private void ExitGame()
