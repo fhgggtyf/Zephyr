@@ -6,10 +6,8 @@ public class PlayerStatsManager : StatsManager
 {
     private IEnumerator RestoreStaminaCoroutine;
 
-    //[SerializeField] private IngameStatsSO currentStatsSO = default;
-    //[SerializeField] private StatsConfigSO statsConfig = default;
-
     [SerializeField] private VoidEventChannelSO _updateStaminaUI = default;
+    [SerializeField] private SOEventChannelSO _statsSendingChannel = default;
 
     [SerializeField] private bool _canRestoreStamina = true;
 
@@ -19,7 +17,7 @@ public class PlayerStatsManager : StatsManager
 
     private void OnEnable()
     {
-        InitializeStats();
+        _statsSendingChannel.OnEventRaised += InitializeStats;
         RestoreStaminaCoroutine = RestoreStamina();
         StartCoroutine(RestoreStaminaCoroutine);
     }
@@ -71,6 +69,28 @@ public class PlayerStatsManager : StatsManager
             // ��canRestoreStamina��Ϊ��ʱ��Э�̻�ص����ѭ���Ŀ�ʼ�����ȴ�ֱ�����ٴα�Ϊ��  
         }
 
+    }
+
+    protected void InitializeStats(ScriptableObject statsReceived)
+    {
+        StatsConfigSO stats = (StatsConfigSO)statsReceived;
+
+        CurrentStatsSO.SetMaxHealth(stats.InitialHealth);
+        CurrentStatsSO.SetCurrentHealth(stats.InitialHealth);
+        CurrentStatsSO.SetCurrentArmor(stats.InitialArmor);
+        CurrentStatsSO.SetCurrentMR(stats.InitialMagicResist);
+        CurrentStatsSO.SetCurrentMaxJumps(stats.InitialJumpCount);
+        CurrentStatsSO.SetCurrentAttack(stats.InitialAttack);
+        CurrentStatsSO.SetCurrentAP(stats.InitialAbilityPower);
+        CurrentStatsSO.SetCurrentCD(stats.InitialCooldown);
+        CurrentStatsSO.SetCurrentAttackSpeed(stats.InitialBaseAttackSpeed);
+        CurrentStatsSO.SetCurrentMana(stats.InitialMana);
+        CurrentStatsSO.SetCurrentLuck(stats.InitialLuck);
+        CurrentStatsSO.SetCurrentStamina(stats.InitialStamina);
+        CurrentStatsSO.SetMaxStamina(stats.InitialStamina);
+        CurrentStatsSO.SetCurrentTenacity(stats.InitialTenacity);
+        CurrentStatsSO.SetCurrentCritChance(stats.InitialCritChance);
+        CurrentStatsSO.SetCurrentCritDmg(stats.InitialCritDamage);
     }
 
     private float CalculateAmountToRestore()

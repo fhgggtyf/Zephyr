@@ -97,6 +97,26 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 83f6e65825155434ebd4990fc96a9c0f
+    m_Address: Assets/ScriptableObjects/SceneData/Locations/S3.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8837a82845d9a4d3e978a9bb61510b12
+    m_Address: Assets/ScriptableObjects/SceneData/Locations/S2.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7130cf02598f841d8a7764e92f341260
+    m_Address: Assets/ScriptableObjects/SceneData/Locations/S1.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 906070a34e7df4ffcafdaf3dc1ae7408
+    m_Address: Assets/ScriptableObjects/SceneData/Locations/Home.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: aaaca3e714efd404a8d37d7ccbfd9dfc, type: 2}
   m_SchemaSet:

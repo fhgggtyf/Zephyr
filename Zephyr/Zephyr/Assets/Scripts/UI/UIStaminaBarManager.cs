@@ -12,7 +12,7 @@ public class UIStaminaBarManager : MonoBehaviour
 	[SerializeField] private float _timeToDrop;
 
 	[Header("Listening to")]
-	[SerializeField] private VoidEventChannelSO _UIUpdateNeeded = default; //The player's Damageable issues this
+	[SerializeField] private VoidEventChannelSO _UIUpdateNeeded = default;
 
 	private float _staminaPercentage;
 

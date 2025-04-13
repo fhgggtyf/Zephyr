@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28cf7d637341f7e4e99c194a8d45dc92, type: 3}
-  m_Name: UpdateHealthUI
+  m_Script: {fileID: 11500000, guid: f74b42ce3eac1904abf868aae2f9b795, type: 3}
+  m_Name: StatPairChannel
   m_EditorClassIdentifier: 
   _guid: 
   description: 

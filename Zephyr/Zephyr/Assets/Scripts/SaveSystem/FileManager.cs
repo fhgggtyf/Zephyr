@@ -20,9 +20,8 @@ public static class FileManager
 		var fullPath = GetSavePath(fileName);
 
 		try
-		{
-			string savePath = Path.Combine(Application.dataPath, "../Saves/save.zyp");
-			string directory = Path.GetDirectoryName(savePath);
+		{														  
+			string directory = Path.GetDirectoryName(fullPath);
 
 			// Ensure the directory exists
 			if (!Directory.Exists(directory))
@@ -44,10 +43,13 @@ public static class FileManager
 
 	public static bool LoadFromFile(string fileName, out string result)
 	{
-		var fullPath = Path.Combine(Application.persistentDataPath, fileName);
+
+		var fullPath = GetSavePath(fileName);
+
 		if (!File.Exists(fullPath))
 		{
 			File.WriteAllText(fullPath, "");
+			Debug.Log("File does not exist");
 		}
 		try
 		{
@@ -64,8 +66,8 @@ public static class FileManager
 
 	public static bool MoveFile(string fileName, string newFileName)
 	{
-		var fullPath = Path.Combine(Application.persistentDataPath, fileName);
-		var newFullPath = Path.Combine(Application.persistentDataPath, newFileName);
+		var fullPath = GetSavePath(fileName);
+		var newFullPath = GetSavePath(newFileName);
 
 		try
 		{

@@ -9,8 +9,11 @@ public class SaveSystem : ScriptableObject
 {
     [SerializeField] private VoidEventChannelSO _saveSettingsEvent = default;
     [SerializeField] private LoadEventChannelSO _loadLocation = default;
+    [SerializeField] private LoadEventChannelSO _loadHome = default;
+    [SerializeField] private VoidEventChannelSO _saveUpgradesEvent = default;
     [SerializeField] private InventorySO _playerInventory = default;
     [SerializeField] private SettingsSO _currentSettings = default;
+    [SerializeField] private UpgradeConfigSO _upgrades = default;
     //[SerializeField] private QuestManagerSO _questManagerSO = default;
 
     public string saveFilename = "save.zyp";
@@ -19,14 +22,19 @@ public class SaveSystem : ScriptableObject
 
     void OnEnable()
     {
+        
         _saveSettingsEvent.OnEventRaised += SaveSettings;
+        _saveUpgradesEvent.OnEventRaised += SaveUpgrades;
         _loadLocation.OnLoadingRequested += CacheLoadLocations;
+        _loadHome.OnLoadingRequested += CacheLoadLocations;
     }
 
     void OnDisable()
     {
         _saveSettingsEvent.OnEventRaised -= SaveSettings;
+        _saveUpgradesEvent.OnEventRaised -= SaveUpgrades;
         _loadLocation.OnLoadingRequested -= CacheLoadLocations;
+        _loadHome.OnLoadingRequested -= CacheLoadLocations;
     }
 
     private void CacheLoadLocations(GameSceneSO locationToLoad, bool showLoadingScreen, bool fadeScreen)
@@ -44,6 +52,7 @@ public class SaveSystem : ScriptableObject
     {
         if (FileManager.LoadFromFile(saveFilename, out var json))
         {
+            Debug.Log(json);
             saveData.LoadFromJson(json);
             return true;
         }
@@ -114,6 +123,10 @@ public class SaveSystem : ScriptableObject
     void SaveSettings()
     {
         saveData.SaveSettings(_currentSettings);
+    }
 
+    void SaveUpgrades()
+    {
+        saveData.SaveUpgrades(_upgrades);
     }
 }

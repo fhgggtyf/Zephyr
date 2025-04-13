@@ -23,6 +23,7 @@ public class SceneLoader : MonoBehaviour
     [Header("Broadcasting on")]
     [SerializeField] private BoolEventChannelSO _toggleLoadingScreen = default;
     [SerializeField] private VoidEventChannelSO _onSceneReady = default; //picked up by the SpawnSystem
+    [SerializeField] private VoidEventChannelSO _onSessionStart = default; //picked up by SaveSystem
     [SerializeField] private FadeChannelSO _fadeRequestChannel = default;
 
     private AsyncOperationHandle<SceneInstance> _loadingOperationHandle;
@@ -166,6 +167,7 @@ public class SceneLoader : MonoBehaviour
 
     private void OnSessionManagersLoaded(AsyncOperationHandle<SceneInstance> obj)
     {
+        _onSessionStart.RaiseEvent();
         _sessionManagerSceneInstance = _sessionManagerLoadingOpHandle.Result;
 
         StartCoroutine(UnloadPreviousScene());
@@ -270,8 +272,6 @@ public class SceneLoader : MonoBehaviour
 
     private void StartGameplay()
     {
-        Debug.Log(_sessionManagerSceneInstance.Scene == null);
-        Debug.Log(!_sessionManagerSceneInstance.Scene.isLoaded);
         _onSceneReady.RaiseEvent(); //Spawn system will spawn the Player in a gameplay scene
     }
 

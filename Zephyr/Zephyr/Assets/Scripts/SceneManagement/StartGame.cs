@@ -21,11 +21,9 @@ public class StartGame : MonoBehaviour
 	[SerializeField] private VoidEventChannelSO _onNewGameButton = default;
 	[SerializeField] private VoidEventChannelSO _onContinueButton = default;
 
-	private bool _hasSaveData;
-
 	private void Start()
 	{
-		_hasSaveData = _saveSystem.LoadSaveDataFromDisk();
+		_saveSystem.LoadSaveDataFromDisk();
 		_onNewGameButton.OnEventRaised += StartNewGame;
 		_onContinueButton.OnEventRaised += ContinuePreviousGame;
 	}
@@ -38,7 +36,6 @@ public class StartGame : MonoBehaviour
 
 	private void StartNewGame()
 	{
-		_hasSaveData = false;
 		_saveSystem.WriteEmptySaveFile();;
 		_saveSystem.SetNewGameData();
 		_loadHome.RaiseEvent(_locationsToLoad, _showLoadScreen);
@@ -51,7 +48,6 @@ public class StartGame : MonoBehaviour
 
 	private void OnResetSaveDataPress()
 	{
-		_hasSaveData = false;
 	}
 
 	private IEnumerator LoadSaveGame()
