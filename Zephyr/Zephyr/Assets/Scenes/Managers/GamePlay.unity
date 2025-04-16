@@ -3746,6 +3746,7 @@ MonoBehaviour:
   _popupPanel: {fileID: 712794771}
   _dialogueController: {fileID: 1386761967}
   _inventoryPanel: {fileID: 462016489}
+  _barDisplay: {fileID: 1028963202}
   _pauseScreen: {fileID: 954074064}
   _settingScreen: {fileID: 1875103077}
   _gameStateManager: {fileID: 11400000, guid: 8566af23142b270488c6005d40819d99, type: 2}
@@ -3753,6 +3754,7 @@ MonoBehaviour:
   _inputReader: {fileID: 11400000, guid: e56ee6ed7dd16a744a29977a83f84ef7, type: 2}
   _mainProtagonist: {fileID: 11400000, guid: b2925e00e27b53941a1b3fb78e3d2526, type: 2}
   _onSceneReady: {fileID: 11400000, guid: 6c182f36fdb706a44b6573738b32654a, type: 2}
+  _onEnterHome: {fileID: 11400000, guid: 3c51108822fc24b25b020711ad7639ef, type: 2}
   _openUIDialogueEvent: {fileID: 11400000, guid: 9833815a75915f0458371a1a0241892f, type: 2}
   _closeUIDialogueEvent: {fileID: 11400000, guid: ebf9feec8d9e6d5479ffd02357a1f430, type: 2}
   _setInteractionEvent: {fileID: 0}
@@ -3934,6 +3936,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1028963200}
   - component: {fileID: 1028963201}
+  - component: {fileID: 1028963202}
   m_Layer: 5
   m_Name: BarDisplays
   m_TagString: Untagged
@@ -3989,6 +3992,18 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1028963202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028963199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f80243425a8de940acdf0ee68f2d776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1029642316 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6921739790041843267, guid: d5466a5f7adb4e140b4301191debdd00, type: 3}

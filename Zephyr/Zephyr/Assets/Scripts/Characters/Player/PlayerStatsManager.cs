@@ -159,6 +159,11 @@ public class PlayerStatsManager : StatsManager
     {
         return currentStatsSO.CurrentAttackSpeed;
     }
+
+    private void OnDisable()
+    {
+        _statsSendingChannel.OnEventRaised -= InitializeStats;
+    }
 }
 
 public enum StatTypes

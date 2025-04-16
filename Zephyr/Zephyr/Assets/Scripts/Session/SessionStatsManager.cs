@@ -47,4 +47,10 @@ public class SessionStatsManager : MonoBehaviour
     {
         _stats.RaiseEvent(_playerStats);
     }
+
+    private void OnDisable()
+    {
+        _statsPairChannel.OnEventRaised -= ParseStats;
+        _playerInstantiated.OnEventRaised -= SendStats;
+    }
 }

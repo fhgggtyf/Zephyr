@@ -24,6 +24,7 @@ public class SceneLoader : MonoBehaviour
     [SerializeField] private BoolEventChannelSO _toggleLoadingScreen = default;
     [SerializeField] private VoidEventChannelSO _onSceneReady = default; //picked up by the SpawnSystem
     [SerializeField] private VoidEventChannelSO _onSessionStart = default; //picked up by SaveSystem
+    [SerializeField] private VoidEventChannelSO _onEnterTutorial = default;
     [SerializeField] private VoidEventChannelSO _onEnterHome = default;
     [SerializeField] private VoidEventChannelSO _onEnterLocation = default;
     [SerializeField] private FadeChannelSO _fadeRequestChannel = default;
@@ -275,10 +276,15 @@ public class SceneLoader : MonoBehaviour
 
     private void StartGameplay()
     {
+        _onSceneReady.RaiseEvent(); //Spawn system will spawn the Player in a gameplay scene
+
         switch (_currentlyLoadedScene.sceneType)
         {
             case GameSceneSO.GameSceneType.Home:
                 _onEnterHome.RaiseEvent();
+                goto case GameSceneSO.GameSceneType.Tutorial;
+            case GameSceneSO.GameSceneType.Tutorial:
+                _onEnterTutorial.RaiseEvent();
                 break;
             case GameSceneSO.GameSceneType.Location:
                 _onEnterLocation.RaiseEvent();
@@ -287,7 +293,6 @@ public class SceneLoader : MonoBehaviour
                 break;
 
         }
-        _onSceneReady.RaiseEvent(); //Spawn system will spawn the Player in a gameplay scene
     }
 
     private void ExitGame()

@@ -16,6 +16,7 @@ public class GameSceneSO : DescriptionBaseSO
     public enum GameSceneType
 	{
 		//Playable scenes
+		Tutorial,
 		Home,
 		Location, //SceneSelector tool will also load PersistentManagers and Gameplay
 		Menu, //SceneSelector tool will also load Gameplay

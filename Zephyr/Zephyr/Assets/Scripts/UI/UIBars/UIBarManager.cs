@@ -22,7 +22,7 @@ public class UIBarManager : MonoBehaviour
         InitializeHealthBar();
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         _UIUpdateNeeded.OnEventRaised -= UpdateBar;
     }

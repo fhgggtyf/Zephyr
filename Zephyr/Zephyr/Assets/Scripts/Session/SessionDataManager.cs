@@ -103,6 +103,11 @@ public class SessionDataManager : MonoBehaviour
 
         return result;
     }
+
+    private void OnDisable()
+    {
+        _sessionStarted.OnEventRaised -= ProcessSessionData;
+    }
 }
 
 [Serializable]

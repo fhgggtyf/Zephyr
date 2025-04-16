@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
 	[SerializeField] private UIPopup _popupPanel = default;
 	[SerializeField] private UIDialogueManager _dialogueController = default;
 	[SerializeField] private UIInventory _inventoryPanel = default;
+	[SerializeField] private UIBarDisplays _barDisplay = default;
 	//[SerializeField] private UIInteraction _interactionPanel = default;
 	//[SerializeField] private GameObject _switchTabDisplay = default;
 	//[SerializeField] private UIItemForAnimation _cookingAnimation = default;
@@ -25,6 +26,7 @@ public class UIManager : MonoBehaviour
 
 	[Header("Listening on")]
 	[SerializeField] private VoidEventChannelSO _onSceneReady = default;
+	[SerializeField] private VoidEventChannelSO _onEnterHome = default;
 
 	[Header("Dialogue Events")]
 	[SerializeField] private DialogueLineChannelSO _openUIDialogueEvent = default;
@@ -46,6 +48,7 @@ public class UIManager : MonoBehaviour
 	private void OnEnable()
 	{
 		_onSceneReady.OnEventRaised += ResetUI;
+		_onEnterHome.OnEventRaised += DisableBars;
 		_openUIDialogueEvent.OnEventRaised += OpenUIDialogue;
 		_closeUIDialogueEvent.OnEventRaised += CloseUIDialogue;
 		_inputReader.MenuPauseEvent += OpenUIPause; // subscription to open Pause UI event happens in OnEnabled, but the close Event is only subscribed to when the popup is open
@@ -59,6 +62,7 @@ public class UIManager : MonoBehaviour
 	private void OnDisable()
 	{
 		_onSceneReady.OnEventRaised -= ResetUI;
+		_onEnterHome.OnEventRaised -= DisableBars;
 		_openUIDialogueEvent.OnEventRaised -= OpenUIDialogue;
 		_closeUIDialogueEvent.OnEventRaised -= CloseUIDialogue;
 		_inputReader.MenuPauseEvent -= OpenUIPause;
@@ -69,8 +73,14 @@ public class UIManager : MonoBehaviour
 		//_cookRecipeEvent.OnEventRaised -= PlayCookingAnimation;
 	}
 
+	void DisableBars()
+    {
+		_barDisplay.gameObject.SetActive(false);
+    }
+
 	void ResetUI()
 	{
+		_barDisplay.gameObject.SetActive(true);
 		_dialogueController.gameObject.SetActive(false);
 		_inventoryPanel.gameObject.SetActive(false);
 		_pauseScreen.gameObject.SetActive(false);
