@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733da80fbaa467d4caadbca738d736e8, type: 3}
   m_Name: Alothai_Config
   m_EditorClassIdentifier: 
-  _initialActualHealth: 100
+  _initialActualHealth: 100000
   _initialActualArmor: 0
   _initialActualMagicResist: 0
-  _initialActualAttack: 0
-  _initialActualAbilityPower: 0
-  _initialActualAttackSpeed: 0
-  _initialActualMana: 20
+  _initialActualAttack: 100
+  _initialActualAbilityPower: 100
+  _initialActualAttackSpeed: 100
+  _initialActualMana: 100
   _initialActualTenacity: 0
   _initialActualStamina: 100
-  _initialActualLuck: 0
+  _initialActualLuck: 100
   _initialActualCooldown: 0
   _initialCritChance: 0
   _initialCritDamage: 1.5

@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9969da420d492a4190f4f6164854654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerStats: {fileID: 11400000, guid: 31d79cecdad87bd46ae10488ab9bd0ef, type: 2}
+  _playerStats: {fileID: 11400000, guid: 2ac67c7a8840341a287deade22f31a37, type: 2}
   _playerInstantiated: {fileID: 11400000, guid: 192348c72bb3f8e4ca9b22b880c218d0, type: 2}
   _statsPairChannel: {fileID: 11400000, guid: b55de002b65d05e43a8d3c67ddb5d285, type: 2}
   _stats: {fileID: 11400000, guid: 81d89aba8ef6a8f4890c432a5dfe194f, type: 2}

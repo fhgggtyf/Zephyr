@@ -9,14 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff460cbad2f5fd345860eab15614de2c, type: 3}
-  m_Name: TutorialGuardAttackHitbox
+  m_Script: {fileID: 11500000, guid: 28cf7d637341f7e4e99c194a8d45dc92, type: 3}
+  m_Name: EnteredLocationScene
   m_EditorClassIdentifier: 
+  _guid: 
   description: 
-  hitbox:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1.2
-    height: 1.35
-  enemyProperty: {fileID: 11400000, guid: 0e2f240151bc73e4b978301dd56d9456, type: 2}

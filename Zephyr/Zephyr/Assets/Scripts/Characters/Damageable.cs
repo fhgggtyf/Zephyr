@@ -52,7 +52,6 @@ public class Damageable : MonoBehaviour, IDamageable
     private void Start()
     {
         _healthConfigSO = _statsManager.StatsConfig;
-        Debug.Log("1");
         _currentStatsSO = _statsManager.CurrentStatsSO;
 
         if (_restoreHealth != null)

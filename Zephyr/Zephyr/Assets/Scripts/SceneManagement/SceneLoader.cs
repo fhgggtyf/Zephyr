@@ -24,6 +24,8 @@ public class SceneLoader : MonoBehaviour
     [SerializeField] private BoolEventChannelSO _toggleLoadingScreen = default;
     [SerializeField] private VoidEventChannelSO _onSceneReady = default; //picked up by the SpawnSystem
     [SerializeField] private VoidEventChannelSO _onSessionStart = default; //picked up by SaveSystem
+    [SerializeField] private VoidEventChannelSO _onEnterHome = default;
+    [SerializeField] private VoidEventChannelSO _onEnterLocation = default;
     [SerializeField] private FadeChannelSO _fadeRequestChannel = default;
 
     private AsyncOperationHandle<SceneInstance> _loadingOperationHandle;
@@ -37,7 +39,8 @@ public class SceneLoader : MonoBehaviour
 
     private SceneInstance _gameplayManagerSceneInstance = new SceneInstance();
     private SceneInstance _sessionManagerSceneInstance = new SceneInstance();
-    private float _fadeDuration = .5f;
+    private float _fadeOutDuration = .5f;
+    private float _fadeInDuration = .5f;
     private bool _isLoading = false; //To prevent a new loading request while already loading a new scene
 
     private void OnEnable()
@@ -211,9 +214,9 @@ public class SceneLoader : MonoBehaviour
     private IEnumerator UnloadPreviousScene()
     {
         _inputReader.DisableAllInput();
-        _fadeRequestChannel.FadeOut(_fadeDuration);
+        _fadeRequestChannel.FadeOut(_fadeOutDuration);
 
-        yield return new WaitForSeconds(_fadeDuration);
+        yield return new WaitForSeconds(_fadeOutDuration);
 
         if (_currentlyLoadedScene != null) //would be null if the game was started in Initialisation
         {
@@ -265,13 +268,25 @@ public class SceneLoader : MonoBehaviour
         if (_showLoadingScreen)
             _toggleLoadingScreen.RaiseEvent(false);
 
-        _fadeRequestChannel.FadeIn(_fadeDuration);
+        _fadeRequestChannel.FadeIn(_fadeInDuration);
 
         StartGameplay();
     }
 
     private void StartGameplay()
     {
+        switch (_currentlyLoadedScene.sceneType)
+        {
+            case GameSceneSO.GameSceneType.Home:
+                _onEnterHome.RaiseEvent();
+                break;
+            case GameSceneSO.GameSceneType.Location:
+                _onEnterLocation.RaiseEvent();
+                break;
+            default:
+                break;
+
+        }
         _onSceneReady.RaiseEvent(); //Spawn system will spawn the Player in a gameplay scene
     }
 

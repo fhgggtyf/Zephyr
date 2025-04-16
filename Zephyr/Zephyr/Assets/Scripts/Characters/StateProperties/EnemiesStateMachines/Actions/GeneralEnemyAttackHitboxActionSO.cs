@@ -8,7 +8,7 @@ using static CombatDamageUtilities;
 public class GeneralEnemyAttackHitboxActionSO : StateActionSO<GeneralEnemyAttackHitboxAction>
 {
     public Rect hitbox;
-    public AbilityDataSO abilityData;
+    public EnemyPropertiesConfigSO enemyProperty;
 }
 
 public class GeneralEnemyAttackHitboxAction : StateAction
@@ -54,7 +54,7 @@ public class GeneralEnemyAttackHitboxAction : StateAction
 
         detected = Physics2D.OverlapBoxAll(offset, _originSO.hitbox.size, 0f, _npc.entityData.whatIsPlayer);
 
-        TryDamage(detected, new DamageData(_stats.CurrentStatsSO.CurrentAttack, _stats.CurrentStatsSO.CurrentArmorIgnore, _stats.CurrentStatsSO.CurrentMRIgnore, _originSO.abilityData, _npc.entityData.type, _npc.gameObject), out _);
+        TryDamage(detected, new DamageData(_stats.CurrentStatsSO.CurrentAttack, _stats.CurrentStatsSO.CurrentArmorIgnore, _stats.CurrentStatsSO.CurrentMRIgnore, _originSO.enemyProperty.enemyAbilityData, _npc.entityData.type, _npc.gameObject), out _);
     }
     public override void OnUpdate()
     {

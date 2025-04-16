@@ -16,7 +16,6 @@ public class NonPlayerStatsManager : StatsManager
         //we create a new SO unique to this instance of the component. This is typical for enemies.
         if (CurrentStatsSO == null)
         {
-            Debug.Log(2);
             CurrentStatsSO = ScriptableObject.CreateInstance<IngameStatsSO>();
             InitializeStats();
         }

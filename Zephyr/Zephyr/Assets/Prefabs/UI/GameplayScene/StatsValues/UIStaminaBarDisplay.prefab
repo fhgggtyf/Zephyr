@@ -275,13 +275,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 9088288905086695125}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fea2fe1e046ac6549b0c79d817e90619, type: 3}
+  m_Script: {fileID: 11500000, guid: e1d3f7e0822e94de98a3d6a3d0c6dc70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _protagonistStats: {fileID: 11400000, guid: 16ffc6ea4b3b0194cbd2e02d5feca888, type: 2}
-  _StatsConfig: {fileID: 11400000, guid: 31d79cecdad87bd46ae10488ab9bd0ef, type: 2}
-  _StaminaText: {fileID: 8398369211731781868}
-  _staminaBarImage: {fileID: 8020089395071055517}
+  _text: {fileID: 8398369211731781868}
+  _barImage: {fileID: 8020089395071055517}
   _timeToDrop: 0.5
   _UIUpdateNeeded: {fileID: 11400000, guid: 1e31c295ef75b6649a8d7c3977af6b57, type: 2}
 --- !u!114 &7197062674345739714

@@ -200,13 +200,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5769397944091405475}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fa3de57060217d4b993e5b184d9cc38, type: 3}
+  m_Script: {fileID: 11500000, guid: e40b3a1f2e87a4f298ba28b450152f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _protagonistStats: {fileID: 11400000, guid: 16ffc6ea4b3b0194cbd2e02d5feca888, type: 2}
-  _StatsConfig: {fileID: 11400000, guid: 31d79cecdad87bd46ae10488ab9bd0ef, type: 2}
-  _ManaText: {fileID: 7363013760268737168}
-  _manaBarImage: {fileID: 6951541310895824735}
+  _text: {fileID: 7363013760268737168}
+  _barImage: {fileID: 6951541310895824735}
   _timeToDrop: 0.5
   _UIUpdateNeeded: {fileID: 11400000, guid: 1e31c295ef75b6649a8d7c3977af6b57, type: 2}
 --- !u!114 &7232403130028402949

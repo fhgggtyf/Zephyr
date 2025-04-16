@@ -35,12 +35,14 @@ public class StunnDurationTimerAction : StateAction
 
         if (_timer >= CalculateStunTime(_damageable.lastHitData.AbilityParam.stunDuration, _statsManager.GetCurrentTenacity()))
         {
+            Debug.Log("timer = " + _timer);
             character.stunOver = true;
         }
     }
 
     private float CalculateStunTime(float baseTime, float tenacity)
     {
+        Debug.Log(baseTime * (1 - tenacity / 100));
         return baseTime * (1 - tenacity / 100);
     }
 }

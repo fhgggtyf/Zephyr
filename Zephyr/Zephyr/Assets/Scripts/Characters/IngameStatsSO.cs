@@ -8,15 +8,16 @@ using UnityEngine.Localization;
 [CreateAssetMenu(fileName = "PlayersIngameStats", menuName = "EntityConfig/Player's stats")]
 public class IngameStatsSO : ScriptableObject
 {
-	[Tooltip("Stats")]
-	[SerializeField] [ReadOnly] private int _maxHealth;
-	[SerializeField] [ReadOnly] private int _currentHealth;
+    [Tooltip("Stats")]
+    [SerializeField] [ReadOnly] private int _maxHealth;
+    [SerializeField] [ReadOnly] private int _currentHealth;
     [SerializeField] [ReadOnly] private int _currentArmor;
     [SerializeField] [ReadOnly] private int _currentMR;
     [SerializeField] [ReadOnly] private int _currentAttack;
     [SerializeField] [ReadOnly] private int _currentAP;
     [SerializeField] [ReadOnly] private float _currentAttackSpeed;
     [SerializeField] [ReadOnly] private int _currentCD;
+    [SerializeField] [ReadOnly] private int _maxMana;
     [SerializeField] [ReadOnly] private int _currentMana;
     [SerializeField] [ReadOnly] private int _currentArmorIgnore;
     [SerializeField] [ReadOnly] private int _currentMRIgnore;
@@ -48,6 +49,7 @@ public class IngameStatsSO : ScriptableObject
     public int CurrentAttack { get => _currentAttack; }
     public int CurrentAP { get => _currentAP; }
     public int CurrentCD { get => _currentCD; }
+    public int MaxMana { get => _maxMana; }
     public int CurrentMana { get => _currentMana; }
     public int CurrentTenacity { get => _currentTenacity; }
     public float CurrentStamina { get => _currentStamina; }

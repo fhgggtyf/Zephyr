@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerStatsManager : StatsManager
 {
-    private IEnumerator RestoreStaminaCoroutine;
+    [Header("Broacasting on")]
+    [SerializeField] private VoidEventChannelSO _updateBarUI = default;
 
-    [SerializeField] private VoidEventChannelSO _updateStaminaUI = default;
+    [Header("Listening on")]
     [SerializeField] private SOEventChannelSO _statsSendingChannel = default;
 
     [SerializeField] private bool _canRestoreStamina = true;
@@ -17,10 +18,11 @@ public class PlayerStatsManager : StatsManager
 
     private void OnEnable()
     {
+        InitializeStats();
         _statsSendingChannel.OnEventRaised += InitializeStats;
-        RestoreStaminaCoroutine = RestoreStamina();
-        StartCoroutine(RestoreStaminaCoroutine);
+        StartCoroutine(RestoreStamina());
     }
+
     IEnumerator RestoreStamina()
     {
 
@@ -49,7 +51,7 @@ public class PlayerStatsManager : StatsManager
                 // ����RestoreStamina�����ᴦ��stamina�����ӣ����Ҳ��ᳬ�����ֵ  
                 float amountToRestore = CalculateAmountToRestore(); // ����Ҫʵ���������������ÿ��Ҫ�ָ���stamina��  
                 currentStatsSO.RestoreStamina(amountToRestore);
-                _updateStaminaUI.RaiseEvent(); // ����UI  
+                _updateBarUI.RaiseEvent(); // ����UI  
 
                 // �������ǲ�ϣ��ÿ�����Ӷ��ȴ������Ǹ������ӵ����������ȴ�ʱ�䣨����Ϊ�˼����������ֱ�Ӽ�����  
                 // ���������Ҫƽ���Ķ���Ч�����������Ҫ���������һЩ�ӳ�  
@@ -75,6 +77,8 @@ public class PlayerStatsManager : StatsManager
     {
         StatsConfigSO stats = (StatsConfigSO)statsReceived;
 
+        Debug.Log("set to calculated stats");
+
         CurrentStatsSO.SetMaxHealth(stats.InitialHealth);
         CurrentStatsSO.SetCurrentHealth(stats.InitialHealth);
         CurrentStatsSO.SetCurrentArmor(stats.InitialArmor);
@@ -83,7 +87,7 @@ public class PlayerStatsManager : StatsManager
         CurrentStatsSO.SetCurrentAttack(stats.InitialAttack);
         CurrentStatsSO.SetCurrentAP(stats.InitialAbilityPower);
         CurrentStatsSO.SetCurrentCD(stats.InitialCooldown);
-        CurrentStatsSO.SetCurrentAttackSpeed(stats.InitialBaseAttackSpeed);
+        CurrentStatsSO.SetCurrentAttackSpeed(stats.InitialAttackSpeed);
         CurrentStatsSO.SetCurrentMana(stats.InitialMana);
         CurrentStatsSO.SetCurrentLuck(stats.InitialLuck);
         CurrentStatsSO.SetCurrentStamina(stats.InitialStamina);
@@ -91,6 +95,28 @@ public class PlayerStatsManager : StatsManager
         CurrentStatsSO.SetCurrentTenacity(stats.InitialTenacity);
         CurrentStatsSO.SetCurrentCritChance(stats.InitialCritChance);
         CurrentStatsSO.SetCurrentCritDmg(stats.InitialCritDamage);
+        _updateBarUI.RaiseEvent();
+    }
+
+    protected override void InitializeStats()
+    {
+        CurrentStatsSO.SetMaxHealth(statsConfig.InitialHealth);
+        CurrentStatsSO.SetCurrentHealth(statsConfig.InitialHealth);
+        CurrentStatsSO.SetCurrentArmor(statsConfig.InitialArmor);
+        CurrentStatsSO.SetCurrentMR(statsConfig.InitialMagicResist);
+        CurrentStatsSO.SetCurrentMaxJumps(statsConfig.InitialJumpCount);
+        CurrentStatsSO.SetCurrentAttack(statsConfig.InitialAttack);
+        CurrentStatsSO.SetCurrentAP(statsConfig.InitialAbilityPower);
+        CurrentStatsSO.SetCurrentCD(statsConfig.InitialCooldown);
+        CurrentStatsSO.SetCurrentAttackSpeed(statsConfig.InitialAttackSpeed);
+        CurrentStatsSO.SetCurrentMana(statsConfig.InitialMana);
+        CurrentStatsSO.SetCurrentLuck(statsConfig.InitialLuck);
+        CurrentStatsSO.SetCurrentStamina(statsConfig.InitialStamina);
+        CurrentStatsSO.SetMaxStamina(statsConfig.InitialStamina);
+        CurrentStatsSO.SetCurrentTenacity(statsConfig.InitialTenacity);
+        CurrentStatsSO.SetCurrentCritChance(statsConfig.InitialCritChance);
+        CurrentStatsSO.SetCurrentCritDmg(statsConfig.InitialCritDamage);
+        _updateBarUI.RaiseEvent();
     }
 
     private float CalculateAmountToRestore()
@@ -115,13 +141,13 @@ public class PlayerStatsManager : StatsManager
     public void SpendStamina(float spent)
     {
         currentStatsSO.SpendStamina(spent);
-        _updateStaminaUI.RaiseEvent();
+        _updateBarUI.RaiseEvent();
     }
 
     public void ReturnStamina(int returned)
     {
         currentStatsSO.RestoreStamina(returned);
-        _updateStaminaUI.RaiseEvent();
+        _updateBarUI.RaiseEvent();
     }
 
     public float GetCurrentStamina()

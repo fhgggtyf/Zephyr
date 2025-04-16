@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class SessionDataManager : MonoBehaviour
 {
+    const int BASENUM = 50, BASELVINC = 5;
+
     [SerializeField] private UpgradeConfigSO _upgrades;
 
     [Header("Listens on")]
@@ -27,18 +29,20 @@ public class SessionDataManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void ProcessSessionData()
     {
         int totalPoints = _upgrades.PointsAvailable;
+        int[] potentialLv = _upgrades.GetPotentialLevelsArray();
+        int[] potential = DistributePoints(totalPoints, potentialLv.Select(x => x + 3).ToArray());
 
-        int[] potential = _upgrades.GetPotentialLevelsArray();
-        potential = potential.Select(x => x + 3).ToArray();
+        int[] baseLv = _upgrades.GetBaseLevelsArray();
+        int[] baseNum = BaseLvToNum(baseLv);
 
-        _baseStats = StatBlock.FromArray(_upgrades.GetBaseLevelsArray());
-        _potentialStats = StatBlock.FromArray(DistributePoints(totalPoints, potential));
+        _baseStats = StatBlock.FromArray(baseNum);
+        _potentialStats = StatBlock.FromArray(potential);
 
         StatBlockPair basePotentialPair = new()
         {
@@ -51,7 +55,19 @@ public class SessionDataManager : MonoBehaviour
         _passingStats.RaiseEvent(serialized);
     }
 
-    public static int[] DistributePoints(int totalPoints, int[] maxPerStat)
+    private static int[] BaseLvToNum(int[] baseLv)
+    {
+        int numStats = baseLv.Length;
+        int[] result = new int[numStats];
+
+        for (int i = 0; i < baseLv.Length; i++)
+        {
+            result[i] = BASENUM + BASELVINC * baseLv[i];
+        }
+        return result;
+    }
+
+    private static int[] DistributePoints(int totalPoints, int[] maxPerStat)
     {
         int numStats = maxPerStat.Length;
         int[] result = new int[numStats];

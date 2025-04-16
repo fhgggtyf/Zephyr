@@ -665,7 +665,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8762428160932935201, guid: 93f47072691b41b41b240feacbc1b29b, type: 3}
       propertyPath: _statType
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2032,7 +2032,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8762428160932935201, guid: 93f47072691b41b41b240feacbc1b29b, type: 3}
       propertyPath: _statType
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3056,7 +3056,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8762428160932935201, guid: 93f47072691b41b41b240feacbc1b29b, type: 3}
       propertyPath: _statType
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3281,7 +3281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8762428160932935201, guid: 93f47072691b41b41b240feacbc1b29b, type: 3}
       propertyPath: _statType
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3912,7 +3912,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8762428160932935201, guid: 93f47072691b41b41b240feacbc1b29b, type: 3}
       propertyPath: _statType
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4269,7 +4269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8762428160932935201, guid: 93f47072691b41b41b240feacbc1b29b, type: 3}
       propertyPath: _statType
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6072,7 +6072,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8762428160932935201, guid: 93f47072691b41b41b240feacbc1b29b, type: 3}
       propertyPath: _statType
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6515,7 +6515,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8762428160932935201, guid: 93f47072691b41b41b240feacbc1b29b, type: 3}
       propertyPath: _statType
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6681,7 +6681,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8762428160932935201, guid: 93f47072691b41b41b240feacbc1b29b, type: 3}
       propertyPath: _statType
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6866,6 +6866,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1028963200}
     m_Modifications:
+    - target: {fileID: 1018335133554993820, guid: 5baab744003fa90468916682133ba8cf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1018335133554993820, guid: 5baab744003fa90468916682133ba8cf, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1018335133554993820, guid: 5baab744003fa90468916682133ba8cf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1018335133554993820, guid: 5baab744003fa90468916682133ba8cf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2109174991132473102, guid: 5baab744003fa90468916682133ba8cf, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6949,6 +6965,22 @@ PrefabInstance:
     - target: {fileID: 6905880026564758883, guid: 5baab744003fa90468916682133ba8cf, type: 3}
       propertyPath: m_Name
       value: UIHealthBarDisplay
+      objectReference: {fileID: 0}
+    - target: {fileID: 8647301023193257890, guid: 5baab744003fa90468916682133ba8cf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8647301023193257890, guid: 5baab744003fa90468916682133ba8cf, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8647301023193257890, guid: 5baab744003fa90468916682133ba8cf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8647301023193257890, guid: 5baab744003fa90468916682133ba8cf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

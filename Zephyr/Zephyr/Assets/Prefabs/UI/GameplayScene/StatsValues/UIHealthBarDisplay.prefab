@@ -332,13 +332,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6905880026564758883}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9a5ef1bcd0489248873f6e245cc4c53, type: 3}
+  m_Script: {fileID: 11500000, guid: c5ea55b83bbde4de0a2d9e8706f2296c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _protagonistStats: {fileID: 11400000, guid: 16ffc6ea4b3b0194cbd2e02d5feca888, type: 2}
-  _StatsConfig: {fileID: 11400000, guid: 31d79cecdad87bd46ae10488ab9bd0ef, type: 2}
-  _healthText: {fileID: 7043299509007555936}
-  _healthBarImage: {fileID: 6237845087268251429}
+  _text: {fileID: 7043299509007555936}
+  _barImage: {fileID: 6237845087268251429}
   _timeToDrop: 0.5
   _UIUpdateNeeded: {fileID: 11400000, guid: 1e31c295ef75b6649a8d7c3977af6b57, type: 2}
 --- !u!114 &6309824527719734465

@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81175c746d19aff488cf8924f338f821, type: 3}
   m_Name: PlayersStats
   m_EditorClassIdentifier: 
-  _maxHealth: 500
-  _currentHealth: 500
+  _maxHealth: 1000000
+  _currentHealth: 1000000
   _currentArmor: 100
   _currentMR: 100
   _currentAttack: 100
   _currentAP: 100
+  _currentAttackSpeed: 100
   _currentCD: 0
   _currentMana: 200
   _currentArmorIgnore: 0

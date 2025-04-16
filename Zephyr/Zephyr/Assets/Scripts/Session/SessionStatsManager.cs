@@ -38,6 +38,8 @@ public class SessionStatsManager : MonoBehaviour
         _baseStats = deserialized.BaseStats;
         _potentialStats = deserialized.PotentialStats;
 
+        _playerStats.InitializeBaseStats(_baseStats);
+
 
     }
 

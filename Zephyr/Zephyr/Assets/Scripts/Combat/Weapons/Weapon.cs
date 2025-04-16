@@ -77,7 +77,7 @@ public class Weapon : MonoBehaviour
         Anim.SetBool("active", true);
         Anim.SetInteger("counter", currentAttackCounter);
 
-        Anim.speed = attackSpeed;
+        Anim.speed = (float)(attackSpeed / 100.0);
 
         OnEnter?.Invoke();
     }
