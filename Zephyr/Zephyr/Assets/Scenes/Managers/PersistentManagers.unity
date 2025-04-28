@@ -479,6 +479,7 @@ MonoBehaviour:
   _onEnterHome: {fileID: 11400000, guid: 3c51108822fc24b25b020711ad7639ef, type: 2}
   _onEnterLocation: {fileID: 11400000, guid: d17675f4e68d44605a9908a995a8dac5, type: 2}
   _fadeRequestChannel: {fileID: 11400000, guid: 306df8a505d7cd347890c4d8aef4fd16, type: 2}
+  _onColdStartup: {fileID: 11400000, guid: b6168dc6f75a49a4f801c4ad0a8af72c, type: 2}
 --- !u!1 &1242883679
 GameObject:
   m_ObjectHideFlags: 0

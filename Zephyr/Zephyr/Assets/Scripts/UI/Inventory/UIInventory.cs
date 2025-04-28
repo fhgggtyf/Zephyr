@@ -12,7 +12,8 @@ public class UIInventory : MonoBehaviour
     [SerializeField] private GameObject _contentParent = default;
     //[SerializeField] private GameObject _errorPotMessage = default;
     //[SerializeField] private UIInventoryInspector _inspectorPanel = default;
-    [SerializeField] private List<InventoryTabSO> _tabTypesList = new List<InventoryTabSO>();
+    [SerializeField] private List<InventoryTabSO> _inventoryTabTypesList = new List<InventoryTabSO>();
+    [SerializeField] private List<StatTabSO> _statTabTypesList = new List<StatTabSO>();
     [SerializeField] private List<UIInventoryItem> _availableItemSlots = default;
 
     [Header("Listening to")]
@@ -63,7 +64,7 @@ public class UIInventory : MonoBehaviour
         if (orientation != 0)
         {
             bool isLeft = orientation < 0;
-            int initialIndex = _tabTypesList.FindIndex(o => o == _selectedTab);
+            int initialIndex = _inventoryTabTypesList.FindIndex(o => o == _selectedTab);
             if (initialIndex != -1)
             {
                 if (isLeft)
@@ -75,10 +76,10 @@ public class UIInventory : MonoBehaviour
                     initialIndex++;
                 }
 
-                initialIndex = Mathf.Clamp(initialIndex, 0, _tabTypesList.Count - 1);
+                initialIndex = Mathf.Clamp(initialIndex, 0, _inventoryTabTypesList.Count - 1);
             }
 
-            OnChangeTab(_tabTypesList[initialIndex]);
+            OnChangeTab(_inventoryTabTypesList[initialIndex]);
         }
     }
 
@@ -86,24 +87,26 @@ public class UIInventory : MonoBehaviour
     {
         //_isNearPot = isNearPot;
 
-        if ((_tabTypesList.Exists(o => o.TabType == _selectedTabType)))
+        Debug.Log(_selectedTabType);
+
+        if (_inventoryTabTypesList.Exists(o => o.TabType == _selectedTabType))
         {
-            _selectedTab = _tabTypesList.Find(o => o.TabType == _selectedTabType);
+            _selectedTab = _inventoryTabTypesList.Find(o => o.TabType == _selectedTabType);
         }
         else
         {
-            if (_tabTypesList != null)
+            if (_inventoryTabTypesList != null)
             {
-                if (_tabTypesList.Count > 0)
+                if (_inventoryTabTypesList.Count > 0)
                 {
-                    _selectedTab = _tabTypesList[0];
+                    _selectedTab = _inventoryTabTypesList[0];
                 }
             }
         }
 
         if (_selectedTab != null)
         {
-            SetTabs(_tabTypesList, _selectedTab);
+            SetTabs(_inventoryTabTypesList, _selectedTab);
             List<ItemStack> listItemsToShow = new List<ItemStack>();
             listItemsToShow = _currentInventory.Items.FindAll(o => o.Item != null && o.Item.ItemType.TabType == _selectedTab);
 

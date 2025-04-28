@@ -8,6 +8,7 @@ using UnityEngine.Localization;
 [CreateAssetMenu(fileName = "PlayersIngameStats", menuName = "EntityConfig/Player's stats")]
 public class IngameStatsSO : ScriptableObject
 {
+
     [Tooltip("Stats")]
     [SerializeField] [ReadOnly] private int _maxHealth;
     [SerializeField] [ReadOnly] private int _currentHealth;
@@ -74,7 +75,7 @@ public class IngameStatsSO : ScriptableObject
 
     public void InflictDamage(int DamageValue)
     {
-        _currentHealth -= DamageValue;
+        _currentHealth = Mathf.Max(_currentHealth - DamageValue, 0);
     }
 
     public void RestoreHealth(int HealthValue)

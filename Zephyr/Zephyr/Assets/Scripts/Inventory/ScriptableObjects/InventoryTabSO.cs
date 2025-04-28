@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Localization;
+using UnityEngine.UI;
 // Created with collaboration from:
 // https://forum.unity.com/threads/inventory-system.980646/
 

@@ -20,16 +20,9 @@ public class SessionDataManager : MonoBehaviour
     private StatBlock _baseStats;
     private StatBlock _potentialStats;
 
-    // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         _sessionStarted.OnEventRaised += ProcessSessionData;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     private void ProcessSessionData()

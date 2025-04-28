@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: InventoryTab
   m_EditorClassIdentifier: 
   _tabIcon: {fileID: 21300000, guid: 299599986b195ec44ba0d4bf6f4d4804, type: 3}
-  _tabType: 1
+  _tabType: 0

@@ -8,13 +8,6 @@ using Zephyr.StateMachine.ScriptableObjects;
 public class GroundEnemyLookForPlayerActionSO : StateActionSO<GroundEnemyLookForPlayerAction>
 {
     public float frontTime, backTime;
-
-    public event UnityAction FlipEvent = delegate { };
-
-    public void InvokeEvent()
-    {
-        FlipEvent.Invoke();
-    }
 }
 
 public class GroundEnemyLookForPlayerAction : StateAction
@@ -41,13 +34,11 @@ public class GroundEnemyLookForPlayerAction : StateAction
     {
         _timer = 0;
         _flipped = false;
-        _originSO.FlipEvent += Movement.Flip;
         _npc.shouldTransit = false;
     }
 
     public override void OnStateExit()
     {
-        _originSO.FlipEvent -= Movement.Flip;
     }
 
     public override void OnUpdate()
@@ -56,7 +47,7 @@ public class GroundEnemyLookForPlayerAction : StateAction
         if (_timer >= _originSO.frontTime && _flipped == false)
         {
             _flipped = true;
-            _originSO.InvokeEvent();
+            Movement.Flip();
         }
         else if (_flipped == true && _timer >= _originSO.frontTime + _originSO.backTime)
         {

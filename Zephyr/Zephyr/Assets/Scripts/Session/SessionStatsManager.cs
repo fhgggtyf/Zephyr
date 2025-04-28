@@ -12,24 +12,21 @@ public class SessionStatsManager : MonoBehaviour
 
     [Header("Broadcasting on")]
     [SerializeField] private SOEventChannelSO _stats;
+    [SerializeField] private VoidEventChannelSO _onSessionStarted;
 
 
     private StatBlock _baseStats;
     private StatBlock _potentialStats;
 
-    // Start is called before the first frame update
-    private void Start()
+    private void OnEnable()
     {
+
+        _onSessionStarted.RaiseEvent();
+
         _statsPairChannel.OnEventRaised += ParseStats;
         _playerInstantiated.OnEventRaised += SendStats;
 
         //on death trigger recalculation of base and potential (unimplemented)
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     private void ParseStats(string serialized)

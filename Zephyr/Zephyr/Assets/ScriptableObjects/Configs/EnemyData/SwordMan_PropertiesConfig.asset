@@ -19,5 +19,5 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 1024
-  enemyAbilityData: {fileID: 0}
+  enemyAbilityData: {fileID: 11400000, guid: 31904b7c21125a344a229bb3e52bd0b2, type: 2}
   type: 0

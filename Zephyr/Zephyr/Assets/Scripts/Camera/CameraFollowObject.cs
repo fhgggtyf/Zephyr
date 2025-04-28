@@ -8,7 +8,6 @@ public class CameraFollowObject : MonoBehaviour
     [SerializeField] private float _flipRotationTime = 0.5f;
     [SerializeField] private Player _player;
     [SerializeField] private TransformEventChannelSO _playerInstantiatedChannel;
-    [SerializeField] private VoidEventChannelSO _playerFlippedChannel;
 
     protected Movement Movement
     {
@@ -20,13 +19,11 @@ public class CameraFollowObject : MonoBehaviour
     private void OnEnable()
     {
         _playerInstantiatedChannel.OnEventRaised += AddPlayer;
-        _playerFlippedChannel.OnEventRaised += CallTurn;
     }
 
     private void OnDisable()
     {
         _playerInstantiatedChannel.OnEventRaised -= AddPlayer;
-        _playerFlippedChannel.OnEventRaised -= CallTurn;
     }
 
     // Update is called once per frame

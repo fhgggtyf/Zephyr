@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28cf7d637341f7e4e99c194a8d45dc92, type: 3}
-  m_Name: PlayerFlipEvent
+  m_Script: {fileID: 11500000, guid: c85e42b64ce367f4eb0346ada0ed988a, type: 3}
+  m_Name: PotentialTab
   m_EditorClassIdentifier: 
-  _guid: 
-  description: 
+  _tabName: Potential
+  _tabType: 1

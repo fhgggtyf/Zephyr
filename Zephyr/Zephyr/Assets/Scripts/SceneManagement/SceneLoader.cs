@@ -72,6 +72,8 @@ public class SceneLoader : MonoBehaviour
     {
         _currentlyLoadedScene = currentlyOpenedLocation;
 
+        _fadeRequestChannel.FadeIn(_fadeInDuration);
+
         if (_currentlyLoadedScene.sceneType == GameSceneSO.GameSceneType.Location)
         {
             //Gameplay managers is loaded synchronously
@@ -171,7 +173,6 @@ public class SceneLoader : MonoBehaviour
 
     private void OnSessionManagersLoaded(AsyncOperationHandle<SceneInstance> obj)
     {
-        _onSessionStart.RaiseEvent();
         _sessionManagerSceneInstance = _sessionManagerLoadingOpHandle.Result;
 
         StartCoroutine(UnloadPreviousScene());
