@@ -118,6 +118,8 @@
     <type fullname="KnockBackMovementActionSO" preserve="all" />
     <type fullname="LoadEventChannelSO" preserve="all" />
     <type fullname="LoadingInterfaceController" preserve="all" />
+    <type fullname="LocationEntrance" preserve="all" />
+    <type fullname="LocationExit" preserve="all" />
     <type fullname="LocationSO" preserve="all" />
     <type fullname="MenuSelectionHandler" preserve="all" />
     <type fullname="MenuSO" preserve="all" />
@@ -129,6 +131,7 @@
     <type fullname="NPCSpawnManager" preserve="all" />
     <type fullname="OnGroundFrictionSO" preserve="all" />
     <type fullname="OptionalSpriteMarker" preserve="all" />
+    <type fullname="PathSO" preserve="all" />
     <type fullname="PathStorageSO" preserve="all" />
     <type fullname="PlayableDirectorChannelSO" preserve="all" />
     <type fullname="Player" preserve="all" />
@@ -136,19 +139,26 @@
     <type fullname="PlayerStatsManager" preserve="all" />
     <type fullname="ResetIsHitActionSO" preserve="all" />
     <type fullname="ResetJumpCountSO" preserve="all" />
+    <type fullname="ResolutionManager" preserve="all" />
     <type fullname="RollDashTimeStaminaCostActionSO" preserve="all" />
     <type fullname="RunStaminaCostActionSO" preserve="all" />
     <type fullname="SaveSystem" preserve="all" />
     <type fullname="SceneLoader" preserve="all" />
+    <type fullname="SessionDataManager" preserve="all" />
+    <type fullname="SessionManagerSO" preserve="all" />
+    <type fullname="SessionStatsManager" preserve="all" />
     <type fullname="SetIsRunningIfWasRunningSO" preserve="all" />
     <type fullname="SettingsSO" preserve="all" />
     <type fullname="SettingsSystem" preserve="all" />
+    <type fullname="SOEventChannelSO" preserve="all" />
     <type fullname="SoundEmitter" preserve="all" />
     <type fullname="SoundEmitterFactorySO" preserve="all" />
     <type fullname="SoundEmitterPoolSO" preserve="all" />
     <type fullname="StartGame" preserve="all" />
     <type fullname="StatsConfigSO" preserve="all" />
+    <type fullname="StatTabSO" preserve="all" />
     <type fullname="StopHorizontalMovementVectorSO" preserve="all" />
+    <type fullname="StringEventChannelSO" preserve="all" />
     <type fullname="StunnDurationTimerActionSO" preserve="all" />
     <type fullname="StunOverConditionSO" preserve="all" />
     <type fullname="Swordman" preserve="all" />
@@ -156,6 +166,7 @@
     <type fullname="TransformEventChannelSO" preserve="all" />
     <type fullname="TriggerDeathEventActionSO" preserve="all" />
     <type fullname="UIActionButton" preserve="all" />
+    <type fullname="UIBarDisplays" preserve="all" />
     <type fullname="UICredits" preserve="all" />
     <type fullname="UIDialogueChoicesManager" preserve="all" />
     <type fullname="UIDialogueManager" preserve="all" />
@@ -174,6 +185,9 @@
     <type fullname="UISettingsController" preserve="all" />
     <type fullname="UIStaminaBarManager" preserve="all" />
     <type fullname="UIStatElement" preserve="all" />
+    <type fullname="UIStatTab" preserve="all" />
+    <type fullname="UIStatTabs" preserve="all" />
+    <type fullname="UpgradeConfigSO" preserve="all" />
     <type fullname="VoidEventChannelSO" preserve="all" />
     <type fullname="Weapon" preserve="all" />
     <type fullname="WeaponDataSO" preserve="all" />

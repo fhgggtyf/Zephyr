@@ -17,7 +17,7 @@ MonoBehaviour:
   _initialActualMagicResist: 50
   _initialActualAttack: 50
   _initialActualAbilityPower: 50
-  _initialActualAttackSpeed: 1313123123
+  _initialActualAttackSpeed: 100
   _initialActualMana: 100
   _initialActualTenacity: 0
   _initialActualStamina: 100
@@ -25,4 +25,4 @@ MonoBehaviour:
   _initialActualCooldown: 0
   _initialCritChance: 0
   _initialCritDamage: 0
-  _initialJumpCount: 0
+  _initialJumpCount: 2

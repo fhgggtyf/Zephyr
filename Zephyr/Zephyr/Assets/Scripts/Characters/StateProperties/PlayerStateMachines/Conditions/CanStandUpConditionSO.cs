@@ -18,9 +18,7 @@ public class CanStandUpCondition : Condition
 	}
 
     public override void OnStateExit()
-    {
-		Debug.Log(!_collisionSenses.CrouchCeiling);
-    }
+    {}
 
     protected override bool Statement()
 	{

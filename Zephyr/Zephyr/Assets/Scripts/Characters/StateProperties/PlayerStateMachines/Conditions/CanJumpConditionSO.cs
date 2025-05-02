@@ -20,6 +20,7 @@ public class CanJumpCondition : Condition
 
     protected override bool Statement()
     {
+        Debug.Log("Jump count con?: " + (_player.jumpCount < _statsManager.GetMaxJumps()));
         return _player.jumpCount < _statsManager.GetMaxJumps();
     }
 

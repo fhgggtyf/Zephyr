@@ -52,7 +52,6 @@ public class SaveSystem : ScriptableObject
     {
         if (FileManager.LoadFromFile(saveFilename, out var json))
         {
-            Debug.Log(json);
             saveData.LoadFromJson(json);
             return true;
         }

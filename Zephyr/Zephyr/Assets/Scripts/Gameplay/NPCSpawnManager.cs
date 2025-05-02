@@ -23,7 +23,6 @@ public class NPCSpawnManager : MonoBehaviour
 
 		foreach (Transform child in _npcSpawnRoot.transform)
 		{
-            Debug.Log(child);
 			_enemySpawnLocations.Add(child);
 		}
 	}

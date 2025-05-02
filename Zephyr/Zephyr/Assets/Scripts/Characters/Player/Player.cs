@@ -21,7 +21,7 @@ public class Player : Character
     [NonSerialized] public bool isRolling;
     [NonSerialized] public bool isAbilityFinished;
     [NonSerialized] public int jumpCount;
-    [NonSerialized] public bool jumpIncremented;
+    [SerializeField] public bool jumpIncremented;
     [NonSerialized] public bool isClimbing;
 
     private void Awake()
@@ -75,7 +75,6 @@ public class Player : Character
     void Update()
     {
 
-        Debug.Log(isRunning);
     }
 
     private void OnAbilityFinished() => isAbilityFinished = true;

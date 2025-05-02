@@ -18,6 +18,7 @@ public class HasJumpCondition : Condition
 
     protected override bool Statement()
     {
+        Debug.Log("Jumped incremented: " + _player.jumpIncremented);
         return _player.jumpIncremented;
     }
 

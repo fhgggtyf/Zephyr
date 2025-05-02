@@ -22,8 +22,14 @@ public class InitVeritcalVeloAction : StateAction
 
     public override void OnStateEnter()
     {
+        Debug.Log("Boost start");
         _character.movementVector.y = _originSO.initVelo;
     }
 
     public override void OnUpdate() { }
+
+    public override void OnStateExit()
+    {
+        Debug.Log("Boost over");
+    }
 }
