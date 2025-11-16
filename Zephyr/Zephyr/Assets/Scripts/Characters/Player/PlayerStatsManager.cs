@@ -166,18 +166,3 @@ public class PlayerStatsManager : StatsManager
     }
 }
 
-public enum StatTypes
-{
-    MaxHealth,
-    CurrentHealth,
-    Armor,
-    MagicResist,
-    Attack,
-    MagicPower,
-    ArmorIgnor,
-    MRIgnore,
-    Stamina,
-    Tenacity,
-    Luck
-
-}

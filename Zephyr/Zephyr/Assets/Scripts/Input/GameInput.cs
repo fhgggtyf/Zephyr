@@ -437,6 +437,15 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""8d5cf358-34d2-48b3-8962-17c21ddc911f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -725,6 +734,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""427088d7-2363-44ae-84e7-030f766e893a"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -851,6 +871,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_Menus_Point = m_Menus.FindAction("Point", throwIfNotFound: true);
         m_Menus_RightClick = m_Menus.FindAction("RightClick", throwIfNotFound: true);
         m_Menus_CloseInventory = m_Menus.FindAction("CloseInventory", throwIfNotFound: true);
+        m_Menus_Pause = m_Menus.FindAction("Pause", throwIfNotFound: true);
         // Dialogues
         m_Dialogues = asset.FindActionMap("Dialogues", throwIfNotFound: true);
         m_Dialogues_MoveSelection = m_Dialogues.FindAction("MoveSelection", throwIfNotFound: true);
@@ -1041,6 +1062,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Menus_Point;
     private readonly InputAction m_Menus_RightClick;
     private readonly InputAction m_Menus_CloseInventory;
+    private readonly InputAction m_Menus_Pause;
     public struct MenusActions
     {
         private @GameInput m_Wrapper;
@@ -1060,6 +1082,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         public InputAction @Point => m_Wrapper.m_Menus_Point;
         public InputAction @RightClick => m_Wrapper.m_Menus_RightClick;
         public InputAction @CloseInventory => m_Wrapper.m_Menus_CloseInventory;
+        public InputAction @Pause => m_Wrapper.m_Menus_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Menus; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1114,6 +1137,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @CloseInventory.started += instance.OnCloseInventory;
             @CloseInventory.performed += instance.OnCloseInventory;
             @CloseInventory.canceled += instance.OnCloseInventory;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IMenusActions instance)
@@ -1163,6 +1189,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @CloseInventory.started -= instance.OnCloseInventory;
             @CloseInventory.performed -= instance.OnCloseInventory;
             @CloseInventory.canceled -= instance.OnCloseInventory;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IMenusActions instance)
@@ -1263,6 +1292,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         void OnPoint(InputAction.CallbackContext context);
         void OnRightClick(InputAction.CallbackContext context);
         void OnCloseInventory(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IDialoguesActions
     {

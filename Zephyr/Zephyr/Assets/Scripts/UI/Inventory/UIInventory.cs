@@ -14,10 +14,12 @@ public class UIInventory : MonoBehaviour
     //[SerializeField] private UIInventoryInspector _inspectorPanel = default;
     [SerializeField] private List<InventoryTabSO> _inventoryTabTypesList = new List<InventoryTabSO>();
     [SerializeField] private List<StatTabSO> _statTabTypesList = new List<StatTabSO>();
+    [SerializeField] private List<UIStatPanel> _instantiatedPanels = default;
     [SerializeField] private List<UIInventoryItem> _availableItemSlots = default;
 
     [Header("Listening to")]
-    [SerializeField] private UIInventoryTabs _tabsPanel = default;
+    [SerializeField] private UIInventoryTabs _inventoryTabsPanel = default;
+    [SerializeField] private UIStatTabs _statTabsPanel = default;
     [SerializeField] private UIActionButton _actionButton = default;
     [SerializeField] private VoidEventChannelSO _onInteractionEndedEvent = default;
 
@@ -27,14 +29,16 @@ public class UIInventory : MonoBehaviour
     [SerializeField] private ItemEventChannelSO _equipItemEvent = default;
     //[SerializeField] private ItemEventChannelSO _cookRecipeEvent = default;
 
-    private InventoryTabSO _selectedTab = default;
+    private InventoryTabSO _selectedInventoryTab = default;
+    private StatTabSO _selectedStatTab = default;
     //private bool _isNearPot = false;
     private int selectedItemId = -1;
 
     private void OnEnable()
     {
         _actionButton.Clicked += OnActionButtonClicked;
-        _tabsPanel.TabChanged += OnChangeTab;
+        _inventoryTabsPanel.TabChanged += OnChangeInventoryTab;
+        _statTabsPanel.TabChanged += OnChangeStatsTab;
         _onInteractionEndedEvent.OnEventRaised += InteractionEnded;
 
         for (int i = 0; i < _availableItemSlots.Count; i++)
@@ -42,13 +46,14 @@ public class UIInventory : MonoBehaviour
             _availableItemSlots[i].ItemSelected += InspectItem;
         }
 
-        _inputReader.TabSwitched += OnSwitchTab;
+        _inputReader.TabSwitched += OnSwitchInventoryTab;
     }
 
     private void OnDisable()
     {
         _actionButton.Clicked -= OnActionButtonClicked;
-        _tabsPanel.TabChanged -= OnChangeTab;
+        _inventoryTabsPanel.TabChanged -= OnChangeInventoryTab;
+        _statTabsPanel.TabChanged -= OnChangeStatsTab;
         _onInteractionEndedEvent.OnEventRaised -= InteractionEnded;
 
         for (int i = 0; i < _availableItemSlots.Count; i++)
@@ -56,15 +61,15 @@ public class UIInventory : MonoBehaviour
             _availableItemSlots[i].ItemSelected -= InspectItem;
         }
 
-        _inputReader.TabSwitched -= OnSwitchTab;
+        _inputReader.TabSwitched -= OnSwitchInventoryTab;
     }
 
-    private void OnSwitchTab(float orientation)
+    private void OnSwitchInventoryTab(float orientation)
     {
         if (orientation != 0)
         {
             bool isLeft = orientation < 0;
-            int initialIndex = _inventoryTabTypesList.FindIndex(o => o == _selectedTab);
+            int initialIndex = _inventoryTabTypesList.FindIndex(o => o == _selectedInventoryTab);
             if (initialIndex != -1)
             {
                 if (isLeft)
@@ -79,7 +84,7 @@ public class UIInventory : MonoBehaviour
                 initialIndex = Mathf.Clamp(initialIndex, 0, _inventoryTabTypesList.Count - 1);
             }
 
-            OnChangeTab(_inventoryTabTypesList[initialIndex]);
+            OnChangeInventoryTab(_inventoryTabTypesList[initialIndex]);
         }
     }
 
@@ -91,7 +96,7 @@ public class UIInventory : MonoBehaviour
 
         if (_inventoryTabTypesList.Exists(o => o.TabType == _selectedTabType))
         {
-            _selectedTab = _inventoryTabTypesList.Find(o => o.TabType == _selectedTabType);
+            _selectedInventoryTab = _inventoryTabTypesList.Find(o => o.TabType == _selectedTabType);
         }
         else
         {
@@ -99,16 +104,16 @@ public class UIInventory : MonoBehaviour
             {
                 if (_inventoryTabTypesList.Count > 0)
                 {
-                    _selectedTab = _inventoryTabTypesList[0];
+                    _selectedInventoryTab = _inventoryTabTypesList[0];
                 }
             }
         }
 
-        if (_selectedTab != null)
+        if (_selectedInventoryTab != null)
         {
-            SetTabs(_inventoryTabTypesList, _selectedTab);
+            SetInventoryTabs(_inventoryTabTypesList, _selectedInventoryTab);
             List<ItemStack> listItemsToShow = new List<ItemStack>();
-            listItemsToShow = _currentInventory.Items.FindAll(o => o.Item != null && o.Item.ItemType.TabType == _selectedTab);
+            listItemsToShow = _currentInventory.Items.FindAll(o => o.Item != null && o.Item.ItemType.TabType == _selectedInventoryTab);
 
             FillInvetoryItems(listItemsToShow);
         }
@@ -123,9 +128,9 @@ public class UIInventory : MonoBehaviour
         //_isNearPot = false;
     }
 
-    void SetTabs(List<InventoryTabSO> typesList, InventoryTabSO selectedType)
+    void SetInventoryTabs(List<InventoryTabSO> typesList, InventoryTabSO selectedType)
     {
-        _tabsPanel.SetTabs(typesList, selectedType);
+        _inventoryTabsPanel.SetTabs(typesList, selectedType);
     }
 
     void FillInvetoryItems(List<ItemStack> listItemsToShow)
@@ -266,7 +271,7 @@ public class UIInventory : MonoBehaviour
 
     void UpdateInventory()
     {
-        FillInventory(_selectedTab.TabType);
+        FillInventory(_selectedInventoryTab.TabType);
     }
 
     void OnActionButtonClicked()
@@ -319,9 +324,65 @@ public class UIInventory : MonoBehaviour
         _equipItemEvent.RaiseEvent(itemToUse);
     }
 
-    void OnChangeTab(InventoryTabSO tabType)
+    void OnChangeInventoryTab(InventoryTabSO tabType)
     {
         FillInventory(tabType.TabType);
+    }
+
+    void OnChangeStatsTab(StatTabSO tabType)
+    {
+        FillStats(tabType.TabType);
+    }
+
+    public void FillStats(StatTabType _selectedTabType = StatTabType.Stats)
+    {
+        //_isNearPot = isNearPot;
+
+        Debug.Log(_selectedTabType);
+
+        if (_statTabTypesList.Exists(o => o.TabType == _selectedTabType))
+        {
+            _selectedStatTab = _statTabTypesList.Find(o => o.TabType == _selectedTabType);
+        }
+        else
+        {
+            if (_statTabTypesList != null)
+            {
+                if (_statTabTypesList.Count > 0)
+                {
+                    _selectedStatTab = _statTabTypesList[0];
+                }
+            }
+        }
+
+        if (_selectedStatTab != null)
+        {
+            SetStatTabs(_statTabTypesList, _selectedStatTab);
+            //List<ItemStack> listItemsToShow = new List<ItemStack>();
+            //listItemsToShow = _currentInventory.Items.FindAll(o => o.Item != null && o.Item.ItemType.TabType == _selectedInventoryTab);
+
+            //FillInvetoryItems(listItemsToShow);
+            for (int i = 0; i < _instantiatedPanels.Count; i++)
+            {
+                if (_instantiatedPanels[i].TabType == _selectedTabType)
+                {
+                    _instantiatedPanels[i].gameObject.SetActive(true);
+                }
+                else
+                {
+                    _instantiatedPanels[i].gameObject.SetActive(false);
+                }
+            }
+        }
+        else
+        {
+            Debug.LogError("There's no selected tab");
+        }
+    }
+
+    void SetStatTabs(List<StatTabSO> typesList, StatTabSO selectedType)
+    {
+        _statTabsPanel.SetTabs(typesList, selectedType);
     }
 
     public void CloseInventory()

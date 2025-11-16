@@ -21,7 +21,8 @@ public class IsWalkingCondition : Condition
 	protected override bool Statement()
 	{
 		Vector2 movementVector = _playerScript.InputVector;
-		movementVector.y = 0f;
+		Debug.Log("Movement Vector: " + movementVector);
+        movementVector.y = 0f;
         return movementVector.sqrMagnitude > _originSO.treshold;
 	}
 }

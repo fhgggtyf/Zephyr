@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d277571e4297fd4a98bfc0fd2596b17, type: 3}
   m_Name: Upgrades_Config
   m_EditorClassIdentifier: 
-  _guid: 
+  _guid: 366da4d83f70ad949a5e29d4b138e42b
+  _pointsAvailable: 0
   _PotentialHealthLv: 0
   _PotentialArmorLv: 0
   _PotentialMagicResistLv: 0

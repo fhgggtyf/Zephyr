@@ -8,9 +8,9 @@ public class UIStatTabs : MonoBehaviour
 {
 	[SerializeField] private List<UIStatTab> _instantiatedGameObjects;
 
-	public event UnityAction<StatTabSO> TabChanged;
+    public event UnityAction<StatTabSO> TabChanged;
 
-	private bool _canDisableLayout = false;
+    private bool _canDisableLayout = false;
 
 	public void SetTabs(List<StatTabSO> typesList, StatTabSO selectedType)
 	{
@@ -24,7 +24,8 @@ public class UIStatTabs : MonoBehaviour
 
 		for (int i = 0; i < maxCount; i++)
 		{
-			if (i < typesList.Count)
+			Debug.Log($"Setting tab {i}");
+            if (i < typesList.Count)
 			{
 				if (i >= _instantiatedGameObjects.Count)
 				{
@@ -34,7 +35,6 @@ public class UIStatTabs : MonoBehaviour
 				//fill
 				_instantiatedGameObjects[i].SetTab(typesList[i], isSelected);
 				_instantiatedGameObjects[i].gameObject.SetActive(true);
-				_instantiatedGameObjects[i].TabClicked += ChangeTab;
 
 			}
 			else if (i < _instantiatedGameObjects.Count)
@@ -83,17 +83,24 @@ public class UIStatTabs : MonoBehaviour
 		}
 	}
 
-	private void OnEnable()
-	{
-		if ((gameObject.GetComponent<VerticalLayoutGroup>() != null) && _canDisableLayout)
-		{
-			gameObject.GetComponent<VerticalLayoutGroup>().enabled = false;
-			_canDisableLayout = false;
-		}
-	}
+    void OnEnable()
+    {
+        if ((gameObject.GetComponent<VerticalLayoutGroup>() != null) && _canDisableLayout)
+        {
+            gameObject.GetComponent<VerticalLayoutGroup>().enabled = false;
+            _canDisableLayout = false;
+        }
 
-	void ChangeTab(StatTabSO newTabType)
+        foreach (UIStatTab i in _instantiatedGameObjects)
+        {
+            i.TabClicked += ChangeTab;
+        }
+    }
+
+    void ChangeTab(StatTabSO newTabType)
 	{
 		TabChanged.Invoke(newTabType);
-	}
+    }
+
+
 }

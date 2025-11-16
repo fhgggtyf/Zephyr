@@ -56,8 +56,8 @@ public class UIManager : MonoBehaviour
 		//_setInteractionEvent.OnEventRaised += SetInteractionPanel;
 		_inputReader.OpenInventoryEvent += SetInventoryScreen;
 		_inventoryPanel.Closed += CloseInventoryScreen;
-		//_cookRecipeEvent.OnEventRaised += PlayCookingAnimation;
-	}
+        //_cookRecipeEvent.OnEventRaised += PlayCookingAnimation;
+    }
 
 	private void OnDisable()
 	{
@@ -70,8 +70,8 @@ public class UIManager : MonoBehaviour
 		//_setInteractionEvent.OnEventRaised -= SetInteractionPanel;
 		_inputReader.OpenInventoryEvent -= SetInventoryScreen;
 		_inventoryPanel.Closed -= CloseInventoryScreen;
-		//_cookRecipeEvent.OnEventRaised -= PlayCookingAnimation;
-	}
+        //_cookRecipeEvent.OnEventRaised -= PlayCookingAnimation;
+    }
 
 	void DisableBars()
     {
@@ -223,7 +223,8 @@ public class UIManager : MonoBehaviour
 		if (_gameStateManager.CurrentGameState == GameState.Gameplay)
 		{
 			//isForCooking = false;
-			OpenInventoryScreen();
+			Debug.Log("Opening Inventory");
+            OpenInventoryScreen();
 		}
 	}
 
@@ -234,21 +235,17 @@ public class UIManager : MonoBehaviour
 
 		_inputReader.MenuCloseEvent += CloseInventoryScreen;
 		_inputReader.CloseInventoryEvent += CloseInventoryScreen;
-		//if (isForCooking)
-		//{
-		//	_inventoryPanel.FillInventory(InventoryTabType.Recipe, true);
 
-		//}
-		//else
-		//{
-			_inventoryPanel.FillInventory();
-		//}
+        _inventoryPanel.FillInventory();
+        _inventoryPanel.FillStats();
 
-		_inventoryPanel.gameObject.SetActive(true);
+        _inventoryPanel.gameObject.SetActive(true);
 		//_switchTabDisplay.SetActive(true);
 		_inputReader.EnableMenuInput();
 
-		_gameStateManager.UpdateGameState(GameState.Inventory);
+		GameTimeChange.PauseGame();
+
+        _gameStateManager.UpdateGameState(GameState.Inventory);
 	}
 
 	void CloseInventoryScreen()
@@ -264,8 +261,11 @@ public class UIManager : MonoBehaviour
 		//if (isForCooking)
 		//{
 		//	_onInteractionEndedEvent.RaiseEvent();
-		//}
-		_selectionHandler.Unselect();
+		//}				   
+
+		GameTimeChange.ResumeGame();
+
+        _selectionHandler.Unselect();
 		_gameStateManager.ResetToPreviousGameState();
 		if (_gameStateManager.CurrentGameState == GameState.Gameplay || _gameStateManager.CurrentGameState == GameState.Combat)
 			_inputReader.EnableGameplayInput();

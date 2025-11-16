@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Localization;
 // Created with collaboration from:
@@ -15,6 +16,6 @@ public class StatTabSO : ScriptableObject
 	[SerializeField] private string _tabName = default;
 	[SerializeField] private StatTabType _tabType = default;
 
-	public string TabName => _tabName;
+    public string TabName => _tabName;
 	public StatTabType TabType => _tabType;
 }

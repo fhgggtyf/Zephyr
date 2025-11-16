@@ -51,6 +51,7 @@ public class Player : Character
         _inputReader.PrimaryAttackCanceledEvent += OnPrimaryAttackCanceled;
         _inputReader.SecondaryAttackEvent += OnSecondaryAttack;
         _inputReader.SecondaryAttackCanceledEvent += OnSecondaryAttackCanceled;
+        _inputReader.GameplayInputToggled += _inputReader.BlockGameplayInput;
     }
 
     private void OnDisable()
@@ -69,6 +70,7 @@ public class Player : Character
         _inputReader.PrimaryAttackCanceledEvent -= OnPrimaryAttackCanceled;
         _inputReader.SecondaryAttackEvent -= OnSecondaryAttack;
         _inputReader.SecondaryAttackCanceledEvent -= OnSecondaryAttackCanceled;
+        _inputReader.GameplayInputToggled -= _inputReader.BlockGameplayInput;
     }
 
     // Update is called once per frame
@@ -89,6 +91,8 @@ public class Player : Character
     }
     private void OnMoveCanceled()
     {
+        Debug.Log("Move Canceled");
+        InputVector = new Vector2(0, 0);
         if (isRunningPrep)
         {
             isRunningPrep = false;

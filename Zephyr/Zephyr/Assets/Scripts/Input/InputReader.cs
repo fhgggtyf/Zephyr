@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
 using UnityEngine.InputSystem.Interactions;
@@ -30,7 +30,7 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
     public event UnityAction<Vector2> RunPrepEvent = delegate { };
     public event UnityAction CrouchEvent = delegate { };
     public event UnityAction CrouchCanceledEvent = delegate { };
-    //public event UnityAction RunCanceledEvent = delegate { };
+    public event UnityAction<bool> GameplayInputToggled = delegate { };
 
     public event UnityAction<Vector2, bool> CameraMoveEvent = delegate { };
     public event UnityAction EnableMouseControlCameraEvent = delegate { };
@@ -51,14 +51,16 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
     public event UnityAction MenuUnpauseEvent = delegate { };
     public event UnityAction MenuPauseEvent = delegate { };
     public event UnityAction MenuCloseEvent = delegate { };
-    public event UnityAction OpenInventoryEvent = delegate { }; // Used to bring up the inventory
-    public event UnityAction CloseInventoryEvent = delegate { }; // Used to bring up the inventory
+    public event UnityAction OpenInventoryEvent = delegate { }; 
+    public event UnityAction CloseInventoryEvent = delegate { }; 
     public event UnityAction<float> TabSwitched = delegate { };
 
     // Cheats (has effect only in the Editor)
     public event UnityAction CheatMenuEvent = delegate { };
 
     private GameInput _gameInput;
+
+    public bool GameplayInputBlocked { get; private set; }
 
     private void OnEnable()
     {
@@ -76,6 +78,11 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
         DisableAllInput();
     }
 
+    public void BlockGameplayInput(bool block)
+    {
+        GameplayInputBlocked = block;
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
         MoveEvent.Invoke(context.ReadValue<Vector2>());
@@ -85,12 +92,16 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 
     public void OnRunPrep(InputAction.CallbackContext context)
     {
+        if (GameplayInputBlocked) return;
+
         if (context.phase == InputActionPhase.Performed)
             RunPrepEvent.Invoke(context.ReadValue<Vector2>());
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        if (GameplayInputBlocked) return;
+
         if (context.phase == InputActionPhase.Performed)
             JumpEvent.Invoke();
 
@@ -100,6 +111,8 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 
     public void OnInteract(InputAction.CallbackContext context)
     {
+        if (GameplayInputBlocked) return;
+
         if (context.phase == InputActionPhase.Performed)
         {
             InteractEvent.Invoke();
@@ -109,6 +122,8 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 
     public void OnPrimaryAttack(InputAction.CallbackContext context)
     {
+        if (GameplayInputBlocked) return;
+
         switch (context.phase)
         {
             case InputActionPhase.Performed:
@@ -122,6 +137,8 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 
     public void OnSecondaryAttack(InputAction.CallbackContext context)
     {
+        if (GameplayInputBlocked) return;
+
         switch (context.phase)
         {
             case InputActionPhase.Performed:
@@ -135,6 +152,7 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 
     public void OnCrouch(InputAction.CallbackContext context)
     {
+        if (GameplayInputBlocked) return;
 
         if (context.phase == InputActionPhase.Performed)
             CrouchEvent.Invoke();
@@ -144,6 +162,8 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
     }
     public void OnRoll(InputAction.CallbackContext context)
     {
+        if (GameplayInputBlocked) return;
+
         if (context.phase == InputActionPhase.Performed)
             RollEvent.Invoke();
 
@@ -155,7 +175,17 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
     public void OnOpenInventory(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
+        {
             OpenInventoryEvent.Invoke();
+        }
+    }
+
+    public void OnCloseInventory(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            CloseInventoryEvent.Invoke();
+        }
     }
 
     public void DisableAllInput()
@@ -177,14 +207,13 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
         _gameInput.Menus.Disable();
         _gameInput.Dialogues.Disable();
         _gameInput.Gameplay.Enable();
+        GameplayInputToggled.Invoke(false);
     }
 
     public void EnableMenuInput()
     {
-        Debug.Log("MenuInputEnableed");
         _gameInput.Dialogues.Disable();
-        _gameInput.Gameplay.Disable();
-
+        GameplayInputToggled.Invoke(true);
         _gameInput.Menus.Enable();
     }
 
@@ -273,12 +302,6 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
     {
 
     }
-
-    public void OnCloseInventory(InputAction.CallbackContext context)
-    {
-        CloseInventoryEvent.Invoke();
-    }
-
 
     public void OnAdvanceDialogue(InputAction.CallbackContext context)
     {
